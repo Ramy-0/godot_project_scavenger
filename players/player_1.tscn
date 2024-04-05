@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://bxjfnkvmrqdrn"]
+
+[ext_resource type="Script" path="res://players/player_1.gd" id="1_5oqd6"]
+[ext_resource type="Texture2D" uid="uid://br6f31287ipbe" path="res://players/textures/pph.png" id="1_ubhxm"]
+[ext_resource type="PackedScene" uid="uid://cnwd3b08nhmfr" path="res://weapons/weapon_1.tscn" id="3_0skd6"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y6xqw"]
+
+[node name="Player_1" type="CharacterBody2D"]
+script = ExtResource("1_5oqd6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_y6xqw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ubhxm")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="WeaponsBelt" type="Node2D" parent="."]
+
+[node name="Weapon_1" parent="WeaponsBelt" instance=ExtResource("3_0skd6")]

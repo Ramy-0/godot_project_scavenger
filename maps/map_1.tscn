@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cxqt0dfqaqikv"]
+
+[node name="Map_1" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 64.0
+offset_bottom = 64.0
+color = Color(0.0862745, 1, 1, 1)
