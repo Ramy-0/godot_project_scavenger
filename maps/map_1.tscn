@@ -6,6 +6,7 @@ size = Vector2(64, 64)
 [node name="Map_1" type="Node2D"]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_mask = 31
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D"]
 offset_right = 64.0
