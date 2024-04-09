@@ -18,7 +18,7 @@ one_shot = true
 [node name="ShootingTimer" type="Timer" parent="."]
 one_shot = true
 
-[node name="Debug" parent="." instance=ExtResource("2_s4s80")]
+[node name="Weapon_Debug" parent="." instance=ExtResource("2_s4s80")]
 
 [connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]
 [connection signal="timeout" from="ShootingTimer" to="." method="_on_shooting_timer_timeout"]
