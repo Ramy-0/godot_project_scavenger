@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckeq3ku1d6amj"]
+
+[ext_resource type="Script" path="res://weapons/sub nodes/weapon_debug.gd" id="1_mn52t"]
+
+[node name="Debug" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mn52t")
+
+[node name="Ammo_DB" type="Label" parent="."]
+layout_mode = 1
+offset_left = 88.0
+offset_top = 48.0
+offset_right = 147.0
+offset_bottom = 71.0
+
+[node name="Reload_DB" type="Label" parent="."]
+layout_mode = 1
+offset_left = 88.0
+offset_top = 80.0
+offset_right = 147.0
+offset_bottom = 103.0
