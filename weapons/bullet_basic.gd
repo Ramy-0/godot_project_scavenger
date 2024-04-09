@@ -21,3 +21,10 @@ func _physics_process(delta):
 
 func _on_expire_timer_timeout():
 	queue_free()
+
+
+func _on_body_entered(body):
+	print("hit ", body)
+	if body.has_method("hit"):
+		body.hit(dmg)
+	queue_free()
