@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://cxqt0dfqaqikv"]
+[gd_scene load_steps=3 format=3 uid="uid://cxqt0dfqaqikv"]
+
+[ext_resource type="PackedScene" uid="uid://8y1elf3odkbo" path="res://maps/maps objects/punch_bag.tscn" id="1_t2w83"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t04rg"]
 size = Vector2(64, 64)
@@ -16,3 +18,6 @@ color = Color(0.0862745, 1, 1, 1)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(32, 32)
 shape = SubResource("RectangleShape2D_t04rg")
+
+[node name="Punch_Bag" parent="." instance=ExtResource("1_t2w83")]
+position = Vector2(104, -48)
