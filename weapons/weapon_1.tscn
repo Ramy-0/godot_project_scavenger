@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cnwd3b08nhmfr"]
 
 [ext_resource type="Script" path="res://weapons/weapon_1.gd" id="1_gpqke"]
-[ext_resource type="PackedScene" uid="uid://ckeq3ku1d6amj" path="res://weapons/sub nodes/weapon_debug.tscn" id="2_s4s80"]
+[ext_resource type="PackedScene" uid="uid://ckeq3ku1d6amj" path="res://weapons/weapon sub nodes/weapon_debug.tscn" id="2_s4s80"]
 
 [node name="Weapon_1" type="Node2D"]
 script = ExtResource("1_gpqke")

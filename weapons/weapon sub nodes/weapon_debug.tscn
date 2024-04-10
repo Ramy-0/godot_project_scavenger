@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ckeq3ku1d6amj"]
 
-[ext_resource type="Script" path="res://weapons/sub nodes/weapon_debug.gd" id="1_mn52t"]
+[ext_resource type="Script" path="res://weapons/weapon sub nodes/weapon_debug.gd" id="1_mn52t"]
 
 [node name="Weapon_Debug" type="Control"]
 layout_mode = 3
