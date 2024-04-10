@@ -1,11 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://7ouunjplynng"]
+[gd_scene load_steps=9 format=3 uid="uid://7ouunjplynng"]
 
 [ext_resource type="Script" path="res://enemy/enemy_melee_test.gd" id="1_wuml5"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="2_fr5lj"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="3_ds6tm"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="4_3qyl6"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="5_j624t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2n7rf"]
 size = Vector2(40, 40)
 
-[node name="Enemy_Melee_Test" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_ujmwb"]
+radius = 303.486
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tapfd"]
+radius = 66.0303
+
+[node name="Enemy_Melee_Test" type="CharacterBody2D" groups=["Enemy"]]
+collision_layer = 4
+collision_mask = 31
 script = ExtResource("1_wuml5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -17,3 +29,45 @@ offset_top = -20.0
 offset_right = 20.0
 offset_bottom = 20.0
 color = Color(0.873894, 0, 0.13992, 1)
+
+[node name="Activate_Area" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Activate_Area"]
+shape = SubResource("CircleShape2D_ujmwb")
+
+[node name="Attack_Area" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack_Area"]
+shape = SubResource("CircleShape2D_tapfd")
+debug_color = Color(0.969749, 0, 0.459308, 0.42)
+
+[node name="StateChart" type="Node" parent="."]
+script = ExtResource("2_fr5lj")
+
+[node name="Root" type="Node" parent="StateChart"]
+script = ExtResource("3_ds6tm")
+initial_state = NodePath("Idel")
+
+[node name="Idel" type="Node" parent="StateChart/Root"]
+script = ExtResource("4_3qyl6")
+
+[node name="Chase" type="Node" parent="StateChart/Root/Idel"]
+script = ExtResource("5_j624t")
+to = NodePath("../../Chasing")
+
+[node name="Chasing" type="Node" parent="StateChart/Root"]
+script = ExtResource("4_3qyl6")
+
+[node name="Attack" type="Node" parent="StateChart/Root/Chasing"]
+script = ExtResource("5_j624t")
+to = NodePath("../../Attacking")
+
+[node name="Attacking" type="Node" parent="StateChart/Root"]
+script = ExtResource("4_3qyl6")
+
+[connection signal="body_entered" from="Activate_Area" to="." method="_on_activate_area_body_entered"]
+[connection signal="body_entered" from="Attack_Area" to="." method="_on_attack_area_body_entered"]
