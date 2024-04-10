@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cxqt0dfqaqikv"]
+[gd_scene load_steps=4 format=3 uid="uid://cxqt0dfqaqikv"]
 
 [ext_resource type="PackedScene" uid="uid://8y1elf3odkbo" path="res://maps/maps objects/punch_bag.tscn" id="1_t2w83"]
+[ext_resource type="PackedScene" uid="uid://7ouunjplynng" path="res://enemy/enemy_melee_test.tscn" id="2_wbu5t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t04rg"]
 size = Vector2(64, 64)
@@ -21,3 +22,6 @@ shape = SubResource("RectangleShape2D_t04rg")
 
 [node name="Punch_Bag" parent="." instance=ExtResource("1_t2w83")]
 position = Vector2(104, -48)
+
+[node name="Enemy_Melee_Test" parent="." instance=ExtResource("2_wbu5t")]
+position = Vector2(-448, -80)
