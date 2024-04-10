@@ -1,0 +1,59 @@
+[gd_scene load_steps=7 format=3 uid="uid://cfm18sllss7ih"]
+
+[ext_resource type="Script" path="res://enemy/enemy sub nodes/enemy_melee_ai.gd" id="1_1qvnl"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="2_iislf"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="3_8tfou"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="4_6w8tj"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="5_oq7yg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2uv5s"]
+
+[node name="Enemy_Melee_AI" type="Node2D"]
+script = ExtResource("1_1qvnl")
+
+[node name="Enemy_StateChart" type="Node" parent="."]
+script = ExtResource("2_iislf")
+
+[node name="Root" type="Node" parent="Enemy_StateChart"]
+script = ExtResource("3_8tfou")
+initial_state = NodePath("Idle_State")
+
+[node name="Idle_State" type="Node" parent="Enemy_StateChart/Root"]
+script = ExtResource("4_6w8tj")
+
+[node name="Chase_Trans" type="Node" parent="Enemy_StateChart/Root/Idle_State"]
+script = ExtResource("5_oq7yg")
+to = NodePath("../../Chase_State")
+
+[node name="Chase_State" type="Node" parent="Enemy_StateChart/Root"]
+script = ExtResource("4_6w8tj")
+
+[node name="Attack_Trans" type="Node" parent="Enemy_StateChart/Root/Chase_State"]
+script = ExtResource("5_oq7yg")
+to = NodePath("../../Attack_State")
+
+[node name="Attack_State" type="Node" parent="Enemy_StateChart/Root"]
+script = ExtResource("4_6w8tj")
+
+[node name="Chase_Trans" type="Node" parent="Enemy_StateChart/Root/Attack_State"]
+script = ExtResource("5_oq7yg")
+to = NodePath("../../Chase_State")
+
+[node name="Active_Area" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Active_Area"]
+shape = SubResource("CircleShape2D_2uv5s")
+debug_color = Color(0.758321, 0.45369, 0, 0.42)
+
+[node name="Attack_Area" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack_Area"]
+shape = SubResource("CircleShape2D_2uv5s")
+debug_color = Color(0.962542, 0.19507, 0, 0.42)
+
+[connection signal="body_entered" from="Active_Area" to="." method="_on_active_area_body_entered"]
+[connection signal="body_entered" from="Attack_Area" to="." method="_on_attack_area_body_entered"]

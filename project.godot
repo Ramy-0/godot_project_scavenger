@@ -12,7 +12,7 @@ config_version=5
 
 config/name="project rain"
 config/tags=PackedStringArray("2d", "git_repo", "plugins", "v4.3")
-run/main_scene="res://worlds/world_1.tscn"
+run/main_scene="res://worlds/world_2.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -82,6 +82,7 @@ m_2={
 [layer_names]
 
 2d_physics/layer_1="Word"
+2d_navigation/layer_1="Ground"
 2d_physics/layer_2="Player"
 2d_physics/layer_3="Enemy"
 2d_physics/layer_4="Bullet"
