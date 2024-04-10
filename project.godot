@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="project rain"
-config/tags=PackedStringArray("2d", "v4.3")
+config/tags=PackedStringArray("2d", "git_repo", "plugins", "v4.3")
 run/main_scene="res://worlds/world_1.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
@@ -43,6 +43,8 @@ folder_colors={
 [global_group]
 
 World="the world or level (the parent of all things)"
+Player="for the player and player related NPC"
+Enemy="Enemies"
 
 [input]
 
