@@ -25,9 +25,14 @@ MyFuncs="*res://singletons/my_funcs.gd"
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot_state_charts/plugin.cfg")
+
 [file_customization]
 
 folder_colors={
+"res://enemy/": "red",
 "res://maps/": "green",
 "res://players/": "orange",
 "res://singletons/": "pink",
