@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cacqnwntka5xh" path="res://maps/maps objects/textures/grid_2.jpg" id="1_m8afr"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_1bj52"]
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_wr3ox"]
 vertices = PackedVector2Array(16, 16, -16, 16, -16, -16, 16, -16)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)])
@@ -19,7 +19,7 @@ texture_region_size = Vector2i(32, 32)
 1:0/0 = 0
 1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:0/0/physics_layer_0/angular_velocity = 0.0
-1:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_1bj52")
+1:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_wr3ox")
 2:0/0 = 0
 2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:0/0/physics_layer_0/angular_velocity = 0.0

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4thyt8a0mbni"]
+
+[ext_resource type="Script" path="res://enemy/classes/enemy_type_melee_1.gd" id="1_r5qem"]
+
+[node name="Enemy_Type_Melee_1" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 15
+motion_mode = 1
+wall_min_slide_angle = 0.0
+script = ExtResource("1_r5qem")
