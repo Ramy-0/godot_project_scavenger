@@ -7,9 +7,9 @@
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="4_43ib2"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="5_2v5dm"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_uu5p7"]
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_p6hfv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uu5p7"]
 
 [node name="Enemy_Melee_1_Behavoir_Chart" type="Node2D"]
 script = ExtResource("1_bq1js")
@@ -52,13 +52,6 @@ script = ExtResource("5_2v5dm")
 to = NodePath("../../Chasing_State")
 event = &"Attack_Finished"
 
-[node name="Observation_Range" type="Area2D" parent="."]
-collision_layer = 4
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Observation_Range"]
-shape = SubResource("CircleShape2D_uu5p7")
-
 [node name="Attack_Range" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 2
@@ -66,10 +59,17 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack_Range"]
 shape = SubResource("CircleShape2D_p6hfv")
 
+[node name="Observation_Range" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Observation_Range"]
+shape = SubResource("CircleShape2D_uu5p7")
+
 [node name="Update_Timer" type="Timer" parent="."]
 wait_time = 0.2
 
 [connection signal="state_entered" from="StateChart/Root/Chasing_State" to="." method="_on_chasing_state_state_entered"]
 [connection signal="state_entered" from="StateChart/Root/Attacking_State" to="." method="_on_attacking_state_state_entered"]
-[connection signal="body_entered" from="Observation_Range" to="." method="_on_observation_range_body_entered"]
 [connection signal="body_entered" from="Attack_Range" to="." method="_on_attack_range_body_entered"]
+[connection signal="body_entered" from="Observation_Range" to="." method="_on_observation_range_body_entered"]

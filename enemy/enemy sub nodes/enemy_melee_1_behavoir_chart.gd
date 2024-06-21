@@ -32,7 +32,8 @@ func _on_attack_range_body_entered(body):
 
 func _on_chasing_state_state_entered():
 	parent.target = target
-
+	if atk_r.overlaps_body(target):
+		$StateChart.send_event("Player_Near")
 
 func _on_attacking_state_state_entered():
 	print(parent.attack.has_method("attack"))
