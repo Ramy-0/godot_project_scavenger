@@ -10,9 +10,9 @@ radius = 18.0
 
 [node name="Enemy_Melee_Test2" type="CharacterBody2D" node_paths=PackedStringArray("stateChart", "navAgent", "attack", "collisionBox") groups=["Enemy"]]
 script = ExtResource("1_cc8gs")
-health = 200.0
-damage = 20.0
-speed = 250.0
+base_health = 200.0
+base_damage = 25.0
+base_speed = 250.0
 stateChart = NodePath("Enemy_Melee_1_Behavoir_Chart")
 navAgent = NodePath("Enemy_NavAgent_1")
 attack = NodePath("Enemy_Melee_1_Attack_1")

@@ -38,6 +38,8 @@ func _on_chasing_state_state_entered():
 func _on_attacking_state_state_entered():
 	print(parent.attack.has_method("attack"))
 	parent.attack.attack(target, parent.damage)
+	parent.moving = false
 	await parent.attack.post_t.timeout
 	print("finished")
+	parent.moving = true
 	$StateChart.send_event("Attack_Finished")
