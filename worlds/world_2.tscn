@@ -14,8 +14,9 @@
 [node name="Enemy_Melee_Test" parent="." instance=ExtResource("3_6vru4")]
 position = Vector2(506, -88)
 
-[node name="Enemy_Melee_Test2" parent="." node_paths=PackedStringArray("target", "navAgent", "collisionBox") instance=ExtResource("4_3ggav")]
+[node name="Enemy_Melee_Test2" parent="." node_paths=PackedStringArray("stateChart", "navAgent", "attack", "collisionBox") instance=ExtResource("4_3ggav")]
 position = Vector2(-142, -52)
-target = NodePath("../Player_1")
+stateChart = NodePath("Enemy_Melee_1_Behavoir_Chart")
 navAgent = NodePath("Enemy_NavAgent_1")
+attack = NodePath("Enemy_Melee_1_Attack_1")
 collisionBox = NodePath("CollisionShape2D")

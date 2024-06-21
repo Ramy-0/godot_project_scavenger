@@ -31,6 +31,7 @@ func bite(player):
 func _on_activate_area_body_entered(body):
 	if body.is_in_group("Player"):
 		print("Player spoted")
+		$StateChart.send_event("Player_Seen")
 		if player_target == null:
 			player_target = body
 			print(player_target)
@@ -38,6 +39,7 @@ func _on_activate_area_body_entered(body):
 
 func _on_attack_area_body_entered(body):
 	if body.is_in_group("Player"):
+		$StateChart.send_event("Player_Close")
 		print("bite")
 		atk_delay_timer.start()
 

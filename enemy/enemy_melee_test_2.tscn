@@ -1,20 +1,28 @@
-[gd_scene load_steps=4 format=3 uid="uid://ccljhntexnrvl"]
+[gd_scene load_steps=6 format=3 uid="uid://ccljhntexnrvl"]
 
 [ext_resource type="Script" path="res://enemy/enemy_melee_test_2.gd" id="1_cc8gs"]
 [ext_resource type="PackedScene" uid="uid://dmu8kwhtvh2f8" path="res://enemy/enemy sub nodes/enemy_nav_agent_1.tscn" id="2_77ldy"]
+[ext_resource type="PackedScene" uid="uid://xd7e4h27mliv" path="res://enemy/enemy sub nodes/enemy_melee_1_behavoir_chart.tscn" id="3_tfbu5"]
+[ext_resource type="PackedScene" uid="uid://bldwogfv765ha" path="res://enemy/enemy sub nodes/enemy_melee_1_attack_1.tscn" id="4_2u5jw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1hvdk"]
 radius = 18.0
 
-[node name="Enemy_Melee_Test2" type="CharacterBody2D" node_paths=PackedStringArray("navAgent", "collisionBox")]
+[node name="Enemy_Melee_Test2" type="CharacterBody2D" node_paths=PackedStringArray("stateChart", "navAgent", "attack", "collisionBox") groups=["Enemy"]]
 script = ExtResource("1_cc8gs")
 health = 200.0
 damage = 20.0
 speed = 250.0
+stateChart = NodePath("Enemy_Melee_1_Behavoir_Chart")
 navAgent = NodePath("Enemy_NavAgent_1")
+attack = NodePath("Enemy_Melee_1_Attack_1")
 collisionBox = NodePath("CollisionShape2D")
+
+[node name="Enemy_Melee_1_Behavoir_Chart" parent="." instance=ExtResource("3_tfbu5")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_1hvdk")
 
 [node name="Enemy_NavAgent_1" parent="." instance=ExtResource("2_77ldy")]
+
+[node name="Enemy_Melee_1_Attack_1" parent="." instance=ExtResource("4_2u5jw")]

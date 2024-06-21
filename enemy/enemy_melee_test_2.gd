@@ -1,2 +1,1 @@
 extends EnemyTypeMelee1
-

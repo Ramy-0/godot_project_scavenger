@@ -10,9 +10,9 @@ class_name EnemyTypeMelee1
 @export var speed : float
 
 #subnodes
-@export var stateChart : StateChart
+@export var stateChart : Node2D
 @export var navAgent : NavigationAgent2D
-@export var hitBox : CollisionShape2D
+@export var attack : Node2D
 @export var collisionBox : CollisionShape2D
 @export var animSprite : AnimatedSprite2D
 
@@ -22,3 +22,5 @@ func _physics_process(delta):
 		velocity = dir * speed
 		move_and_slide()
 
+func hurt(dmg):
+	print("owwie")

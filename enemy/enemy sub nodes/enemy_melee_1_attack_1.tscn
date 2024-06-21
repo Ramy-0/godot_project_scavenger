@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://bldwogfv765ha"]
+
+[ext_resource type="Script" path="res://enemy/enemy sub nodes/enemy_melee_1_attack_1.gd" id="1_wnh7g"]
+
+[node name="Enemy_Melee_1_Attack_1" type="Node2D"]
+script = ExtResource("1_wnh7g")
+
+[node name="Pre_Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Post_Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Pre_Timer" to="." method="_on_pre_timer_timeout"]
+[connection signal="timeout" from="Post_Timer" to="." method="_on_post_timer_timeout"]
