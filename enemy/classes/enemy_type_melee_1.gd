@@ -15,7 +15,7 @@ var speed: float
 var moving:bool = true
 
 #subnodes
-@export var stateChart : Node2D
+@export var stateChart : StateChartGroup1
 @export var navAgent : NavigationAgent2D
 @export var attack : Node2D
 @export var collisionBox : CollisionShape2D

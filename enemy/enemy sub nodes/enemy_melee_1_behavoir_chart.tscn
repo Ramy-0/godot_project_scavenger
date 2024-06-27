@@ -13,6 +13,8 @@
 
 [node name="Enemy_Melee_1_Behavoir_Chart" type="Node2D"]
 script = ExtResource("1_bq1js")
+obs_rad = 100.0
+atk_rad = 50.0
 
 [node name="StateChartDebugger" parent="." instance=ExtResource("2_s00tx")]
 offset_left = 48.0

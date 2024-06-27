@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name StateChartGroup1
+
 @onready var parent:Node = get_parent()
 @onready var obs_r = $Observation_Range
 @onready var atk_r = $Attack_Range
@@ -20,13 +22,13 @@ func _process(delta):
 
 func _on_observation_range_body_entered(body):
 	if body.is_in_group("Player"):
-		print("player spoted")
+		#print("player spoted")
 		target = body
 		$StateChart.send_event("Player_Seen")
 
 func _on_attack_range_body_entered(body):
 	if body.is_in_group("Player"):
-		print("player near")
+		#print("player near")
 		target = body
 		$StateChart.send_event("Player_Near")
 
@@ -36,10 +38,10 @@ func _on_chasing_state_state_entered():
 		$StateChart.send_event("Player_Near")
 
 func _on_attacking_state_state_entered():
-	print(parent.attack.has_method("attack"))
+	#print(parent.attack.has_method("attack"))
 	parent.attack.attack(target, parent.damage)
 	parent.moving = false
 	await parent.attack.post_t.timeout
-	print("finished")
+	#print("finished")
 	parent.moving = true
 	$StateChart.send_event("Attack_Finished")
