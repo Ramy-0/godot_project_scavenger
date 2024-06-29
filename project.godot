@@ -45,6 +45,9 @@ folder_colors={
 World="the world or level (the parent of all things)"
 Player="for the player and player related NPC"
 Enemy="Enemies"
+CollisionBox=""
+HitBox=""
+HurtBox=""
 
 [input]
 

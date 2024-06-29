@@ -1,0 +1,122 @@
+[gd_scene load_steps=12 format=3 uid="uid://khn70dsh7d5b"]
+
+[ext_resource type="Script" path="res://enemy/enemy_simple.gd" id="1_nb7dg"]
+[ext_resource type="Texture2D" uid="uid://bdo44k0t2q4wd" path="res://enemy/textures/bug.png" id="2_4trwu"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="2_e2136"]
+[ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="2_eaxb2"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="3_y7ta6"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="4_nt0ys"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="5_50238"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vatou"]
+radius = 18.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gliky"]
+radius = 24.0
+height = 64.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mds8e"]
+radius = 300.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0qa11"]
+radius = 62.0
+
+[node name="Enemy_Simple" type="CharacterBody2D" groups=["Enemy"]]
+collision_layer = 4
+collision_mask = 15
+script = ExtResource("1_nb7dg")
+
+[node name="CollisionBox" type="CollisionShape2D" parent="." groups=["CollisionBox"]]
+shape = SubResource("CircleShape2D_vatou")
+
+[node name="HitBox" type="Area2D" parent="." groups=["HitBox"]]
+position = Vector2(0, -2)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0, -44)
+rotation = 1.57079
+shape = SubResource("CapsuleShape2D_gliky")
+disabled = true
+debug_color = Color(0.976471, 0, 0.403922, 0.431373)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-9.53674e-07, 7.15256e-07)
+texture = ExtResource("2_4trwu")
+
+[node name="StateChartDebugger" parent="." instance=ExtResource("2_eaxb2")]
+offset_left = 32.0
+offset_top = -48.0
+offset_right = 162.0
+offset_bottom = 78.0
+initial_node_to_watch = NodePath("../StateChart")
+
+[node name="StateChart" type="Node" parent="."]
+script = ExtResource("2_e2136")
+
+[node name="Root" type="Node" parent="StateChart"]
+script = ExtResource("3_y7ta6")
+initial_state = NodePath("Idle_State")
+
+[node name="Idle_State" type="Node" parent="StateChart/Root"]
+script = ExtResource("4_nt0ys")
+
+[node name="Idle2Chase_Transition" type="Node" parent="StateChart/Root/Idle_State"]
+script = ExtResource("5_50238")
+to = NodePath("../../Chasing_State")
+event = &"player_in_sight"
+
+[node name="Chasing_State" type="Node" parent="StateChart/Root"]
+script = ExtResource("4_nt0ys")
+
+[node name="Chase2Attack_Transition" type="Node" parent="StateChart/Root/Chasing_State"]
+script = ExtResource("5_50238")
+to = NodePath("../../Attacking_State")
+event = &"player_in_attack_range"
+
+[node name="Attacking_State" type="Node" parent="StateChart/Root"]
+script = ExtResource("4_nt0ys")
+
+[node name="Attack2Chase_Transition" type="Node" parent="StateChart/Root/Attacking_State"]
+script = ExtResource("5_50238")
+to = NodePath("../../Chasing_State")
+event = &"attack_finished"
+
+[node name="Chase_Area" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chase_Area"]
+shape = SubResource("CircleShape2D_mds8e")
+debug_color = Color(1, 0.376471, 0.52549, 0.0627451)
+
+[node name="Attack_Area" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack_Area"]
+shape = SubResource("CircleShape2D_0qa11")
+debug_color = Color(0.977959, 0, 0.403737, 0.0823529)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+debug_enabled = true
+
+[node name="Attack_Pre_Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Attack_Post_Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Nav_Refresh_Timer" type="Timer" parent="."]
+wait_time = 0.1
+
+[connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
+[connection signal="state_entered" from="StateChart/Root/Chasing_State" to="." method="_on_chasing_state_state_entered"]
+[connection signal="state_physics_processing" from="StateChart/Root/Chasing_State" to="." method="_on_chasing_state_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/Root/Attacking_State" to="." method="_on_attacking_state_state_entered"]
+[connection signal="body_entered" from="Chase_Area" to="." method="_on_chase_area_body_entered"]
+[connection signal="body_entered" from="Attack_Area" to="." method="_on_attack_area_body_entered"]
+[connection signal="timeout" from="Attack_Pre_Timer" to="." method="_on_attack_pre_timer_timeout"]
+[connection signal="timeout" from="Attack_Post_Timer" to="." method="_on_attack_post_timer_timeout"]
+[connection signal="timeout" from="Nav_Refresh_Timer" to="." method="_on_nav_refresh_timer_timeout"]
