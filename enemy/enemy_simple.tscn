@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://khn70dsh7d5b"]
+[gd_scene load_steps=13 format=3 uid="uid://khn70dsh7d5b"]
 
 [ext_resource type="Script" path="res://enemy/enemy_simple.gd" id="1_nb7dg"]
 [ext_resource type="Texture2D" uid="uid://bdo44k0t2q4wd" path="res://enemy/textures/bug.png" id="2_4trwu"]
@@ -14,6 +14,9 @@ radius = 18.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gliky"]
 radius = 24.0
 height = 64.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2jb6s"]
+radius = 30.0666
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mds8e"]
 radius = 300.0
@@ -41,11 +44,20 @@ shape = SubResource("CapsuleShape2D_gliky")
 disabled = true
 debug_color = Color(0.976471, 0, 0.403922, 0.431373)
 
+[node name="HurtBox" type="Area2D" parent="." groups=["HurtBox"]]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("CircleShape2D_2jb6s")
+debug_color = Color(0.646815, 0.521477, 0, 0.42)
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-9.53674e-07, 7.15256e-07)
 texture = ExtResource("2_4trwu")
 
 [node name="StateChartDebugger" parent="." instance=ExtResource("2_eaxb2")]
+visible = false
 offset_left = 32.0
 offset_top = -48.0
 offset_right = 162.0
@@ -100,6 +112,8 @@ shape = SubResource("CircleShape2D_0qa11")
 debug_color = Color(0.977959, 0, 0.403737, 0.0823529)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+neighbor_distance = 6.0
 debug_enabled = true
 
 [node name="Attack_Pre_Timer" type="Timer" parent="."]
@@ -112,6 +126,7 @@ one_shot = true
 wait_time = 0.1
 
 [connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
+[connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
 [connection signal="state_entered" from="StateChart/Root/Chasing_State" to="." method="_on_chasing_state_state_entered"]
 [connection signal="state_physics_processing" from="StateChart/Root/Chasing_State" to="." method="_on_chasing_state_state_physics_processing"]
 [connection signal="state_entered" from="StateChart/Root/Attacking_State" to="." method="_on_attacking_state_state_entered"]

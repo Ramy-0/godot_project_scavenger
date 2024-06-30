@@ -18,20 +18,27 @@ extends CharacterBody2D
 @export var target:CharacterBody2D
 
 var nav_speed:float
+var health:int
 
 func _ready() -> void:
 	atkPreT.wait_time = attack_pre_time
 	atkPostT.wait_time = attack_post_time
 	nav_speed = base_speed
+	health = base_health
 
 func _physics_process(delta):
-	pass
+	if health <= 0:
+		queue_free()
 
 
 #METHODS
 func make_nav_path() -> void:
 	if target != null:
 		navAgent.target_position = target.global_position
+
+func hit(damage):
+	health -= damage
+	print("hit")
 
 
 #AREA SIGNALS
@@ -61,6 +68,9 @@ func _on_chasing_state_state_physics_processing(delta):
 
 func _on_attacking_state_state_entered():
 	navRefT.stop()
+	$Sprite2D.look_at(target.position)
+	$Sprite2D.rotate(deg_to_rad(90))
+	$HitBox.rotation = $Sprite2D.rotation
 	atkPreT.start()
 
 
@@ -83,3 +93,9 @@ func _on_hit_box_body_entered(body):
 	if body.is_in_group("Player"):
 		if body.has_method("hit"):
 			body.hit(base_damage)
+
+
+#HURTBOX SIGNAL
+func _on_hurt_box_area_entered(area):
+	hit(area.dmg)
+	area.queue_free()
