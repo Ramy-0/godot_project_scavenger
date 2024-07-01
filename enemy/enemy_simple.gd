@@ -8,6 +8,7 @@ extends CharacterBody2D
 @onready var navRefT = $Nav_Refresh_Timer
 @onready var hitBox = $HitBox
 @onready var hitBoxColl = $HitBox/CollisionShape2D
+@onready var healthBar = $HealthBar
 
 #STATS VAR
 @export var base_speed:float = 250.0
@@ -25,6 +26,7 @@ func _ready() -> void:
 	atkPostT.wait_time = attack_post_time
 	nav_speed = base_speed
 	health = base_health
+	healthBar.value = float(health)/float(base_health)
 
 func _physics_process(delta):
 	if health <= 0:
@@ -38,7 +40,13 @@ func make_nav_path() -> void:
 
 func hit(damage):
 	health -= damage
-	print("hit")
+	hurt_mark()
+
+func hurt_mark():
+	$Sprite2D.self_modulate = Color(50,50,50,50)
+	await get_tree().create_timer(0.05).timeout
+	$Sprite2D.self_modulate = Color("white")
+	healthBar.value = float(health)/float(base_health)
 
 
 #AREA SIGNALS
