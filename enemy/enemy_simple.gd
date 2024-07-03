@@ -102,8 +102,14 @@ func _on_hit_box_body_entered(body):
 		if body.has_method("hit"):
 			body.hit(base_damage)
 
+func _on_hit_box_area_entered(area):
+	if area.get_parent().is_in_group("Player") and area is HurtBox:
+		area.attacked(base_damage)
+
 
 #HURTBOX SIGNAL
 func _on_hurt_box_area_entered(area):
 	hit(area.dmg)
 	area.queue_free()
+
+
