@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://2767ee5lab1g"]
+
+[ext_resource type="Script" path="res://weapons/bullet_simple.gd" id="1_e1exo"]
+[ext_resource type="Texture2D" uid="uid://m2bo4hwe50qk" path="res://weapons/texture/bullet 1.png" id="2_0k2wx"]
+[ext_resource type="PackedScene" uid="uid://cicmyg4bo2ywm" path="res://weapons/weapon sub nodes/hit_box.tscn" id="3_04rhv"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0yk86"]
+radius = 2.0
+height = 12.0
+
+[node name="Bullet_Simple" type="StaticBody2D"]
+collision_layer = 8
+collision_mask = 5
+script = ExtResource("1_e1exo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_0k2wx")
+
+[node name="Hit_Box" parent="." instance=ExtResource("3_04rhv")]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hit_Box"]
+rotation = -1.57079
+shape = SubResource("CapsuleShape2D_0yk86")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
