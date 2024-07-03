@@ -1,0 +1,61 @@
+[gd_scene load_steps=10 format=3 uid="uid://cnve1w5ya6fm3"]
+
+[ext_resource type="Script" path="res://players/player_modular.gd" id="1_btelm"]
+[ext_resource type="Texture2D" uid="uid://br6f31287ipbe" path="res://players/textures/pph.png" id="2_3qaqh"]
+[ext_resource type="Script" path="res://players/subnodes/weapon_belt.gd" id="3_qi5wp"]
+[ext_resource type="PackedScene" uid="uid://cwquvmeqdwvc2" path="res://weapons/weapon_pistol_basic.tscn" id="4_1c55j"]
+[ext_resource type="PackedScene" uid="uid://b26pb5pgrfyef" path="res://players/subnodes/hurt_box.tscn" id="4_7fsvt"]
+[ext_resource type="PackedScene" uid="uid://ba38bg6b8r6f3" path="res://players/subnodes/health_gui.tscn" id="5_6lu8k"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cna0v"]
+radius = 16.0
+height = 64.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eggvd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_3qaqh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3d4ei"]
+size = Vector2(32, 64)
+
+[node name="Player_Modular" type="CharacterBody2D" node_paths=PackedStringArray("collisionBox", "sprite", "camera", "weaponBelt", "hurtBox", "healthgui") groups=["Player"]]
+collision_layer = 2
+collision_mask = 21
+script = ExtResource("1_btelm")
+base_health = 250.0
+base_speed = 300.0
+collisionBox = NodePath("CollisionBox")
+sprite = NodePath("AnimatedSprite2D")
+camera = NodePath("Camera2D")
+weaponBelt = NodePath("WeaponBelt")
+hurtBox = NodePath("HurtBox")
+healthgui = NodePath("Health_GUI")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="CollisionBox" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_cna0v")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_eggvd")
+
+[node name="WeaponBelt" type="Node2D" parent="." node_paths=PackedStringArray("weapon1")]
+script = ExtResource("3_qi5wp")
+weapon1 = NodePath("Weapon_Pistol_Basic")
+
+[node name="Weapon_Pistol_Basic" parent="WeaponBelt" instance=ExtResource("4_1c55j")]
+
+[node name="HurtBox" parent="." instance=ExtResource("4_7fsvt")]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("RectangleShape2D_3d4ei")
+
+[node name="Health_GUI" parent="." instance=ExtResource("5_6lu8k")]
