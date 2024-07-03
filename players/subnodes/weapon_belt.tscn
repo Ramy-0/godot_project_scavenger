@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cu4niunyslhyn"]
+
+[ext_resource type="Script" path="res://players/subnodes/weapon_belt.gd" id="1_ku3o1"]
+
+[node name="Weapon_Belt" type="Node2D"]
+script = ExtResource("1_ku3o1")
