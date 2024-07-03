@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bq4m445debsie"]
+
+[ext_resource type="Script" path="res://players/class/player_class.gd" id="1_sbwnx"]
+
+[node name="Player_Class" type="CharacterBody2D" groups=["Player"]]
+collision_layer = 2
+collision_mask = 21
+script = ExtResource("1_sbwnx")
