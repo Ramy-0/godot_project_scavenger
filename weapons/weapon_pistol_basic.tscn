@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=3 uid="uid://cwquvmeqdwvc2"]
+
+[ext_resource type="Script" path="res://weapons/weapon_pistol_basic.gd" id="1_e2snf"]
+[ext_resource type="Texture2D" uid="uid://ktq2gqa1gufn" path="res://weapons/texture/Pistol Basic.png" id="2_0umim"]
+[ext_resource type="PackedScene" uid="uid://2767ee5lab1g" path="res://weapons/bullet_simple.tscn" id="2_5l6mh"]
+
+[node name="Weapon_Pistol_Basic" type="Node2D"]
+script = ExtResource("1_e2snf")
+damage = 25
+bullet_speed = 1200.0
+bullet_lifetime = 1.0
+mag_size = 16
+fire_delay = 0.1
+releod_delay = 0.25
+pre_releod_delay = 0.4
+bullet = ExtResource("2_5l6mh")
+weapon_name = "Basic Pistol"
+
+[node name="Pivot" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Pivot"]
+position = Vector2(-30, 6)
+texture = ExtResource("2_0umim")
+
+[node name="Fire_Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Reload_Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Pre_Reload_Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Mag" type="Label" parent="."]
+offset_left = -122.0
+offset_top = -104.0
+offset_right = -82.0
+offset_bottom = -81.0
+
+[connection signal="timeout" from="Fire_Timer" to="." method="_on_fire_timer_timeout"]
+[connection signal="timeout" from="Reload_Timer" to="." method="_on_reload_timer_timeout"]
+[connection signal="timeout" from="Pre_Reload_Timer" to="." method="_on_pre_reload_timer_timeout"]
