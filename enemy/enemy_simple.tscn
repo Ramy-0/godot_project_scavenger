@@ -133,6 +133,7 @@ offset_bottom = -39.0
 max_value = 1.0
 value = 1.0
 
+[connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
 [connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
 [connection signal="state_entered" from="StateChart/Root/Chasing_State" to="." method="_on_chasing_state_state_entered"]
