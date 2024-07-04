@@ -43,10 +43,17 @@ func _process(delta):
 		if mag > 0:
 			
 			shoot()
-	$Mag.text = str(mag)
+	
+	$Mag_Label.text = str(mag)
+	$Fire_Delay_Label.text = str(fire_timer.time_left)
+	$Reload_Delay_Label.text = str(reload_timer.time_left)
+	$PreReload_Delay_Label.text = str(prereload_timer.time_left)
 
 func shoot():
 	mag = mag - 1
+	reload_timer.stop()
+	if prereload_timer.wait_time > 0:
+		prereload_timer.start()
 	var bullet_inst = bullet.instantiate()
 	bullet_inst.init(get_parent().get_parent(), damage, bullet_speed, bullet_lifetime, $Pivot.global_position, $Pivot.global_rotation + PI)
 	world.add_child(bullet_inst)

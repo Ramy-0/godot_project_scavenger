@@ -10,7 +10,7 @@ damage = 25
 bullet_speed = 1200.0
 bullet_lifetime = 1.0
 mag_size = 16
-fire_delay = 0.1
+fire_delay = 0.2
 releod_delay = 0.25
 pre_releod_delay = 0.4
 bullet = ExtResource("2_5l6mh")
@@ -31,11 +31,33 @@ one_shot = true
 [node name="Pre_Reload_Timer" type="Timer" parent="."]
 one_shot = true
 
-[node name="Mag" type="Label" parent="."]
+[node name="Mag_Label" type="Label" parent="."]
 offset_left = -122.0
 offset_top = -104.0
 offset_right = -82.0
 offset_bottom = -81.0
+text = "PH"
+
+[node name="Fire_Delay_Label" type="Label" parent="."]
+offset_left = -70.0
+offset_top = -102.0
+offset_right = -30.0
+offset_bottom = -79.0
+text = "PH"
+
+[node name="Reload_Delay_Label" type="Label" parent="."]
+offset_left = -10.0
+offset_top = -132.0
+offset_right = 30.0
+offset_bottom = -109.0
+text = "PH"
+
+[node name="PreReload_Delay_Label" type="Label" parent="."]
+offset_left = 44.0
+offset_top = -162.0
+offset_right = 84.0
+offset_bottom = -139.0
+text = "PH"
 
 [connection signal="timeout" from="Fire_Timer" to="." method="_on_fire_timer_timeout"]
 [connection signal="timeout" from="Reload_Timer" to="." method="_on_reload_timer_timeout"]
