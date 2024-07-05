@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://cbgowif855vky"]
+
+[ext_resource type="Script" path="res://maps/maps objects/punching_bag.gd" id="1_y8g6u"]
+[ext_resource type="PackedScene" uid="uid://wtu315cqa6nd" path="res://general subnodes/hurt_box_v_2.tscn" id="2_3ykmt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lfhji"]
+radius = 16.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_18umr"]
+radius = 32.249
+
+[node name="Punching_Bag" type="CharacterBody2D" groups=["Enemy"]]
+script = ExtResource("1_y8g6u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_lfhji")
+
+[node name="HurtBox_V2" parent="." instance=ExtResource("2_3ykmt")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox_V2"]
+shape = SubResource("CircleShape2D_18umr")
+debug_color = Color(0.989044, 0, 0.29505, 0.42)
+
+[node name="Label" type="Label" parent="."]
+offset_left = -20.0
+offset_top = -58.0
+offset_right = 20.0
+offset_bottom = -35.0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
