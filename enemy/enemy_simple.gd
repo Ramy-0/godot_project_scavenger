@@ -111,5 +111,3 @@ func _on_hit_box_area_entered(area):
 func _on_hurt_box_area_entered(area):
 	hit(area.dmg)
 	area.queue_free()
-
-
