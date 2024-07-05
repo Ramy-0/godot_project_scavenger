@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6q27w5eiroxn"]
+
+[ext_resource type="Script" path="res://enemy/enemy sub nodes/enemy_nav_agent.gd" id="1_dqmsy"]
+
+[node name="Enemy_Nav_Agent" type="NavigationAgent2D"]
+path_postprocessing = 1
+debug_enabled = true
+script = ExtResource("1_dqmsy")
+
+[node name="Update_Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Update_Timer" to="." method="_on_update_timer_timeout"]
