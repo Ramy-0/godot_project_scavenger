@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://ktq2gqa1gufn" path="res://weapons/texture/Pistol Basic.png" id="2_0umim"]
 [ext_resource type="PackedScene" uid="uid://2767ee5lab1g" path="res://weapons/bullet_simple.tscn" id="2_5l6mh"]
 
-[node name="Weapon_Pistol_Basic" type="Node2D"]
+[node name="Weapon_Pistol_Basic" type="Node2D" groups=["Player"]]
 script = ExtResource("1_e2snf")
 damage = 25
 bullet_speed = 1200.0
