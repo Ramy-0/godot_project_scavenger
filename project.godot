@@ -34,6 +34,7 @@ enabled=PackedStringArray("res://addons/godot_state_charts/plugin.cfg")
 
 folder_colors={
 "res://enemy/": "red",
+"res://general subnodes/": "teal",
 "res://maps/": "green",
 "res://players/": "orange",
 "res://singletons/": "pink",
@@ -96,6 +97,8 @@ kb_q={
 2d_physics/layer_3="Enemy"
 2d_physics/layer_4="Bullet"
 2d_physics/layer_5="Item"
+2d_physics/layer_6="HitBox"
+2d_physics/layer_7="HurtBox"
 
 [rendering]
 
