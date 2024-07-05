@@ -1,29 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://dbog0uls76hpd"]
+[gd_scene load_steps=5 format=3 uid="uid://dbog0uls76hpd"]
 
 [ext_resource type="PackedScene" uid="uid://q7tla3bk5iaf" path="res://maps/map_2.tscn" id="1_2um7c"]
 [ext_resource type="PackedScene" uid="uid://cnve1w5ya6fm3" path="res://players/player_modular.tscn" id="2_dq4pa"]
-[ext_resource type="PackedScene" uid="uid://khn70dsh7d5b" path="res://enemy/enemy_simple.tscn" id="5_exdtx"]
+[ext_resource type="PackedScene" uid="uid://cbgowif855vky" path="res://maps/maps objects/punching_bag.tscn" id="4_xxmke"]
+[ext_resource type="PackedScene" uid="uid://bs5na4u887qbi" path="res://enemy/enemy_basic.tscn" id="5_4i7y0"]
 
 [node name="World_2" type="Node2D" groups=["World"]]
 
 [node name="Map_2" parent="." instance=ExtResource("1_2um7c")]
 
-[node name="Player_Modular" parent="." node_paths=PackedStringArray("collisionBox", "sprite", "camera", "weaponBelt", "hurtBox", "healthgui") instance=ExtResource("2_dq4pa")]
-collisionBox = NodePath("CollisionBox")
-sprite = NodePath("AnimatedSprite2D")
-camera = NodePath("Camera2D")
-weaponBelt = NodePath("WeaponBelt")
-hurtBox = NodePath("HurtBox")
-healthgui = NodePath("Health_GUI")
+[node name="Player_Modular" parent="." instance=ExtResource("2_dq4pa")]
 
-[node name="Enemy_Simple" parent="." instance=ExtResource("5_exdtx")]
-position = Vector2(-464, -58)
+[node name="Punching_Bag" parent="." instance=ExtResource("4_xxmke")]
+position = Vector2(0, 182)
 
-[node name="Enemy_Simple2" parent="." instance=ExtResource("5_exdtx")]
-position = Vector2(-544, 18)
-
-[node name="Enemy_Simple3" parent="." instance=ExtResource("5_exdtx")]
-position = Vector2(-504, -110)
-
-[node name="Enemy_Simple4" parent="." instance=ExtResource("5_exdtx")]
-position = Vector2(-558, -52)
+[node name="Enemy_Basic" parent="." instance=ExtResource("5_4i7y0")]
+position = Vector2(-122, 126)
+base_speed = 120.0
