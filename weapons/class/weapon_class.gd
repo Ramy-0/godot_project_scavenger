@@ -2,6 +2,7 @@ extends Node2D
 
 class_name WeaponClass
 
+@export var active : bool
 @export var weapon_name: String
 @export var weapon_discription : String
 
@@ -9,3 +10,11 @@ class_name WeaponClass
 
 func _ready():
 	world = MyFuncs.get_fst_parent_in(self, "World")
+
+func set_as_inactive():
+	process_mode = PROCESS_MODE_DISABLED
+	hide()
+
+func set_as_active():
+	process_mode = PROCESS_MODE_INHERIT
+	show()

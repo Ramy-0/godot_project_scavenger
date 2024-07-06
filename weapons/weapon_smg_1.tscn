@@ -1,27 +1,28 @@
-[gd_scene load_steps=4 format=3 uid="uid://cwquvmeqdwvc2"]
+[gd_scene load_steps=4 format=3 uid="uid://cyhyaaiutgof8"]
 
-[ext_resource type="Script" path="res://weapons/weapon_pistol_basic.gd" id="1_e2snf"]
-[ext_resource type="Texture2D" uid="uid://ktq2gqa1gufn" path="res://weapons/texture/Pistol Basic.png" id="2_0umim"]
-[ext_resource type="PackedScene" uid="uid://2767ee5lab1g" path="res://weapons/bullet_simple.tscn" id="2_5l6mh"]
+[ext_resource type="Script" path="res://weapons/weapon_smg_1.gd" id="1_qh4y7"]
+[ext_resource type="PackedScene" uid="uid://2767ee5lab1g" path="res://weapons/bullet_simple.tscn" id="2_3fsur"]
+[ext_resource type="Texture2D" uid="uid://kjm5mkngurq6" path="res://weapons/texture/SMG 1.png" id="3_q51q4"]
 
-[node name="Weapon_Pistol_Basic" type="Node2D"]
-script = ExtResource("1_e2snf")
-damage = 25
+[node name="Weapon_SMG_1" type="Node2D"]
+script = ExtResource("1_qh4y7")
+damage = 15
 bullet_speed = 1200.0
 bullet_lifetime = 1.0
-mag_size = 16
-fire_delay = 0.2
-releod_delay = 0.25
-pre_releod_delay = 0.4
-bullet = ExtResource("2_5l6mh")
-weapon_name = "Basic Pistol"
-weapon_discription = "can't go wrong with a basic pistol"
+mag_size = 30
+fire_delay = 0.1
+releod_delay = 0.05
+pre_releod_delay = 0.8
+bullet = ExtResource("2_3fsur")
+weapon_name = "SMG"
+weapon_discription = "mo ammo, mo firerate and no controlability"
 
 [node name="Pivot" type="Node2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="Pivot"]
-position = Vector2(-30, 6)
-texture = ExtResource("2_0umim")
+position = Vector2(-34, 0)
+scale = Vector2(-1, 1)
+texture = ExtResource("3_q51q4")
 
 [node name="Fire_Timer" type="Timer" parent="."]
 one_shot = true
