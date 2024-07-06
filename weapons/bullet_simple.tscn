@@ -1,38 +1,54 @@
-[gd_scene load_steps=6 format=3 uid="uid://2767ee5lab1g"]
+[gd_scene load_steps=7 format=3 uid="uid://2767ee5lab1g"]
 
 [ext_resource type="Script" path="res://weapons/bullet_simple.gd" id="1_e1exo"]
 [ext_resource type="Texture2D" uid="uid://m2bo4hwe50qk" path="res://weapons/texture/bullet 1.png" id="2_0k2wx"]
-[ext_resource type="PackedScene" uid="uid://dhbn3qbh2r8b7" path="res://general subnodes/hit_box_v_2.tscn" id="3_i27np"]
+[ext_resource type="PackedScene" uid="uid://shsfe4x8n0iy" path="res://general subnodes/player_hit_box_moving.tscn" id="3_6heay"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b0mmt"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_et0xr"]
 radius = 2.0
-height = 8.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0yk86"]
 radius = 2.0
 height = 12.0
 
-[node name="Bullet_Simple" type="RigidBody2D" groups=["Player"]]
-collision_layer = 10
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5dejv"]
+radius = 2.0
+height = 8.0
+
+[node name="Bullet_Simple" type="RigidBody2D"]
+collision_layer = 8
 collision_mask = 5
+gravity_scale = 0.0
 script = ExtResource("1_e1exo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-rotation = 1.57079
-shape = SubResource("CapsuleShape2D_b0mmt")
+shape = SubResource("CircleShape2D_et0xr")
+disabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
 texture = ExtResource("2_0k2wx")
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 autostart = true
 
-[node name="HitBoxV2" parent="." instance=ExtResource("3_i27np")]
-collision_layer = 34
+[node name="Player_HitBox_Moving" parent="." instance=ExtResource("3_6heay")]
+delete_after_hit = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxV2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player_HitBox_Moving"]
 rotation = -1.57079
 shape = SubResource("CapsuleShape2D_0yk86")
+debug_color = Color(0.811374, 0.41086, 0, 0.42)
 
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+rotation = 1.57079
+shape = SubResource("CapsuleShape2D_5dejv")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="Player_HitBox_Moving" to="." method="_on_player_hit_box_moving_area_entered"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

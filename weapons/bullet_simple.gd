@@ -8,6 +8,9 @@ var speed: float
 
 var dir = Vector2.RIGHT
 
+func _ready():
+	contact_monitor = true
+
 func init(p_parent, p_damage, p_speed, p_lifetime, p_position, p_rotation):
 	parent = p_parent
 	damage = p_damage
@@ -24,3 +27,10 @@ func _physics_process(delta):
 
 func _on_timer_timeout():
 	queue_free()
+
+func _on_area_2d_body_entered(_body):
+	queue_free()
+
+
+func _on_player_hit_box_moving_area_entered(area):
+	print("hit sth")

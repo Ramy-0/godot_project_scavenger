@@ -99,6 +99,10 @@ kb_q={
 2d_physics/layer_5="Item"
 2d_physics/layer_6="HitBox"
 2d_physics/layer_7="HurtBox"
+2d_physics/layer_8="PlayerHitBox"
+2d_physics/layer_9="PlayerHurtBox"
+2d_physics/layer_10="EnemyHitBox"
+2d_physics/layer_11="EnemyHurtBox"
 
 [rendering]
 

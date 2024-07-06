@@ -16,7 +16,7 @@ func _physics_process(delta):
 
 #AREA SIGNALS
 func _on_chasing_area_body_entered(body):
-	print("see u")
+	#print("see u")
 	if body.is_in_group("Player") and target == null:
 		target = body
 		stateChart.send_event("player_in_sight")
@@ -45,10 +45,8 @@ func _on_attacking_a_state_state_entered():
 #TIMERS SIGNALS
 
 func _on_pre_atk_timer_timeout():
-	hitBoxColl.disabled = false
 	atkPostT.start()
-	await get_tree().create_timer(0.05).timeout
-	hitBoxColl.disabled = true
+	hitBoxStatic.activate()
 
 func _on_post_atk_timer_timeout():
 	stateChart.send_event("attack_finished")

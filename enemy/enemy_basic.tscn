@@ -1,10 +1,10 @@
 [gd_scene load_steps=17 format=3 uid="uid://bs5na4u887qbi"]
 
-[ext_resource type="PackedScene" uid="uid://wtu315cqa6nd" path="res://general subnodes/hurt_box_v_2.tscn" id="1_18t2v"]
 [ext_resource type="Script" path="res://enemy/enemy_basic.gd" id="1_u7kga"]
 [ext_resource type="Texture2D" uid="uid://bdo44k0t2q4wd" path="res://enemy/textures/bug.png" id="2_1yq1k"]
 [ext_resource type="PackedScene" uid="uid://c6q27w5eiroxn" path="res://enemy/enemy sub nodes/enemy_nav_agent.tscn" id="3_bfse5"]
-[ext_resource type="PackedScene" uid="uid://dhbn3qbh2r8b7" path="res://general subnodes/hit_box_v_2.tscn" id="4_3emll"]
+[ext_resource type="PackedScene" uid="uid://bqmis8y7veli7" path="res://general subnodes/enemy_hurt_box.tscn" id="3_rir3p"]
+[ext_resource type="PackedScene" uid="uid://bwg07a0leqbe8" path="res://general subnodes/enemy_hit_box_static.tscn" id="4_2q0d1"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="4_u8ibp"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="5_3e5qf"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="6_a5f7v"]
@@ -38,16 +38,16 @@ radius = 902.565
 [sub_resource type="CircleShape2D" id="CircleShape2D_cnvnh"]
 radius = 44.4072
 
-[node name="Enemy_Basic" type="CharacterBody2D" node_paths=PackedStringArray("hurtBox", "hitBox", "hitBoxColl", "sprite", "navAgent", "stateChart") groups=["Enemy"]]
+[node name="Enemy_Basic" type="CharacterBody2D" node_paths=PackedStringArray("hurtBox", "hitBoxStatic", "hitBoxColl", "sprite", "navAgent", "stateChart") groups=["Enemy"]]
 script = ExtResource("1_u7kga")
 pre_atk_delay = 0.1
 post_atk_delay = 0.2
 base_health = 200.0
 base_speed = 300.0
 damage = 20.0
-hurtBox = NodePath("HurtBoxV2")
-hitBox = NodePath("HitBoxV2")
-hitBoxColl = NodePath("HitBoxV2/CollisionShape2D")
+hurtBox = NodePath("")
+hitBoxStatic = NodePath("Enemy_HitBox_Static")
+hitBoxColl = NodePath("Enemy_HitBox_Static/CollisionShape2D")
 sprite = NodePath("AnimatedSprite2D")
 navAgent = NodePath("Enemy_Nav_Agent")
 stateChart = NodePath("StateChart")
@@ -58,15 +58,15 @@ shape = SubResource("CircleShape2D_no20n")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_hl46m")
 
-[node name="HurtBoxV2" parent="." instance=ExtResource("1_18t2v")]
+[node name="Enemy_HurtBox" parent="." instance=ExtResource("3_rir3p")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxV2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy_HurtBox"]
 shape = SubResource("CircleShape2D_fqo6v")
 debug_color = Color(0.86065, 0.000665937, 0.874056, 0.42)
 
-[node name="HitBoxV2" parent="." instance=ExtResource("4_3emll")]
+[node name="Enemy_HitBox_Static" parent="." instance=ExtResource("4_2q0d1")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxV2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy_HitBox_Static"]
 position = Vector2(0, -36)
 rotation = 1.57079
 shape = SubResource("CapsuleShape2D_qgixx")
