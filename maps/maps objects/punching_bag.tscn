@@ -34,5 +34,4 @@ vertical_alignment = 1
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 
-[connection signal="area_entered" from="Enemy_HurtBox" to="." method="_on_enemy_hurt_box_area_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

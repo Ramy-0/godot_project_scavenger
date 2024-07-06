@@ -8,5 +8,5 @@ func _on_timer_timeout():
 	$Label.text = ""
 
 
-func _on_enemy_hurt_box_area_entered(area):
-	print("smth hit me")
+#func _on_enemy_hurt_box_area_entered(area):
+	#print("smth hit me")

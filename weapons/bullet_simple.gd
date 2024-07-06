@@ -32,5 +32,5 @@ func _on_area_2d_body_entered(_body):
 	queue_free()
 
 
-func _on_player_hit_box_moving_area_entered(area):
-	print("hit sth")
+#func _on_player_hit_box_moving_area_entered(area):
+	#print("hit sth")

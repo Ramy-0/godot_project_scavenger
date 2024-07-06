@@ -8,7 +8,7 @@ class_name PlayerHitBoxMoving
 
 
 func _on_area_entered(area):
-	print(area)
+	#print(area)
 	area.attacked(get_parent().damage)
 	if delete_after_hit:
-		queue_free()
+		get_parent().queue_free()

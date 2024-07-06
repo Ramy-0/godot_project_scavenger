@@ -8,6 +8,9 @@ extends WeaponClass
 @export var fire_delay : float
 @export var releod_delay : float
 @export var pre_releod_delay : float
+@export var inaccuracy : float
+@export var instability : float
+@export var instability_delay : float
 
 var mag: int
 
@@ -16,6 +19,7 @@ var mag: int
 @onready var fire_timer = $Fire_Timer
 @onready var reload_timer = $Reload_Timer
 @onready var prereload_timer = $Pre_Reload_Timer
+
 
 func _ready():
 	$Pivot.rotate(PI)
@@ -55,7 +59,10 @@ func shoot():
 	if prereload_timer.wait_time > 0:
 		prereload_timer.start()
 	var bullet_inst = bullet.instantiate()
-	bullet_inst.init(get_parent().get_parent(), damage, bullet_speed, bullet_lifetime, $Pivot.global_position, $Pivot.global_rotation + PI)
+	var bullet_inacc = deg_to_rad(randf_range(-(inaccuracy)/2,
+	 (inaccuracy)/2))
+	bullet_inst.init(get_parent().get_parent(), damage, bullet_speed, bullet_lifetime, 
+	$Pivot.global_position, $Pivot.global_rotation + PI + bullet_inacc)
 	world.add_child(bullet_inst)
 	fire_timer.start()
 
