@@ -38,6 +38,7 @@ folder_colors={
 "res://maps/": "green",
 "res://players/": "orange",
 "res://singletons/": "pink",
+"res://ui/": "purple",
 "res://weapons/": "yellow",
 "res://worlds/": "blue"
 }

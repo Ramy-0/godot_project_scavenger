@@ -1,11 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://dbog0uls76hpd"]
+[gd_scene load_steps=6 format=3 uid="uid://dbog0uls76hpd"]
 
 [ext_resource type="PackedScene" uid="uid://q7tla3bk5iaf" path="res://maps/map_2.tscn" id="1_2um7c"]
+[ext_resource type="PackedScene" uid="uid://dfmypkrqrhqfv" path="res://ui/pause_menu.tscn" id="1_phoyw"]
 [ext_resource type="PackedScene" uid="uid://cnve1w5ya6fm3" path="res://players/player_modular.tscn" id="2_dq4pa"]
 [ext_resource type="PackedScene" uid="uid://bs5na4u887qbi" path="res://enemy/enemy_basic.tscn" id="4_qd8r5"]
 [ext_resource type="PackedScene" uid="uid://cbgowif855vky" path="res://maps/maps objects/punching_bag.tscn" id="4_xxmke"]
 
 [node name="World_2" type="Node2D" groups=["World"]]
+
+[node name="Pause_Menu" parent="." instance=ExtResource("1_phoyw")]
 
 [node name="Map_2" parent="." instance=ExtResource("1_2um7c")]
 
