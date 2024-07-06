@@ -1,0 +1,142 @@
+[gd_scene load_steps=17 format=3 uid="uid://bs5na4u887qbi"]
+
+[ext_resource type="PackedScene" uid="uid://wtu315cqa6nd" path="res://general subnodes/hurt_box_v_2.tscn" id="1_18t2v"]
+[ext_resource type="Script" path="res://enemy/enemy_basic.gd" id="1_u7kga"]
+[ext_resource type="Texture2D" uid="uid://bdo44k0t2q4wd" path="res://enemy/textures/bug.png" id="2_1yq1k"]
+[ext_resource type="PackedScene" uid="uid://c6q27w5eiroxn" path="res://enemy/enemy sub nodes/enemy_nav_agent.tscn" id="3_bfse5"]
+[ext_resource type="PackedScene" uid="uid://bwg07a0leqbe8" path="res://general subnodes/enemy_hit_box_static.tscn" id="4_2q0d1"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="4_u8ibp"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="5_3e5qf"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="6_a5f7v"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="7_2cskx"]
+[ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="10_3xw3r"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_no20n"]
+radius = 12.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hl46m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_1yq1k")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fqo6v"]
+radius = 32.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qgixx"]
+radius = 12.0
+height = 44.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1vcis"]
+radius = 902.565
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cnvnh"]
+radius = 44.4072
+
+[node name="Enemy_Basic" type="CharacterBody2D" node_paths=PackedStringArray("hurtBox", "hitBoxStatic", "hitBoxColl", "sprite", "navAgent", "stateChart") groups=["Enemy"]]
+script = ExtResource("1_u7kga")
+pre_atk_delay = 0.1
+post_atk_delay = 0.2
+base_health = 200.0
+base_speed = 300.0
+damage = 20.0
+hurtBox = NodePath("HurtBoxV2")
+hitBoxStatic = NodePath("Enemy_HitBox_Static")
+hitBoxColl = NodePath("Enemy_HitBox_Static/CollisionShape2D")
+sprite = NodePath("AnimatedSprite2D")
+navAgent = NodePath("Enemy_Nav_Agent")
+stateChart = NodePath("StateChart")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_no20n")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_hl46m")
+
+[node name="HurtBoxV2" parent="." instance=ExtResource("1_18t2v")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxV2"]
+shape = SubResource("CircleShape2D_fqo6v")
+debug_color = Color(0.86065, 0.000665937, 0.874056, 0.42)
+
+[node name="Enemy_HitBox_Static" parent="." instance=ExtResource("4_2q0d1")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy_HitBox_Static"]
+position = Vector2(0, -36)
+rotation = 1.57079
+shape = SubResource("CapsuleShape2D_qgixx")
+debug_color = Color(0.996541, 0.0506893, 3.85046e-07, 0.42)
+
+[node name="Enemy_Nav_Agent" parent="." instance=ExtResource("3_bfse5")]
+
+[node name="StateChart" type="Node" parent="."]
+script = ExtResource("4_u8ibp")
+
+[node name="Root" type="Node" parent="StateChart"]
+script = ExtResource("5_3e5qf")
+initial_state = NodePath("Idle_AState")
+
+[node name="Idle_AState" type="Node" parent="StateChart/Root"]
+script = ExtResource("6_a5f7v")
+
+[node name="Idle2Chasing_Transition" type="Node" parent="StateChart/Root/Idle_AState"]
+script = ExtResource("7_2cskx")
+to = NodePath("../../Chasing_AState")
+event = &"player_in_sight"
+
+[node name="Chasing_AState" type="Node" parent="StateChart/Root"]
+script = ExtResource("6_a5f7v")
+
+[node name="Chasing2Attacking_Transition" type="Node" parent="StateChart/Root/Chasing_AState"]
+script = ExtResource("7_2cskx")
+to = NodePath("../../Attacking_AState")
+event = &"player_in_attack_range"
+
+[node name="Attacking_AState" type="Node" parent="StateChart/Root"]
+script = ExtResource("6_a5f7v")
+
+[node name="Attacking2Chasing_Transition" type="Node" parent="StateChart/Root/Attacking_AState"]
+script = ExtResource("7_2cskx")
+to = NodePath("../../Chasing_AState")
+event = &"attack_finished"
+
+[node name="Chasing_Area" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chasing_Area"]
+shape = SubResource("CircleShape2D_1vcis")
+
+[node name="Attacking_Area" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attacking_Area"]
+shape = SubResource("CircleShape2D_cnvnh")
+
+[node name="Pre_Atk_Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Post_Atk_Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="StateChartDebugger" parent="." instance=ExtResource("10_3xw3r")]
+offset_left = 112.0
+offset_top = -80.0
+offset_right = 266.0
+offset_bottom = 80.0
+initial_node_to_watch = NodePath("../StateChart")
+
+[connection signal="state_entered" from="StateChart/Root/Chasing_AState" to="." method="_on_chasing_a_state_state_entered"]
+[connection signal="state_physics_processing" from="StateChart/Root/Chasing_AState" to="." method="_on_chasing_a_state_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/Root/Attacking_AState" to="." method="_on_attacking_a_state_state_entered"]
+[connection signal="body_entered" from="Chasing_Area" to="." method="_on_chasing_area_body_entered"]
+[connection signal="body_entered" from="Attacking_Area" to="." method="_on_attacking_area_body_entered"]
+[connection signal="timeout" from="Pre_Atk_Timer" to="." method="_on_pre_atk_timer_timeout"]
+[connection signal="timeout" from="Post_Atk_Timer" to="." method="_on_post_atk_timer_timeout"]
