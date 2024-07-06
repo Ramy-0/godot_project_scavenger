@@ -13,7 +13,7 @@ var health:float
 @export var sprite : AnimatedSprite2D
 @export var camera : Camera2D
 @export var weaponBelt : WeaponBelt
-@export var hurtBox : HurtBox
+@export var hurtBox : PlayerHurtbox
 @export var healthgui : HealthGUI
 
 
@@ -26,3 +26,6 @@ func _physics_process(delta):
 	velocity = direction * base_speed * speed_mult
 	
 	move_and_slide()
+
+func attacked(damage):
+	health = health - damage
