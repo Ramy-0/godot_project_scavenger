@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://2767ee5lab1g"]
+
+[ext_resource type="Script" path="res://weapons/bullet_simple.gd" id="1_e1exo"]
+[ext_resource type="Texture2D" uid="uid://m2bo4hwe50qk" path="res://weapons/texture/bullet 1.png" id="2_0k2wx"]
+[ext_resource type="PackedScene" uid="uid://shsfe4x8n0iy" path="res://general subnodes/player_hit_box_moving.tscn" id="3_6heay"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b0mmt"]
+radius = 2.0
+height = 8.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0yk86"]
+radius = 2.0
+height = 12.0
+
+[node name="Bullet_Simple" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 5
+script = ExtResource("1_e1exo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.57079
+shape = SubResource("CapsuleShape2D_b0mmt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_0k2wx")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="Player_HitBox_Moving" parent="." instance=ExtResource("3_6heay")]
+delete_after_hit = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player_HitBox_Moving"]
+rotation = -1.57079
+shape = SubResource("CapsuleShape2D_0yk86")
+debug_color = Color(0.811374, 0.41086, 0, 0.42)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
