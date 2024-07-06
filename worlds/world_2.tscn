@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://q7tla3bk5iaf" path="res://maps/map_2.tscn" id="1_2um7c"]
 [ext_resource type="PackedScene" uid="uid://cnve1w5ya6fm3" path="res://players/player_modular.tscn" id="2_dq4pa"]
+[ext_resource type="PackedScene" uid="uid://bs5na4u887qbi" path="res://enemy/enemy_basic.tscn" id="4_qd8r5"]
 [ext_resource type="PackedScene" uid="uid://cbgowif855vky" path="res://maps/maps objects/punching_bag.tscn" id="4_xxmke"]
-[ext_resource type="PackedScene" uid="uid://bs5na4u887qbi" path="res://enemy/enemy_basic.tscn" id="5_4i7y0"]
 
 [node name="World_2" type="Node2D" groups=["World"]]
 
@@ -14,6 +14,5 @@
 [node name="Punching_Bag" parent="." instance=ExtResource("4_xxmke")]
 position = Vector2(0, 182)
 
-[node name="Enemy_Basic" parent="." instance=ExtResource("5_4i7y0")]
-position = Vector2(-122, 126)
-base_speed = 120.0
+[node name="Enemy_Basic" parent="." instance=ExtResource("4_qd8r5")]
+position = Vector2(-412, 174)
