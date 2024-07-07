@@ -13,7 +13,6 @@ func _ready():
 
 func _process(delta):
 	if Input.is_action_just_pressed("kb_q"):
-		print("switch")
 		if weapon1.active and not weapon2.active:
 			weapon1.active = false
 			weapon2.active = true

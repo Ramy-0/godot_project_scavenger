@@ -6,6 +6,8 @@ var parent: CharacterBody2D
 var damage: int
 var speed: float
 
+@export var hit_marker : PackedScene = preload("res://weapons/weapon sub nodes/hit_marker.tscn")
+
 var dir = Vector2.RIGHT
 
 func _ready():
@@ -24,6 +26,10 @@ func init(p_parent, p_damage, p_speed, p_lifetime, p_position, p_rotation):
 func _physics_process(delta):
 	translate(dir.normalized() * speed * delta)
 
+func hit_mark(target):
+	var hm = hit_marker.instantiate()
+	hm.init(global_position)
+	MyFuncs.get_fst_parent_in(self, "World").add_child(hm)
 
 func _on_timer_timeout():
 	queue_free()
@@ -31,6 +37,5 @@ func _on_timer_timeout():
 func _on_area_2d_body_entered(_body):
 	queue_free()
 
-
-#func _on_player_hit_box_moving_area_entered(area):
-	#print("hit sth")
+func _on_player_hit_box_moving_area_entered(area):
+	hit_mark(area)

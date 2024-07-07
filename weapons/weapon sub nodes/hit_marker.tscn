@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://11y6s8rr7v2i"]
+
+[ext_resource type="Texture2D" uid="uid://dlwhbx8638ean" path="res://weapons/texture/hitmarker 2.png" id="1_qf6xt"]
+[ext_resource type="Script" path="res://weapons/weapon sub nodes/hit_marker.gd" id="1_rtsdi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r53yf"]
+atlas = ExtResource("1_qf6xt")
+region = Rect2(0, 0, 9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tn6ba"]
+atlas = ExtResource("1_qf6xt")
+region = Rect2(9, 0, 9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tdrfg"]
+atlas = ExtResource("1_qf6xt")
+region = Rect2(18, 0, 9, 9)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_scpl4"]
+atlas = ExtResource("1_qf6xt")
+region = Rect2(27, 0, 9, 9)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_unvtd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r53yf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tn6ba")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tdrfg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_scpl4")
+}],
+"loop": false,
+"name": &"default",
+"speed": 16.0
+}]
+
+[node name="HitMarker" type="Node2D"]
+script = ExtResource("1_rtsdi")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_unvtd")
+autoplay = "default"
+frame_progress = 0.653829
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
