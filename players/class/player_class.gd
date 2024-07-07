@@ -15,6 +15,7 @@ var health:float
 @export var weaponBelt : WeaponBelt
 @export var hurtBox : PlayerHurtbox
 @export var healthgui : HealthGUI
+@export var movementAbility : MovementClass
 
 
 func _ready():

@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://cswb18j0upjmv"]
+
+[ext_resource type="Script" path="res://players/subnodes/movement_dash.gd" id="1_jembb"]
+
+[node name="Movement_Dash" type="Node2D" node_paths=PackedStringArray("coolDownTimer")]
+script = ExtResource("1_jembb")
+coolDownTimer = NodePath("CoolDown_Timer")
+
+[node name="CoolDown_Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -96.0
+offset_top = 144.0
+offset_right = 94.0
+offset_bottom = 171.0
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0

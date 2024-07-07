@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cnve1w5ya6fm3"]
+[gd_scene load_steps=12 format=3 uid="uid://cnve1w5ya6fm3"]
 
 [ext_resource type="Script" path="res://players/player_modular.gd" id="1_btelm"]
 [ext_resource type="Texture2D" uid="uid://br6f31287ipbe" path="res://players/textures/pph.png" id="2_3qaqh"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ba38bg6b8r6f3" path="res://players/subnodes/health_gui.tscn" id="5_6lu8k"]
 [ext_resource type="PackedScene" uid="uid://cyhyaaiutgof8" path="res://weapons/weapon_smg_1.tscn" id="5_g824m"]
 [ext_resource type="PackedScene" uid="uid://comin7aidmvu5" path="res://general subnodes/player_hurt_box.tscn" id="5_ghjen"]
+[ext_resource type="PackedScene" uid="uid://cswb18j0upjmv" path="res://players/subnodes/movement_dash.tscn" id="8_eehdb"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cna0v"]
 radius = 16.0
@@ -26,7 +27,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3d4ei"]
 size = Vector2(32, 64)
 
-[node name="Player_Modular" type="CharacterBody2D" node_paths=PackedStringArray("collisionBox", "sprite", "camera", "weaponBelt", "hurtBox", "healthgui") groups=["Player"]]
+[node name="Player_Modular" type="CharacterBody2D" node_paths=PackedStringArray("collisionBox", "sprite", "camera", "weaponBelt", "hurtBox", "healthgui", "movementAbility") groups=["Player"]]
 collision_layer = 2
 collision_mask = 21
 script = ExtResource("1_btelm")
@@ -38,6 +39,7 @@ camera = NodePath("Camera2D")
 weaponBelt = NodePath("WeaponBelt")
 hurtBox = NodePath("Player_HurtBox")
 healthgui = NodePath("Health_GUI")
+movementAbility = NodePath("Movement_Dash")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -63,3 +65,5 @@ active = true
 shape = SubResource("RectangleShape2D_3d4ei")
 
 [node name="Health_GUI" parent="." instance=ExtResource("5_6lu8k")]
+
+[node name="Movement_Dash" parent="." instance=ExtResource("8_eehdb")]
