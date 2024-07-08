@@ -49,7 +49,10 @@ func attacked(damage):
 	health = health - damage
 	hurt_mark()
 	if health <= 0 :
-		queue_free()
+		die()
+
+func die():
+	queue_free()
 
 func hurt_mark():
 	sprite.self_modulate = Color(50,50,50,50)

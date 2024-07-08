@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bs5na4u887qbi"]
+[gd_scene load_steps=18 format=3 uid="uid://bs5na4u887qbi"]
 
 [ext_resource type="Script" path="res://enemy/enemy_basic.gd" id="1_u7kga"]
 [ext_resource type="Texture2D" uid="uid://bdo44k0t2q4wd" path="res://enemy/textures/bug.png" id="2_1yq1k"]
@@ -38,14 +38,17 @@ radius = 902.565
 [sub_resource type="CircleShape2D" id="CircleShape2D_cnvnh"]
 radius = 44.4072
 
-[node name="Enemy_Basic" type="CharacterBody2D" node_paths=PackedStringArray("hurtBox", "hitBoxStatic", "hitBoxColl", "sprite", "navAgent", "stateChart") groups=["Enemy"]]
+[sub_resource type="Curve" id="Curve_gs5gm"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Enemy_Basic" type="CharacterBody2D" node_paths=PackedStringArray("hitBoxStatic", "hitBoxColl", "sprite", "navAgent", "stateChart") groups=["Enemy"]]
 script = ExtResource("1_u7kga")
 pre_atk_delay = 0.1
 post_atk_delay = 0.2
 base_health = 200.0
 base_speed = 300.0
 damage = 20.0
-hurtBox = NodePath("")
 hitBoxStatic = NodePath("Enemy_HitBox_Static")
 hitBoxColl = NodePath("Enemy_HitBox_Static/CollisionShape2D")
 sprite = NodePath("AnimatedSprite2D")
@@ -133,6 +136,22 @@ offset_right = 266.0
 offset_bottom = 80.0
 initial_node_to_watch = NodePath("../StateChart")
 
+[node name="Blood_Particles" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 14
+lifetime = 0.4
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 200.0
+initial_velocity_max = 300.0
+scale_amount_min = 8.0
+scale_amount_max = 16.0
+scale_amount_curve = SubResource("Curve_gs5gm")
+color = Color(1.34766e-06, 0.562765, 0.0870061, 1)
+
+[connection signal="area_entered" from="Enemy_HurtBox" to="." method="_on_enemy_hurt_box_area_entered"]
 [connection signal="state_entered" from="StateChart/Root/Chasing_AState" to="." method="_on_chasing_a_state_state_entered"]
 [connection signal="state_physics_processing" from="StateChart/Root/Chasing_AState" to="." method="_on_chasing_a_state_state_physics_processing"]
 [connection signal="state_entered" from="StateChart/Root/Attacking_AState" to="." method="_on_attacking_a_state_state_entered"]

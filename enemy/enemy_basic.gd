@@ -14,6 +14,11 @@ func _ready():
 func _physics_process(delta):
 	pass
 
+
+#CLASS FUNCTIONS
+func die():
+	queue_free()
+
 #AREA SIGNALS
 func _on_chasing_area_body_entered(body):
 	#print("see u")
@@ -50,3 +55,9 @@ func _on_pre_atk_timer_timeout():
 
 func _on_post_atk_timer_timeout():
 	stateChart.send_event("attack_finished")
+
+
+#HURTBOX SIGNALS
+
+func _on_enemy_hurt_box_area_entered(area):
+	$Blood_Particles.emitting = true
