@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://2767ee5lab1g"]
+[gd_scene load_steps=7 format=3 uid="uid://2767ee5lab1g"]
 
 [ext_resource type="Script" path="res://weapons/bullet_simple.gd" id="1_e1exo"]
 [ext_resource type="Texture2D" uid="uid://m2bo4hwe50qk" path="res://weapons/texture/bullet 1.png" id="2_0k2wx"]
@@ -15,15 +15,12 @@ height = 12.0
 radius = 2.0
 height = 8.0
 
-[sub_resource type="Curve" id="Curve_fqm2e"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.403481), 0.0, 0.0, 0, 0]
-point_count = 2
-
 [node name="Bullet_Simple" type="RigidBody2D"]
 collision_layer = 8
 collision_mask = 5
 gravity_scale = 0.0
 script = ExtResource("1_e1exo")
+hit_marker = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_et0xr")
@@ -51,17 +48,6 @@ debug_color = Color(0.811374, 0.41086, 0, 0.42)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 rotation = 1.57079
 shape = SubResource("CapsuleShape2D_5dejv")
-
-[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
-amount = 64
-lifetime = 0.2
-emission_shape = 3
-emission_rect_extents = Vector2(1, 5)
-gravity = Vector2(0, 0)
-scale_amount_min = 4.0
-scale_amount_max = 8.0
-scale_amount_curve = SubResource("Curve_fqm2e")
-color = Color(0.741176, 0.443137, 0.0901961, 0.262745)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

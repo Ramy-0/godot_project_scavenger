@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://11y6s8rr7v2i"]
+[gd_scene load_steps=9 format=3 uid="uid://11y6s8rr7v2i"]
 
 [ext_resource type="Texture2D" uid="uid://dlwhbx8638ean" path="res://weapons/texture/hitmarker 2.png" id="1_qf6xt"]
 [ext_resource type="Script" path="res://weapons/weapon sub nodes/hit_marker.gd" id="1_rtsdi"]
+[ext_resource type="AudioStream" uid="uid://bawxoy6vhv5x5" path="res://weapons/sound effects/hitmarker.mp3-made-with-Voicemod.mp3" id="3_7031e"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r53yf"]
 atlas = ExtResource("1_qf6xt")
@@ -47,5 +48,10 @@ scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_unvtd")
 autoplay = "default"
 frame_progress = 0.653829
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_7031e")
+volume_db = -16.0
+autoplay = true
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
