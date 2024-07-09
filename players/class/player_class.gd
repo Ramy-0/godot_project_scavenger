@@ -21,6 +21,7 @@ var max_health:float
 @export var movementAbility : MovementClass
 @export var healTimer : Timer
 @export var preHealTimer : Timer
+@export var itemHandler : ItemHandler
 
 
 func _ready():

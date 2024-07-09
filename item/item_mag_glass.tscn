@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://6ahi0t31n4go"]
+
+[ext_resource type="Script" path="res://item/item_mag_glass.gd" id="1_tkh2b"]
+
+[node name="Item_MagGlass" type="Node2D" groups=["Item"]]
+script = ExtResource("1_tkh2b")
+item_name = "Magnifing Glass"
+flavor_text = "10% crit chance"

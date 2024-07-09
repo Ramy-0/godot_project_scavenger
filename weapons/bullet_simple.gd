@@ -14,6 +14,8 @@ var init_pos : Vector2
 func _ready():
 	contact_monitor = true
 	init_pos = global_position
+	
+	$Player_HitBox_Moving.hitbox_attack.connect(hitbox_hit)
 
 func _physics_process(delta):
 	translate(dir.normalized() * speed * delta)
@@ -54,3 +56,6 @@ func _on_area_2d_body_entered(_body):
 
 func _on_player_hit_box_moving_area_entered(area):
 	hit_mark(area)
+
+func hitbox_hit():
+	parent.itemHandler.on_attacking($Player_HitBox_Moving)

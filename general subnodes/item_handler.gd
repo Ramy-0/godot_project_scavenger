@@ -19,3 +19,11 @@ func _on_attacked():
 	for i in items:
 		if i.has_method("use_when_attacked"):
 			i.use_when_attacked()
+
+func _on_attacking():
+	pass
+
+func on_attacking(hitbox):
+	for i in items:
+		if i.has_method("use_when_attacking"):
+			i.use_when_attacking(hitbox)
