@@ -19,4 +19,5 @@ position = Vector2(0, 182)
 
 [node name="Enemy_Basic" parent="." instance=ExtResource("4_qd8r5")]
 position = Vector2(-412, 174)
+base_health = 2000.0
 base_speed = 0.0

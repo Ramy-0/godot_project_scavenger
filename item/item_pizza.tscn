@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmnvf5247eiu6"]
+
+[ext_resource type="Script" path="res://item/item_pizza.gd" id="1_sbbh8"]
+
+[node name="Item_Pizza" type="Node2D" groups=["Item"]]
+script = ExtResource("1_sbbh8")
+item_name = "Pizza"
+flavor_text = "more pizza for the win"

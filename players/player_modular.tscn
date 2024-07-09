@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cnve1w5ya6fm3"]
+[gd_scene load_steps=15 format=3 uid="uid://cnve1w5ya6fm3"]
 
 [ext_resource type="Script" path="res://players/player_modular.gd" id="1_btelm"]
 [ext_resource type="Texture2D" uid="uid://br6f31287ipbe" path="res://players/textures/pph.png" id="2_3qaqh"]
@@ -8,6 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://cyhyaaiutgof8" path="res://weapons/weapon_smg_1.tscn" id="5_g824m"]
 [ext_resource type="PackedScene" uid="uid://comin7aidmvu5" path="res://general subnodes/player_hurt_box.tscn" id="5_ghjen"]
 [ext_resource type="PackedScene" uid="uid://cswb18j0upjmv" path="res://players/subnodes/movement_dash.tscn" id="8_eehdb"]
+[ext_resource type="PackedScene" uid="uid://b1pc8awv1oi0u" path="res://general subnodes/item_handler.tscn" id="9_0n4hc"]
+[ext_resource type="PackedScene" uid="uid://dmnvf5247eiu6" path="res://item/item_pizza.tscn" id="10_nif2u"]
+[ext_resource type="PackedScene" uid="uid://bqffitmaeidph" path="res://item/item_mama_bear.tscn" id="11_mu4np"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cna0v"]
 radius = 16.0
@@ -27,7 +30,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3d4ei"]
 size = Vector2(32, 64)
 
-[node name="Player_Modular" type="CharacterBody2D" node_paths=PackedStringArray("collisionBox", "sprite", "camera", "weaponBelt", "hurtBox", "healthgui", "movementAbility") groups=["Player"]]
+[node name="Player_Modular" type="CharacterBody2D" node_paths=PackedStringArray("collisionBox", "sprite", "camera", "weaponBelt", "hurtBox", "healthgui", "movementAbility", "healTimer", "preHealTimer") groups=["Player"]]
 collision_layer = 2
 collision_mask = 21
 script = ExtResource("1_btelm")
@@ -40,6 +43,8 @@ weaponBelt = NodePath("WeaponBelt")
 hurtBox = NodePath("Player_HurtBox")
 healthgui = NodePath("Health_GUI")
 movementAbility = NodePath("Movement_Dash")
+healTimer = NodePath("Heal_Timer")
+preHealTimer = NodePath("PreHeal_Timer")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -67,3 +72,15 @@ shape = SubResource("RectangleShape2D_3d4ei")
 [node name="Health_GUI" parent="." instance=ExtResource("5_6lu8k")]
 
 [node name="Movement_Dash" parent="." instance=ExtResource("8_eehdb")]
+
+[node name="Item_Handler" parent="." instance=ExtResource("9_0n4hc")]
+
+[node name="Item_Pizza" parent="Item_Handler" instance=ExtResource("10_nif2u")]
+amount = 3
+
+[node name="Item_MamaBear" parent="Item_Handler" instance=ExtResource("11_mu4np")]
+amount = 1
+
+[node name="PreHeal_Timer" type="Timer" parent="."]
+
+[node name="Heal_Timer" type="Timer" parent="."]

@@ -139,7 +139,7 @@ initial_node_to_watch = NodePath("../StateChart")
 [node name="Blood_Particles" type="CPUParticles2D" parent="."]
 emitting = false
 amount = 14
-lifetime = 0.4
+lifetime = 0.2
 one_shot = true
 explosiveness = 1.0
 spread = 180.0

@@ -2,6 +2,8 @@ extends Area2D
 
 class_name EnemyHurtbox
 
+signal hurtbox_attacked
+
 func attacked(damage):
 	if get_parent().has_method("attacked"):
 		get_parent().attacked(damage)

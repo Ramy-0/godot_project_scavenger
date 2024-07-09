@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqrmyn77ktlde"]
+
+[ext_resource type="Script" path="res://item/class/item_class.gd" id="1_ovbtp"]
+
+[node name="ItemClass" type="Node2D" groups=["Item"]]
+script = ExtResource("1_ovbtp")
