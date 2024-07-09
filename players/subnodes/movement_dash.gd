@@ -6,12 +6,14 @@ func _ready():
 func _process(delta):
 	if Input.is_action_just_pressed("kb_space"):
 		if coolDownTimer.time_left == 0:
-			dash()
-			coolDownTimer.start()
+			if get_parent().movement_direction != Vector2.ZERO:
+				dash()
+				coolDownTimer.start()
 		elif coolDownTimer.time_left <= 0.3:
 			await coolDownTimer.timeout
-			dash()
-			coolDownTimer.start()
+			if get_parent().movement_direction != Vector2.ZERO:
+				dash()
+				coolDownTimer.start()
 	
 	$ProgressBar.value = coolDownTimer.time_left / cool_down * 100
 	$Label.text = str(coolDownTimer.time_left)
