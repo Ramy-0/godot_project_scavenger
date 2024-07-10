@@ -12,7 +12,9 @@ func _ready():
 	update_variables()
 
 func _physics_process(delta):
-	pass
+	$HealthBar.max_value = max_health
+	$HealthBar.value = health
+	$HealthLabel.text = str(health) + '/' + str(max_health)
 
 
 #CLASS FUNCTIONS

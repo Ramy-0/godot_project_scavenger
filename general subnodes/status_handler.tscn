@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://cla420syni86y"]
+
+[ext_resource type="Script" path="res://general subnodes/status_handler.gd" id="1_35nqq"]
+
+[node name="Status_Handler" type="Node2D"]
+script = ExtResource("1_35nqq")
+
+[node name="Bleed_Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Burn_Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Stun_Timer" type="Timer" parent="."]
+one_shot = true

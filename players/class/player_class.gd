@@ -23,6 +23,7 @@ var movement_direction : Vector2
 @export var healTimer : Timer
 @export var preHealTimer : Timer
 @export var itemHandler : ItemHandler
+@export var statusHandler : StatusHandler
 
 
 func _ready():

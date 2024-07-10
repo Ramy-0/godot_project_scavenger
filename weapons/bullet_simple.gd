@@ -57,5 +57,6 @@ func _on_area_2d_body_entered(_body):
 func _on_player_hit_box_moving_area_entered(area):
 	hit_mark(area)
 
-func hitbox_hit():
-	parent.itemHandler.on_attacking($Player_HitBox_Moving)
+func hitbox_hit(hurtbox):
+	print(hurtbox)
+	parent.itemHandler.on_attacking($Player_HitBox_Moving, hurtbox)

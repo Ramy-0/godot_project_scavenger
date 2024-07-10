@@ -89,7 +89,7 @@ amount = 1
 amount = 5
 
 [node name="Item_Razor" parent="Item_Handler" instance=ExtResource("13_qryr2")]
-amount = 6
+amount = 1
 
 [node name="PreHeal_Timer" type="Timer" parent="."]
 

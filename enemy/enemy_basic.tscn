@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bs5na4u887qbi"]
+[gd_scene load_steps=19 format=3 uid="uid://bs5na4u887qbi"]
 
 [ext_resource type="Script" path="res://enemy/enemy_basic.gd" id="1_u7kga"]
 [ext_resource type="Texture2D" uid="uid://bdo44k0t2q4wd" path="res://enemy/textures/bug.png" id="2_1yq1k"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="6_a5f7v"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="7_2cskx"]
 [ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="10_3xw3r"]
+[ext_resource type="PackedScene" uid="uid://cla420syni86y" path="res://general subnodes/status_handler.tscn" id="11_ncjek"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_no20n"]
 radius = 12.0
@@ -42,18 +43,20 @@ radius = 44.4072
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[node name="Enemy_Basic" type="CharacterBody2D" node_paths=PackedStringArray("hitBoxStatic", "hitBoxColl", "sprite", "navAgent", "stateChart") groups=["Enemy"]]
+[node name="Enemy_Basic" type="CharacterBody2D" node_paths=PackedStringArray("hurtBox", "hitBoxStatic", "hitBoxColl", "sprite", "navAgent", "stateChart", "statusHandler") groups=["Enemy"]]
 script = ExtResource("1_u7kga")
 pre_atk_delay = 0.1
 post_atk_delay = 0.2
 base_health = 200.0
 base_speed = 300.0
 damage = 20.0
+hurtBox = NodePath("Enemy_HurtBox")
 hitBoxStatic = NodePath("Enemy_HitBox_Static")
 hitBoxColl = NodePath("Enemy_HitBox_Static/CollisionShape2D")
 sprite = NodePath("AnimatedSprite2D")
 navAgent = NodePath("Enemy_Nav_Agent")
 stateChart = NodePath("StateChart")
+statusHandler = NodePath("Status_Handler")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_no20n")
@@ -150,6 +153,20 @@ scale_amount_min = 8.0
 scale_amount_max = 16.0
 scale_amount_curve = SubResource("Curve_gs5gm")
 color = Color(1.34766e-06, 0.562765, 0.0870061, 1)
+
+[node name="Status_Handler" parent="." instance=ExtResource("11_ncjek")]
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -36.0
+offset_top = -90.0
+offset_right = 34.0
+offset_bottom = -63.0
+
+[node name="HealthLabel" type="Label" parent="."]
+offset_left = -20.0
+offset_top = -116.0
+offset_right = 20.0
+offset_bottom = -93.0
 
 [connection signal="area_entered" from="Enemy_HurtBox" to="." method="_on_enemy_hurt_box_area_entered"]
 [connection signal="state_entered" from="StateChart/Root/Chasing_AState" to="." method="_on_chasing_a_state_state_entered"]

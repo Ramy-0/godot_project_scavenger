@@ -23,7 +23,7 @@ func _on_attacked():
 func _on_attacking():
 	pass
 
-func on_attacking(hitbox):
+func on_attacking(hitbox, hurtbox):
 	for i in items:
 		if i.has_method("use_when_attacking"):
-			i.use_when_attacking(hitbox)
+			i.use_when_attacking(hitbox, hurtbox)

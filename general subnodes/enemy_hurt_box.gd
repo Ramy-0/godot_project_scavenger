@@ -2,7 +2,12 @@ extends Area2D
 
 class_name EnemyHurtbox
 
+var parent : CharacterBody2D
+
 signal hurtbox_attacked
+
+func _ready():
+	parent = get_parent()
 
 func attacked(damage):
 	if get_parent().has_method("attacked"):

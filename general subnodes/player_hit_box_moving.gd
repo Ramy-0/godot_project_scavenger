@@ -12,7 +12,7 @@ func _ready():
 
 func _on_area_entered(area):
 	#print(area)
-	emit_signal("hitbox_attack")
+	emit_signal("hitbox_attack", area)
 	area.attacked(damage)
 	if delete_after_hit:
 		get_parent().queue_free()

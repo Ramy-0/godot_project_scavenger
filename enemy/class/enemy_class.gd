@@ -6,16 +6,18 @@ class_name EnemyClass
 @export var base_speed : float
 @export var damage : float
 
-@export var hurtBox : HurtBoxV2
+@export var hurtBox : EnemyHurtbox
 @export var hitBoxStatic : EnemyHitboxStatic
 @export var hitBoxColl : CollisionShape2D
 @export var sprite : AnimatedSprite2D
 @export var navAgent : NavigationAgent2D
 @export var stateChart : StateChart
+@export var statusHandler : StatusHandler
 
 @export var target : CharacterBody2D
 
 
+var max_health : float
 var health : float
 var speed : float
 var nav_speed : float
@@ -23,7 +25,8 @@ var nav_speed : float
 var moving : bool = true
 
 func update_variables():
-	health = base_health
+	max_health = base_health
+	health = max_health
 	speed = base_speed
 	nav_speed = speed
 	
