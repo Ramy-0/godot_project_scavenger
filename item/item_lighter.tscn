@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dlti1m7uus0jt"]
+
+[ext_resource type="Script" path="res://item/item_lighter.gd" id="1_6rbjt"]
+
+[node name="Item_Lighter" type="Node2D" groups=["Item"]]
+script = ExtResource("1_6rbjt")
+item_name = "Lighter"
+flavor_text = "burn the xenos"

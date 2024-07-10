@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://8iwrhwe3g2rx"]
+
+[ext_resource type="Texture2D" uid="uid://bk04y1ggsnbpa" path="res://general subnodes/status effect icon/texture/StatusEffects.png" id="1_m7w32"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s5typ"]
+atlas = ExtResource("1_m7w32")
+region = Rect2(16, 0, 16, 16.682)
+
+[node name="SE_Burn_Icon" type="Control"]
+custom_minimum_size = Vector2(48, 16)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("AtlasTexture_s5typ")
+
+[node name="Mult_Label" type="Label" parent="TextureRect"]
+layout_mode = 0
+offset_left = 32.0
+offset_right = 72.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 10
+
+[node name="Timer_Label" type="Label" parent="TextureRect"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 18.0
+offset_right = 72.0
+offset_bottom = 41.0
+theme_override_font_sizes/font_size = 10

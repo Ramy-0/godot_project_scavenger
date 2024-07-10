@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cnve1w5ya6fm3"]
+[gd_scene load_steps=20 format=3 uid="uid://cnve1w5ya6fm3"]
 
 [ext_resource type="Script" path="res://players/player_modular.gd" id="1_btelm"]
 [ext_resource type="Texture2D" uid="uid://br6f31287ipbe" path="res://players/textures/pph.png" id="2_3qaqh"]
@@ -14,6 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://6ahi0t31n4go" path="res://item/item_mag_glass.tscn" id="12_xy58w"]
 [ext_resource type="PackedScene" uid="uid://cm75esir2vyg7" path="res://item/item_razor.tscn" id="13_qryr2"]
 [ext_resource type="PackedScene" uid="uid://cla420syni86y" path="res://general subnodes/status_handler.tscn" id="13_r8ss5"]
+[ext_resource type="PackedScene" uid="uid://dlti1m7uus0jt" path="res://item/item_lighter.tscn" id="14_yaodo"]
+[ext_resource type="PackedScene" uid="uid://b8w66rojc6dp6" path="res://item/item_gas.tscn" id="15_re7t2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cna0v"]
 radius = 16.0
@@ -83,13 +85,16 @@ shape = SubResource("RectangleShape2D_3d4ei")
 [node name="Item_Pizza" parent="Item_Handler" instance=ExtResource("10_nif2u")]
 
 [node name="Item_MamaBear" parent="Item_Handler" instance=ExtResource("11_mu4np")]
-amount = 1
 
 [node name="Item_MagGlass" parent="Item_Handler" instance=ExtResource("12_xy58w")]
-amount = 5
 
 [node name="Item_Razor" parent="Item_Handler" instance=ExtResource("13_qryr2")]
-amount = 6
+
+[node name="Item_Lighter" parent="Item_Handler" instance=ExtResource("14_yaodo")]
+amount = 5
+
+[node name="Item_Gas" parent="Item_Handler" instance=ExtResource("15_re7t2")]
+amount = 4
 
 [node name="PreHeal_Timer" type="Timer" parent="."]
 

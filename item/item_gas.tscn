@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8w66rojc6dp6"]
+
+[ext_resource type="Script" path="res://item/item_gas.gd" id="1_x8g6i"]
+
+[node name="Item_Gas" type="Node2D" groups=["Item"]]
+script = ExtResource("1_x8g6i")
+item_name = "Gas"
+flavor_text = "gas gas"
