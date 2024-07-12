@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://bqffitmaeidph"]
+[gd_scene load_steps=3 format=3 uid="uid://bqffitmaeidph"]
 
 [ext_resource type="Script" path="res://item/item_mama_bear.gd" id="1_ygjgk"]
+[ext_resource type="Texture2D" uid="uid://dga4bvbr8vihx" path="res://item/texture/ItemTeddyBear.png" id="2_yp50h"]
 
 [node name="Item_MamaBear" type="Node2D" groups=["Item"]]
 script = ExtResource("1_ygjgk")
 item_name = "Mama Bear"
 flavor_text = "IDFK. its a PH anyway"
+texture = ExtResource("2_yp50h")

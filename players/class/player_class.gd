@@ -47,6 +47,8 @@ func _physics_process(delta):
 	#healing
 	if health < max_health and preHealTimer.is_stopped() and healTimer.is_stopped():
 		preHealTimer.start()
+	if health > max_health:
+		health = max_health
 
 func attacked(damage):
 	health = health - damage

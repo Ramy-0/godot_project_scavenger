@@ -5,3 +5,4 @@ class_name ItemClass
 @export var item_name : String
 @export var flavor_text : String
 @export var amount : int
+@export var texture : Texture2D

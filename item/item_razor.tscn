@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://cm75esir2vyg7"]
+[gd_scene load_steps=3 format=3 uid="uid://cm75esir2vyg7"]
 
 [ext_resource type="Script" path="res://item/item_razor.gd" id="1_p2yl7"]
+[ext_resource type="Texture2D" uid="uid://b54e07nuyon7h" path="res://item/texture/ItemRazor.png" id="2_67bgl"]
 
 [node name="Item_Razor" type="Node2D" groups=["Item"]]
 script = ExtResource("1_p2yl7")
 item_name = "Razor"
 flavor_text = "now with RGB lighting"
+texture = ExtResource("2_67bgl")

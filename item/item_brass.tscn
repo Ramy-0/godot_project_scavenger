@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://chssuia1vgi4s"]
+
+[ext_resource type="Script" path="res://item/item_brass.gd" id="1_en2hr"]
+[ext_resource type="Texture2D" uid="uid://flhats5ik2ud" path="res://item/texture/ItemBrass.png" id="2_ffqyx"]
+
+[node name="Item_Brass" type="Node2D" groups=["Item"]]
+script = ExtResource("1_en2hr")
+item_name = "Eviction Notice"
+flavor_text = "do you like hurting other peaple?"
+texture = ExtResource("2_ffqyx")

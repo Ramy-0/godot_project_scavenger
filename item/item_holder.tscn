@@ -1,0 +1,60 @@
+[gd_scene load_steps=5 format=3 uid="uid://dd6ns4sxoxlbr"]
+
+[ext_resource type="Script" path="res://item/item_holder.gd" id="1_b4f5p"]
+[ext_resource type="Theme" uid="uid://7xs3fw8s4nwj" path="res://ui/themes/main_theme.tres" id="2_sdnnd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_anhns"]
+radius = 128.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nmb84"]
+radius = 32.0
+
+[node name="Item_Holder" type="Node2D"]
+script = ExtResource("1_b4f5p")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="Name_Label" type="Label" parent="."]
+offset_left = -64.0
+offset_top = -42.0
+offset_right = 64.0
+offset_bottom = -19.0
+theme = ExtResource("2_sdnnd")
+horizontal_alignment = 1
+
+[node name="Description_Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = 14.0
+offset_right = 100.0
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_sdnnd")
+horizontal_alignment = 1
+
+[node name="Name_Area" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Name_Area"]
+shape = SubResource("CircleShape2D_anhns")
+
+[node name="Iteract_Area" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Iteract_Area"]
+shape = SubResource("CircleShape2D_nmb84")
+
+[connection signal="mouse_entered" from="Name_Area" to="." method="_on_name_area_mouse_entered"]
+[connection signal="mouse_exited" from="Name_Area" to="." method="_on_name_area_mouse_exited"]
+[connection signal="mouse_entered" from="Iteract_Area" to="." method="_on_iteract_area_mouse_entered"]
+[connection signal="mouse_exited" from="Iteract_Area" to="." method="_on_iteract_area_mouse_exited"]

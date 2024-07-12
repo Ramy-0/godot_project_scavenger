@@ -1,10 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://dbog0uls76hpd"]
+[gd_scene load_steps=12 format=3 uid="uid://dbog0uls76hpd"]
 
 [ext_resource type="PackedScene" uid="uid://q7tla3bk5iaf" path="res://maps/map_2.tscn" id="1_2um7c"]
 [ext_resource type="PackedScene" uid="uid://dfmypkrqrhqfv" path="res://ui/pause_menu.tscn" id="1_phoyw"]
 [ext_resource type="PackedScene" uid="uid://cnve1w5ya6fm3" path="res://players/player_modular.tscn" id="2_dq4pa"]
 [ext_resource type="PackedScene" uid="uid://bs5na4u887qbi" path="res://enemy/enemy_basic.tscn" id="4_qd8r5"]
 [ext_resource type="PackedScene" uid="uid://cbgowif855vky" path="res://maps/maps objects/punching_bag.tscn" id="4_xxmke"]
+[ext_resource type="PackedScene" uid="uid://dd6ns4sxoxlbr" path="res://item/item_holder.tscn" id="6_elsh1"]
+[ext_resource type="PackedScene" uid="uid://cm75esir2vyg7" path="res://item/item_razor.tscn" id="7_10ibg"]
+[ext_resource type="PackedScene" uid="uid://chssuia1vgi4s" path="res://item/item_brass.tscn" id="8_gcaei"]
+[ext_resource type="PackedScene" uid="uid://dlti1m7uus0jt" path="res://item/item_lighter.tscn" id="9_vh6ct"]
+[ext_resource type="PackedScene" uid="uid://bqffitmaeidph" path="res://item/item_mama_bear.tscn" id="10_qxve0"]
+[ext_resource type="PackedScene" uid="uid://b8w66rojc6dp6" path="res://item/item_gas.tscn" id="11_p5r5b"]
 
 [node name="World_2" type="Node2D" groups=["World"]]
 
@@ -21,3 +27,23 @@ position = Vector2(0, 182)
 position = Vector2(-412, 174)
 base_health = 2000.0
 base_speed = 0.0
+
+[node name="Item_Holder" parent="." instance=ExtResource("6_elsh1")]
+position = Vector2(-392, -210)
+item_scene = ExtResource("7_10ibg")
+
+[node name="Item_Holder2" parent="." instance=ExtResource("6_elsh1")]
+position = Vector2(-738, -354)
+item_scene = ExtResource("8_gcaei")
+
+[node name="Item_Holder3" parent="." instance=ExtResource("6_elsh1")]
+position = Vector2(-544, -136)
+item_scene = ExtResource("9_vh6ct")
+
+[node name="Item_Holder4" parent="." instance=ExtResource("6_elsh1")]
+position = Vector2(-524, -274)
+item_scene = ExtResource("10_qxve0")
+
+[node name="Item_Holder5" parent="." instance=ExtResource("6_elsh1")]
+position = Vector2(-306, -304)
+item_scene = ExtResource("11_p5r5b")
