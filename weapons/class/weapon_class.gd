@@ -13,8 +13,12 @@ func _ready():
 
 func set_as_inactive():
 	process_mode = PROCESS_MODE_DISABLED
+	if $CanvasLayer != null:
+		$CanvasLayer.hide()
 	hide()
 
 func set_as_active():
 	process_mode = PROCESS_MODE_INHERIT
+	if $CanvasLayer != null:
+		$CanvasLayer.show()
 	show()

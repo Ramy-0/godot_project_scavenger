@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dbog0uls76hpd"]
+[gd_scene load_steps=13 format=3 uid="uid://dbog0uls76hpd"]
 
 [ext_resource type="PackedScene" uid="uid://q7tla3bk5iaf" path="res://maps/map_2.tscn" id="1_2um7c"]
 [ext_resource type="PackedScene" uid="uid://dfmypkrqrhqfv" path="res://ui/pause_menu.tscn" id="1_phoyw"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dlti1m7uus0jt" path="res://item/item_lighter.tscn" id="9_vh6ct"]
 [ext_resource type="PackedScene" uid="uid://bqffitmaeidph" path="res://item/item_mama_bear.tscn" id="10_qxve0"]
 [ext_resource type="PackedScene" uid="uid://b8w66rojc6dp6" path="res://item/item_gas.tscn" id="11_p5r5b"]
+[ext_resource type="PackedScene" uid="uid://vtnrrx3vxpg7" path="res://director/spawn_director.tscn" id="12_2tmn1"]
 
 [node name="World_2" type="Node2D" groups=["World"]]
 
@@ -47,3 +48,5 @@ item_scene = ExtResource("10_qxve0")
 [node name="Item_Holder5" parent="." instance=ExtResource("6_elsh1")]
 position = Vector2(-306, -304)
 item_scene = ExtResource("11_p5r5b")
+
+[node name="Spawn_Director" parent="." instance=ExtResource("12_2tmn1")]

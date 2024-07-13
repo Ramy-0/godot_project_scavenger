@@ -2,10 +2,13 @@ extends CharacterBody2D
 
 class_name EnemyClass
 
+@export_group("Stats")
 @export var base_health : float
 @export var base_speed : float
 @export var damage : float
+@export var spawn_price : int
 
+@export_group("Sub Nodes")
 @export var hurtBox : EnemyHurtbox
 @export var hitBoxStatic : EnemyHitboxStatic
 @export var hitBoxColl : CollisionShape2D
@@ -14,6 +17,7 @@ class_name EnemyClass
 @export var stateChart : StateChart
 @export var statusHandler : StatusHandler
 
+@export_group("Target")
 @export var target : CharacterBody2D
 
 

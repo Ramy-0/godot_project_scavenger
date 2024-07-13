@@ -15,8 +15,8 @@ func _process(delta):
 				dash()
 				coolDownTimer.start()
 	
-	$ProgressBar.value = coolDownTimer.time_left / cool_down * 100
-	$Label.text = str(coolDownTimer.time_left)
+	$CanvasLayer/VBoxContainer/ProgressBar.value = coolDownTimer.time_left / cool_down * 100
+	$CanvasLayer/VBoxContainer/Label.text = str(snapped(coolDownTimer.time_left, 0.01))
 
 func dash():
 	get_parent().speed_mult = get_parent().speed_mult * 10

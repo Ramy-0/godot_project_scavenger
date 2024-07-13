@@ -47,7 +47,7 @@ sprite = NodePath("AnimatedSprite2D")
 camera = NodePath("Camera2D")
 weaponBelt = NodePath("WeaponBelt")
 hurtBox = NodePath("Player_HurtBox")
-healthgui = NodePath("Health_GUI")
+healthgui = NodePath("CanvasLayer/Health_GUI")
 movementAbility = NodePath("Movement_Dash")
 healTimer = NodePath("Heal_Timer")
 preHealTimer = NodePath("PreHeal_Timer")
@@ -76,8 +76,6 @@ active = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player_HurtBox"]
 shape = SubResource("RectangleShape2D_3d4ei")
-
-[node name="Health_GUI" parent="." instance=ExtResource("5_6lu8k")]
 
 [node name="Movement_Dash" parent="." instance=ExtResource("8_eehdb")]
 
@@ -108,3 +106,7 @@ status = {
 "burn": 2.0,
 "stun": 0.0
 }
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Health_GUI" parent="CanvasLayer" instance=ExtResource("5_6lu8k")]

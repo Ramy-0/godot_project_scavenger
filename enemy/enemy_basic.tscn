@@ -50,6 +50,7 @@ post_atk_delay = 0.2
 base_health = 200.0
 base_speed = 300.0
 damage = 20.0
+spawn_price = 5
 hurtBox = NodePath("Enemy_HurtBox")
 hitBoxStatic = NodePath("Enemy_HitBox_Static")
 hitBoxColl = NodePath("Enemy_HitBox_Static/CollisionShape2D")

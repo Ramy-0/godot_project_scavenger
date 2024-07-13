@@ -11,6 +11,7 @@ extends WeaponClass
 @export var inaccuracy : float
 @export var instability : float
 @export var instability_delay : float
+@export var debug_gui : bool = false
 
 var mag: int
 
@@ -31,6 +32,15 @@ func _ready():
 	fire_timer.wait_time = fire_delay
 	reload_timer.wait_time = releod_delay
 	prereload_timer.wait_time = pre_releod_delay
+	
+	if debug_gui :
+		$CanvasLayer/HBoxContainer/VBoxContainer/Fire_Delay_Label.show() 
+		$CanvasLayer/HBoxContainer/VBoxContainer/Reload_Delay_Label.show() 
+		$CanvasLayer/HBoxContainer/VBoxContainer/PreReload_Delay_Label.show()
+	else:
+		$CanvasLayer/HBoxContainer/VBoxContainer/Fire_Delay_Label.hide() 
+		$CanvasLayer/HBoxContainer/VBoxContainer/Reload_Delay_Label.hide() 
+		$CanvasLayer/HBoxContainer/VBoxContainer/PreReload_Delay_Label.hide()
 
 func _process(delta):
 	$Pivot.look_at(get_global_mouse_position())
@@ -48,10 +58,11 @@ func _process(delta):
 			
 			shoot()
 	
-	$Mag_Label.text = str(mag)
-	$Fire_Delay_Label.text = str(fire_timer.time_left)
-	$Reload_Delay_Label.text = str(reload_timer.time_left)
-	$PreReload_Delay_Label.text = str(prereload_timer.time_left)
+	$CanvasLayer/HBoxContainer/Mag_Label.text = str(mag) + '/' + str(mag_size)
+	$CanvasLayer/HBoxContainer/VBoxContainer/Fire_Delay_Label.text = str(snapped(fire_timer.time_left,0.1))
+	$CanvasLayer/HBoxContainer/VBoxContainer/Reload_Delay_Label.text = str(snapped(reload_timer.time_left,0.1))
+	$CanvasLayer/HBoxContainer/VBoxContainer/PreReload_Delay_Label.text = str(snapped(prereload_timer.time_left,0.1))
+
 
 func shoot():
 	mag = mag - 1
