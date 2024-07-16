@@ -42,6 +42,13 @@ func navigate_to(_target):
 		velocity = dir * nav_speed
 		move_and_slide()
 
+func navigate_to_location(pos : Vector2, speed_mult : float):
+	var dir = to_local(pos).normalized()
+	velocity = dir * nav_speed * speed_mult
+	print(global_position.distance_to(pos))
+	if global_position.distance_to(pos) > 10.0:
+		move_and_slide()
+
 func look_at_path():
 	sprite.look_at(navAgent.get_next_path_position())
 	sprite.rotate(deg_to_rad(90))

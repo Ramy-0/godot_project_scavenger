@@ -11,9 +11,12 @@ func _ready():
 	collShape = get_child(0)
 	collShape.disabled = true
 
-func activate(delay:float = 0.1):
+func activate(delay:float = 0.05):
 	collShape.disabled = false
-	await get_tree().create_timer(0.05).timeout
+	await get_tree().create_timer(delay).timeout
+	collShape.disabled = true
+
+func deactivate():
 	collShape.disabled = true
 
 func _on_area_entered(area):

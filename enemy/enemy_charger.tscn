@@ -1,0 +1,174 @@
+[gd_scene load_steps=18 format=3 uid="uid://b63eif741yck3"]
+
+[ext_resource type="Script" path="res://enemy/enemy_charger.gd" id="1_mogam"]
+[ext_resource type="Texture2D" uid="uid://dlnj7xbxuivle" path="res://enemy/textures/bug_rino.png" id="2_wfkon"]
+[ext_resource type="PackedScene" uid="uid://bqmis8y7veli7" path="res://general subnodes/enemy_hurt_box.tscn" id="3_vawco"]
+[ext_resource type="PackedScene" uid="uid://bwg07a0leqbe8" path="res://general subnodes/enemy_hit_box_static.tscn" id="4_y3w37"]
+[ext_resource type="PackedScene" uid="uid://c6q27w5eiroxn" path="res://enemy/enemy sub nodes/enemy_nav_agent.tscn" id="5_6v1ec"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="6_ysxav"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="7_dfb5g"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="8_jnm8x"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="9_uxsqg"]
+[ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="10_6i3xl"]
+[ext_resource type="PackedScene" uid="uid://cla420syni86y" path="res://general subnodes/status_handler.tscn" id="11_rtguc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4w47k"]
+radius = 12.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rjovf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_wfkon")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jgrdt"]
+radius = 30.2655
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_26sly"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_26o4j"]
+radius = 900.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qevcn"]
+radius = 164.0
+
+[node name="Enemy_Charger" type="CharacterBody2D" node_paths=PackedStringArray("hurtBox", "hitBoxStatic", "hitBoxColl", "sprite", "navAgent", "stateChart", "statusHandler")]
+collision_layer = 4
+collision_mask = 13
+script = ExtResource("1_mogam")
+pre_charge_delay = 0.25
+charge_delay = 0.5
+grace_delay = 0.1
+base_health = 800.0
+base_speed = 250.0
+damage = 80.0
+spawn_price = 15
+hurtBox = NodePath("Enemy_HurtBox")
+hitBoxStatic = NodePath("Enemy_HitBox_Static")
+hitBoxColl = NodePath("Enemy_HitBox_Static/CollisionShape2D")
+sprite = NodePath("AnimatedSprite2D")
+navAgent = NodePath("Enemy_Nav_Agent")
+stateChart = NodePath("StateChart")
+statusHandler = NodePath("Status_Handler")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_4w47k")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_rjovf")
+
+[node name="Enemy_HurtBox" parent="." instance=ExtResource("3_vawco")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy_HurtBox"]
+shape = SubResource("CircleShape2D_jgrdt")
+debug_color = Color(0.824579, 0.00162894, 0.956864, 0.42)
+
+[node name="Enemy_HitBox_Static" parent="." instance=ExtResource("4_y3w37")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy_HitBox_Static"]
+position = Vector2(0, -28)
+shape = SubResource("CapsuleShape2D_26sly")
+debug_color = Color(0.962559, 7.70092e-07, 0.503876, 0.42)
+
+[node name="Enemy_Nav_Agent" parent="." instance=ExtResource("5_6v1ec")]
+
+[node name="StateChart" type="Node" parent="."]
+script = ExtResource("6_ysxav")
+
+[node name="Root" type="Node" parent="StateChart"]
+script = ExtResource("7_dfb5g")
+initial_state = NodePath("Idle_State")
+
+[node name="Idle_State" type="Node" parent="StateChart/Root"]
+script = ExtResource("8_jnm8x")
+
+[node name="Idle2Chase_Transition" type="Node" parent="StateChart/Root/Idle_State"]
+script = ExtResource("9_uxsqg")
+to = NodePath("../../Chasing_State")
+event = &"player_in_sight"
+
+[node name="Chasing_State" type="Node" parent="StateChart/Root"]
+script = ExtResource("8_jnm8x")
+
+[node name="Chase2Aim_Transition" type="Node" parent="StateChart/Root/Chasing_State"]
+script = ExtResource("9_uxsqg")
+to = NodePath("../../Aiming_State")
+event = &"player_in_charge_range"
+
+[node name="Aiming_State" type="Node" parent="StateChart/Root"]
+script = ExtResource("8_jnm8x")
+
+[node name="Aim2Grace_Transition" type="Node" parent="StateChart/Root/Aiming_State"]
+script = ExtResource("9_uxsqg")
+to = NodePath("../../Grace_State")
+event = &"aim_finished"
+
+[node name="Grace_State" type="Node" parent="StateChart/Root"]
+script = ExtResource("8_jnm8x")
+
+[node name="Grace2Charge_Transition" type="Node" parent="StateChart/Root/Grace_State"]
+script = ExtResource("9_uxsqg")
+to = NodePath("../../Charging_State")
+event = &"grace_ended"
+
+[node name="Charging_State" type="Node" parent="StateChart/Root"]
+script = ExtResource("8_jnm8x")
+
+[node name="Charge2Chase_Transition" type="Node" parent="StateChart/Root/Charging_State"]
+script = ExtResource("9_uxsqg")
+to = NodePath("../../Chasing_State")
+event = &"charge_finnished"
+
+[node name="Chasing_Area" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chasing_Area"]
+shape = SubResource("CircleShape2D_26o4j")
+
+[node name="Charge_Area" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Charge_Area"]
+shape = SubResource("CircleShape2D_qevcn")
+
+[node name="Pre_Charge_Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Charge_Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Grace_Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="StateChartDebugger" parent="." instance=ExtResource("10_6i3xl")]
+visible = false
+offset_left = 60.0
+offset_top = -28.0
+offset_right = 215.0
+offset_bottom = 124.0
+initial_node_to_watch = NodePath("../StateChart")
+
+[node name="Status_Handler" parent="." instance=ExtResource("11_rtguc")]
+
+[connection signal="state_physics_processing" from="StateChart/Root/Chasing_State" to="." method="_on_chasing_state_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/Root/Aiming_State" to="." method="_on_aiming_state_state_entered"]
+[connection signal="state_physics_processing" from="StateChart/Root/Aiming_State" to="." method="_on_aiming_state_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/Root/Grace_State" to="." method="_on_grace_state_state_entered"]
+[connection signal="state_entered" from="StateChart/Root/Charging_State" to="." method="_on_charging_state_state_entered"]
+[connection signal="state_exited" from="StateChart/Root/Charging_State" to="." method="_on_charging_state_state_exited"]
+[connection signal="state_physics_processing" from="StateChart/Root/Charging_State" to="." method="_on_charging_state_state_physics_processing"]
+[connection signal="body_entered" from="Chasing_Area" to="." method="_on_chasing_area_body_entered"]
+[connection signal="body_entered" from="Charge_Area" to="." method="_on_charge_area_body_entered"]
+[connection signal="timeout" from="Pre_Charge_Timer" to="." method="_on_pre_charge_timer_timeout"]
+[connection signal="timeout" from="Charge_Timer" to="." method="_on_charge_timer_timeout"]
+[connection signal="timeout" from="Grace_Timer" to="." method="_on_grace_timer_timeout"]
