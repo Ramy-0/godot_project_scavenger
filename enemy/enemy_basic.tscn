@@ -1,7 +1,7 @@
 [gd_scene load_steps=19 format=3 uid="uid://bs5na4u887qbi"]
 
 [ext_resource type="Script" path="res://enemy/enemy_basic.gd" id="1_u7kga"]
-[ext_resource type="Texture2D" uid="uid://bdo44k0t2q4wd" path="res://enemy/textures/bug.png" id="2_1yq1k"]
+[ext_resource type="Texture2D" uid="uid://cj73bs8x4v0n4" path="res://enemy/textures/bug_2.png" id="2_hfdkb"]
 [ext_resource type="PackedScene" uid="uid://c6q27w5eiroxn" path="res://enemy/enemy sub nodes/enemy_nav_agent.tscn" id="3_bfse5"]
 [ext_resource type="PackedScene" uid="uid://bqmis8y7veli7" path="res://general subnodes/enemy_hurt_box.tscn" id="3_rir3p"]
 [ext_resource type="PackedScene" uid="uid://bwg07a0leqbe8" path="res://general subnodes/enemy_hit_box_static.tscn" id="4_2q0d1"]
@@ -19,7 +19,7 @@ radius = 12.0
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_1yq1k")
+"texture": ExtResource("2_hfdkb")
 }],
 "loop": true,
 "name": &"default",
@@ -34,7 +34,7 @@ radius = 12.0
 height = 44.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1vcis"]
-radius = 902.565
+radius = 900.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cnvnh"]
 radius = 44.4072
@@ -44,6 +44,8 @@ _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [node name="Enemy_Basic" type="CharacterBody2D" node_paths=PackedStringArray("hurtBox", "hitBoxStatic", "hitBoxColl", "sprite", "navAgent", "stateChart", "statusHandler") groups=["Enemy"]]
+collision_layer = 4
+collision_mask = 15
 script = ExtResource("1_u7kga")
 pre_atk_delay = 0.1
 post_atk_delay = 0.2
@@ -134,10 +136,12 @@ one_shot = true
 one_shot = true
 
 [node name="StateChartDebugger" parent="." instance=ExtResource("10_3xw3r")]
+visible = false
 offset_left = 112.0
 offset_top = -80.0
 offset_right = 266.0
 offset_bottom = 80.0
+enabled = false
 initial_node_to_watch = NodePath("../StateChart")
 
 [node name="Blood_Particles" type="CPUParticles2D" parent="."]
