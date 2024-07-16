@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dbog0uls76hpd"]
+[gd_scene load_steps=14 format=3 uid="uid://dbog0uls76hpd"]
 
 [ext_resource type="PackedScene" uid="uid://q7tla3bk5iaf" path="res://maps/map_2.tscn" id="1_2um7c"]
 [ext_resource type="PackedScene" uid="uid://dfmypkrqrhqfv" path="res://ui/pause_menu.tscn" id="1_phoyw"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bqffitmaeidph" path="res://item/item_mama_bear.tscn" id="10_qxve0"]
 [ext_resource type="PackedScene" uid="uid://b8w66rojc6dp6" path="res://item/item_gas.tscn" id="11_p5r5b"]
 [ext_resource type="PackedScene" uid="uid://vtnrrx3vxpg7" path="res://director/spawn_director.tscn" id="12_2tmn1"]
+[ext_resource type="PackedScene" uid="uid://b63eif741yck3" path="res://enemy/enemy_charger.tscn" id="13_gkya3"]
 
 [node name="World_2" type="Node2D" groups=["World"]]
 
@@ -20,6 +21,7 @@
 [node name="Map_2" parent="." instance=ExtResource("1_2um7c")]
 
 [node name="Player_Modular" parent="." instance=ExtResource("2_dq4pa")]
+position = Vector2(-450, 360)
 
 [node name="Punching_Bag" parent="." instance=ExtResource("4_xxmke")]
 position = Vector2(0, 182)
@@ -50,3 +52,16 @@ position = Vector2(-306, -304)
 item_scene = ExtResource("11_p5r5b")
 
 [node name="Spawn_Director" parent="." instance=ExtResource("12_2tmn1")]
+
+[node name="Enemy_Charger" parent="." instance=ExtResource("13_gkya3")]
+position = Vector2(-442, 81)
+
+[node name="Enemy_Basic2" parent="." instance=ExtResource("4_qd8r5")]
+position = Vector2(-490, 176)
+base_health = 2000.0
+base_speed = 0.0
+
+[node name="Enemy_Basic3" parent="." instance=ExtResource("4_qd8r5")]
+position = Vector2(-454, 176)
+base_health = 2000.0
+base_speed = 0.0

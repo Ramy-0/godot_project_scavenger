@@ -10,3 +10,6 @@ func _ready():
 	player = MyFuncs.get_children_in_group(world, "Player")[0]
 	print(world)
 	print(player)
+
+func _process(delta):
+	pass

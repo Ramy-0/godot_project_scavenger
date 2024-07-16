@@ -41,7 +41,6 @@ collision_mask = 21
 script = ExtResource("1_btelm")
 base_health = 200.0
 base_speed = 300.0
-preHealingDelay = 200000.0
 collisionBox = NodePath("CollisionBox")
 sprite = NodePath("AnimatedSprite2D")
 camera = NodePath("Camera2D")
@@ -101,11 +100,6 @@ amount = 1
 [node name="Heal_Timer" type="Timer" parent="."]
 
 [node name="Status_Handler" parent="." instance=ExtResource("13_r8ss5")]
-status = {
-"bleed": 5.0,
-"burn": 2.0,
-"stun": 0.0
-}
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
