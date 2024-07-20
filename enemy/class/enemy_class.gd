@@ -45,7 +45,7 @@ func navigate_to(_target):
 func navigate_to_location(pos : Vector2, speed_mult : float):
 	var dir = to_local(pos).normalized()
 	velocity = dir * nav_speed * speed_mult
-	print(global_position.distance_to(pos))
+	#print(global_position.distance_to(pos))
 	if global_position.distance_to(pos) > 10.0:
 		move_and_slide()
 
@@ -54,13 +54,13 @@ func look_at_path():
 	sprite.rotate(deg_to_rad(90))
 	hitBoxStatic.rotation = sprite.rotation
 
-func look_at_target(target):
-	sprite.look_at(target.position)
+func look_at_target(_target):
+	sprite.look_at(_target.position)
 	sprite.rotate(deg_to_rad(90))
 	hitBoxStatic.rotation = sprite.rotation
 
-func attacked(damage):
-	health = health - damage
+func attacked(_damage):
+	health = health - _damage
 	hurt_mark()
 	if health <= 0 :
 		die()

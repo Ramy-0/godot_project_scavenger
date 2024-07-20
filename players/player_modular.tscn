@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cnve1w5ya6fm3"]
+[gd_scene load_steps=21 format=3 uid="uid://cnve1w5ya6fm3"]
 
 [ext_resource type="Script" path="res://players/player_modular.gd" id="1_btelm"]
 [ext_resource type="Texture2D" uid="uid://br6f31287ipbe" path="res://players/textures/pph.png" id="2_3qaqh"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://cla420syni86y" path="res://general subnodes/status_handler.tscn" id="13_r8ss5"]
 [ext_resource type="PackedScene" uid="uid://dlti1m7uus0jt" path="res://item/item_lighter.tscn" id="14_yaodo"]
 [ext_resource type="PackedScene" uid="uid://chssuia1vgi4s" path="res://item/item_brass.tscn" id="16_avo28"]
+[ext_resource type="Script" path="res://addons/ProCam2D/scripts/ProCam2D.gd" id="17_7rari"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cna0v"]
 radius = 16.0
@@ -54,6 +55,39 @@ itemHandler = NodePath("Item_Handler")
 statusHandler = NodePath("Status_Handler")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+enabled = false
+
+[node name="ProCam2D" type="Node2D" parent="."]
+script = ExtResource("17_7rari")
+_target_node = NodePath("..")
+_target_radius = 100.0
+_process_mode = 1
+_offset = Vector2(0, 0)
+_offset_smoothly = true
+_offset_speed = 1.0
+_drag_smoothly = true
+_drag_speed = Vector2(2, 2)
+_drag_type = 0
+_prediction_time = Vector2(5, 5)
+_rotate = false
+_rotation_speed = 5.0
+_rotate_smoothly = true
+_zoom_level = 1.0
+_zoom_smoothly = true
+_zoom_speed = 5.0
+_limit_smoothly = false
+_left_limit = -100000
+_right_limit = 100000
+_top_limit = -100000
+_bottom_limit = 100000
+_enable_h_margins = false
+_enable_v_margins = false
+_drag_margin_right = 0.2
+_drag_margin_left = 0.2
+_drag_margin_top = 0.2
+_drag_margin_bottom = 0.2
+_draw_bounds = true
+_show_bounds = false
 
 [node name="CollisionBox" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_cna0v")

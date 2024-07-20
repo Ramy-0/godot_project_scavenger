@@ -2,6 +2,7 @@ extends Node2D
 
 @export var credits: float = 15
 @export var credit_gain_delay : float = 1.0
+@export var credit_gain : int = 5
 @export var player : CharacterBody2D
 @export var world : Node2D
 
@@ -13,3 +14,7 @@ func _ready():
 
 func _process(delta):
 	pass
+
+func _on_timer_timeout():
+	credits += credit_gain
+	print(credits)
