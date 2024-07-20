@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://n0bbug1uhwwt"]
+
+[ext_resource type="PackedScene" uid="uid://c51ou63q6e3f6" path="res://maps/map_empty.tscn" id="1_mkh21"]
+[ext_resource type="PackedScene" uid="uid://cnve1w5ya6fm3" path="res://players/player_modular.tscn" id="2_os7xp"]
+
+[node name="World_Director_Test" type="Node2D" groups=["World"]]
+
+[node name="Map_Empty" parent="." instance=ExtResource("1_mkh21")]
+
+[node name="Player_Modular" parent="." instance=ExtResource("2_os7xp")]

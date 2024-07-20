@@ -12,6 +12,7 @@ config_version=5
 
 config/name="project rain"
 config/description="topdown roguelike"
+config/version="pre alpha"
 config/tags=PackedStringArray("2d", "git_repo", "plugins", "v4.3")
 run/main_scene="res://ui/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
@@ -21,6 +22,10 @@ config/icon="res://icon.svg"
 
 MyFuncs="*res://singletons/my_funcs.gd"
 ProCam="*res://addons/ProCam2D/scripts/ProCam.gd"
+
+[display]
+
+window/size/mode=2
 
 [editor]
 
