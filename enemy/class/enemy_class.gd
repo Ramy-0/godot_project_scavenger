@@ -7,6 +7,7 @@ class_name EnemyClass
 @export var base_speed : float
 @export var damage : float
 @export var spawn_price : int
+@export var spawn_weight : float
 
 @export_group("Sub Nodes")
 @export var hurtBox : EnemyHurtbox

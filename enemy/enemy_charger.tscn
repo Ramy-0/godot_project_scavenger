@@ -49,6 +49,7 @@ base_health = 800.0
 base_speed = 250.0
 damage = 80.0
 spawn_price = 15
+spawn_weight = 25.0
 hurtBox = NodePath("Enemy_HurtBox")
 hitBoxStatic = NodePath("Enemy_HitBox_Static")
 hitBoxColl = NodePath("Enemy_HitBox_Static/CollisionShape2D")
