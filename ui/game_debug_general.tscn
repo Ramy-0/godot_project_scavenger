@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://byuwcyulfgnnw"]
+
+[ext_resource type="Theme" uid="uid://7xs3fw8s4nwj" path="res://ui/themes/main_theme.tres" id="1_8s51o"]
+[ext_resource type="Script" path="res://ui/game_debug_general.gd" id="1_hetwi"]
+
+[node name="Game_Debug_General" type="CanvasLayer"]
+script = ExtResource("1_hetwi")
+
+[node name="FPS_Label" type="Label" parent="."]
+offset_right = 106.0
+offset_bottom = 23.0
+theme = ExtResource("1_8s51o")
+theme_override_colors/font_color = Color(0, 0.929412, 0, 1)
+text = "FPS"

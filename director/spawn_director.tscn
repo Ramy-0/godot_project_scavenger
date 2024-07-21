@@ -1,14 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://vtnrrx3vxpg7"]
+[gd_scene load_steps=7 format=3 uid="uid://vtnrrx3vxpg7"]
 
 [ext_resource type="Script" path="res://director/spawn_director.gd" id="1_nc0w4"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="2_ktg4s"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="3_6x1m7"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="4_25ssk"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="5_sruo0"]
+[ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="6_bhhm2"]
 
 [node name="Spawn_Director" type="Node2D"]
 script = ExtResource("1_nc0w4")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="CreditGain_Timer" type="Timer" parent="."]
 autostart = true
 
 [node name="StateChart" type="Node" parent="."]
@@ -21,14 +23,58 @@ initial_state = NodePath("Save")
 [node name="Save" type="Node" parent="StateChart/Root"]
 script = ExtResource("4_25ssk")
 
+[node name="StartAssault_Trans" type="Node" parent="StateChart/Root/Save"]
+script = ExtResource("5_sruo0")
+to = NodePath("../../Assault")
+event = &"start_assault"
+
 [node name="Assault" type="Node" parent="StateChart/Root"]
 script = ExtResource("3_6x1m7")
-initial_state = NodePath("Spawn")
-
-[node name="Spawn" type="Node" parent="StateChart/Root/Assault"]
-script = ExtResource("4_25ssk")
+initial_state = NodePath("Wait")
 
 [node name="Wait" type="Node" parent="StateChart/Root/Assault"]
 script = ExtResource("4_25ssk")
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="Spawn_Trans" type="Node" parent="StateChart/Root/Assault/Wait"]
+script = ExtResource("5_sruo0")
+to = NodePath("../../Spawn")
+event = &"spawn"
+
+[node name="Spawn" type="Node" parent="StateChart/Root/Assault"]
+script = ExtResource("4_25ssk")
+
+[node name="Wait_Trans" type="Node" parent="StateChart/Root/Assault/Spawn"]
+script = ExtResource("5_sruo0")
+to = NodePath("../../Wait")
+event = &"wait"
+
+[node name="StopAssault_Trans" type="Node" parent="StateChart/Root/Assault"]
+script = ExtResource("5_sruo0")
+to = NodePath("../../Save")
+event = &"stop_assault"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -146.0
+offset_top = -104.0
+offset_right = 146.0
+offset_bottom = 104.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="StateChartDebugger" parent="VBoxContainer" instance=ExtResource("6_bhhm2")]
+layout_mode = 2
+initial_node_to_watch = NodePath("../../StateChart")
+
+[connection signal="timeout" from="CreditGain_Timer" to="." method="_on_credit_gain_timer_timeout"]
+[connection signal="state_processing" from="StateChart/Root/Save" to="." method="_on_save_state_processing"]
+[connection signal="state_entered" from="StateChart/Root/Assault" to="." method="_on_assault_state_entered"]
+[connection signal="state_entered" from="StateChart/Root/Assault/Wait" to="." method="_on_wait_state_entered"]
+[connection signal="state_entered" from="StateChart/Root/Assault/Spawn" to="." method="_on_spawn_state_entered"]

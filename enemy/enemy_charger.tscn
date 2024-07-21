@@ -33,7 +33,7 @@ radius = 30.2655
 radius = 8.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_26o4j"]
-radius = 900.0
+radius = 3000.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qevcn"]
 radius = 164.0
@@ -157,6 +157,7 @@ offset_left = 60.0
 offset_top = -28.0
 offset_right = 215.0
 offset_bottom = 124.0
+enabled = false
 initial_node_to_watch = NodePath("../StateChart")
 
 [node name="Status_Handler" parent="." instance=ExtResource("11_rtguc")]

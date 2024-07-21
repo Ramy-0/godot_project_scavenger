@@ -16,6 +16,7 @@ var movement_direction : Vector2
 @export var collisionBox : CollisionShape2D
 @export var sprite : AnimatedSprite2D
 @export var camera : Camera2D
+@export var camera_pro : Node2D
 @export var weaponBelt : WeaponBelt
 @export var hurtBox : PlayerHurtbox
 @export var healthgui : HealthGUI
