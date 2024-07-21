@@ -17,7 +17,7 @@ func _ready():
 	print(world)
 	print(player)
 	
-	print(enemy_pool[0][0].spawn_price)
+	#print(enemy_pool[0][0].spawn_price)
 
 func _process(delta):
 	pass
