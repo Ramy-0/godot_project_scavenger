@@ -3,7 +3,7 @@ extends Node2D
 @export_group("Stats")
 @export var credits: float = 50
 @export var credit_gain_delay : float = 1.0
-@export var credit_gain : int = 5
+@export var credit_gain : int = 2
 @export var credit_threshold : int = 100
 @export var waves_number : int = 5
 @export var wave_delay : float = 1.0
@@ -83,7 +83,7 @@ func spawn_random_using_credits(crd):
 	var enemies_total_weight = 0
 	for i in enemy_weights:
 		enemies_total_weight += i
-	print(enemies_total_weight)
+	#print(enemies_total_weight)
 	while credits_to_use >= enemy_prices.min():
 		
 	
@@ -100,7 +100,7 @@ func spawn_random_using_credits(crd):
 
 func spawn_enemy(enemy):
 	var enemy_inst = enemy.instantiate()
-	enemy_inst.global_position = Vector2(player.global_position.x + randi_range(-2500,2500),
-	 player.global_position.y + randi_range(-2500,2500))
+	enemy_inst.global_position = Vector2(player.global_position.x + randi_range(-500,500),
+	 player.global_position.y + randi_range(-500,500))
 	print(enemy_inst, " had spawned")
 	world.add_child(enemy_inst)
