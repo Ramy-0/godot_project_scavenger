@@ -13,6 +13,7 @@ var charge_target_vector : Vector2
 func _ready():
 	preChargeT.wait_time = pre_charge_delay
 	chargeT.wait_time = charge_delay
+	graceT.wait_time = grace_delay
 	update_variables()
 
 
