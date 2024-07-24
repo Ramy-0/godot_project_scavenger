@@ -29,6 +29,10 @@ func _on_charge_area_body_entered(body):
 	
 
 #STATE CHART SIGNALS
+func _on_chasing_state_state_entered() -> void:
+	if $Charge_Area.overlaps_body(target):
+		stateChart.send_event("player_in_charge_range")
+	
 func _on_chasing_state_state_physics_processing(delta):
 	navigate_to(target)
 	look_at_path()

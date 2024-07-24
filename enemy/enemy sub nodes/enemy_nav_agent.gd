@@ -22,3 +22,7 @@ func update_path():
 
 func _on_update_timer_timeout():
 	update_path()
+
+
+func _on_velocity_computed(safe_velocity: Vector2) -> void:
+	pass # Replace with function body.

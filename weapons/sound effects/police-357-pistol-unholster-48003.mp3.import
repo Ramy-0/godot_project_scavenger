@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cc00oofa5o3ta"
+path="res://.godot/imported/police-357-pistol-unholster-48003.mp3-332b9d13320e49b4df97b3621efb9b17.mp3str"
+
+[deps]
+
+source_file="res://weapons/sound effects/police-357-pistol-unholster-48003.mp3"
+dest_files=["res://.godot/imported/police-357-pistol-unholster-48003.mp3-332b9d13320e49b4df97b3621efb9b17.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

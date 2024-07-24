@@ -50,7 +50,6 @@ func _on_attacking_a_state_state_entered():
 
 
 #TIMERS SIGNALS
-
 func _on_pre_atk_timer_timeout():
 	atkPostT.start()
 	hitBoxStatic.activate()
@@ -60,6 +59,5 @@ func _on_post_atk_timer_timeout():
 
 
 #HURTBOX SIGNALS
-
 func _on_enemy_hurt_box_area_entered(area):
 	$Blood_Particles.emitting = true

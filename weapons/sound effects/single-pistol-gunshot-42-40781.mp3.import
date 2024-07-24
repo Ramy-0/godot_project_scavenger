@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c2rnjkdppoecj"
+path="res://.godot/imported/single-pistol-gunshot-42-40781.mp3-357d7b24f3df6bd9ad8105c8289d429a.mp3str"
+
+[deps]
+
+source_file="res://weapons/sound effects/single-pistol-gunshot-42-40781.mp3"
+dest_files=["res://.godot/imported/single-pistol-gunshot-42-40781.mp3-357d7b24f3df6bd9ad8105c8289d429a.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

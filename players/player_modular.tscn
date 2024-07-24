@@ -45,7 +45,7 @@ base_health = 200.0
 base_speed = 300.0
 collisionBox = NodePath("CollisionBox")
 sprite = NodePath("AnimatedSprite2D")
-camera = NodePath("Camera2D")
+camera = NodePath("")
 camera_pro = NodePath("ProCam2D")
 weaponBelt = NodePath("WeaponBelt")
 hurtBox = NodePath("Player_HurtBox")
@@ -55,10 +55,6 @@ healTimer = NodePath("Heal_Timer")
 preHealTimer = NodePath("PreHeal_Timer")
 itemHandler = NodePath("Item_Handler")
 statusHandler = NodePath("Status_Handler")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0, -32)
-enabled = false
 
 [node name="ProCam2D" type="Node2D" parent="."]
 position = Vector2(0, -32)
@@ -156,3 +152,7 @@ script = ExtResource("18_4lpxi")
 _radius = 100.0
 _enabled = true
 _debug_draw = true
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+
+[connection signal="hurtbox_attacked" from="Player_HurtBox" to="." method="_on_player_hurt_box_hurtbox_attacked"]
