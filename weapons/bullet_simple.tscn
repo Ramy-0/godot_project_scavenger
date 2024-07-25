@@ -5,15 +5,15 @@
 [ext_resource type="PackedScene" uid="uid://shsfe4x8n0iy" path="res://general subnodes/player_hit_box_moving.tscn" id="3_6heay"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_et0xr"]
-radius = 2.0
+radius = 4.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0yk86"]
-radius = 2.0
-height = 12.0
+radius = 4.0
+height = 32.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5dejv"]
 radius = 2.0
-height = 8.0
+height = 12.0
 
 [sub_resource type="Curve" id="Curve_fqm2e"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.403481), 0.0, 0.0, 0, 0]

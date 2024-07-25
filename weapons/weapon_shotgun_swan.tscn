@@ -1,0 +1,81 @@
+[gd_scene load_steps=5 format=3 uid="uid://dusuc116xtyij"]
+
+[ext_resource type="Script" path="res://weapons/weapon_shotgun_swan.gd" id="1_opwff"]
+[ext_resource type="PackedScene" uid="uid://bocvii8b6crwq" path="res://weapons/pellet_simple.tscn" id="2_7ffh7"]
+[ext_resource type="Texture2D" uid="uid://71yb4xu7ka7p" path="res://weapons/texture/shotgun 1.png" id="2_qduv1"]
+[ext_resource type="Theme" uid="uid://7xs3fw8s4nwj" path="res://ui/themes/main_theme.tres" id="4_loq0j"]
+
+[node name="Weapon_Shotgun_SawnOff" type="Node2D"]
+script = ExtResource("1_opwff")
+damage = 30
+pellet_speed = 1200.0
+pellet_lifetime = 1.0
+mag_size = 2
+fire_delay = 0.5
+releod_delay = 0.1
+spread = 15.0
+pre_releod_delay = 0.7
+push_distance = 40.0
+pellets_per_shell = 4
+debug_gui = true
+pellet = ExtResource("2_7ffh7")
+weapon_name = "SawnOff"
+weapon_discription = "swan song"
+
+[node name="Pivot" type="Node2D" parent="."]
+scale = Vector2(-1, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Pivot"]
+position = Vector2(48, 0)
+texture = ExtResource("2_qduv1")
+
+[node name="Fire_Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Reload_Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Pre_Reload_Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+custom_minimum_size = Vector2(16, 0)
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -366.0
+offset_top = -77.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("4_loq0j")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Fire_Delay_Label" type="Label" parent="CanvasLayer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+text = "PH"
+
+[node name="Reload_Delay_Label" type="Label" parent="CanvasLayer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+text = "PH"
+
+[node name="PreReload_Delay_Label" type="Label" parent="CanvasLayer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+text = "PH"
+
+[node name="Mag_Label" type="Label" parent="CanvasLayer/HBoxContainer"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+text = "PH"
+
+[connection signal="timeout" from="Fire_Timer" to="." method="_on_fire_timer_timeout"]
+[connection signal="timeout" from="Reload_Timer" to="." method="_on_reload_timer_timeout"]
+[connection signal="timeout" from="Pre_Reload_Timer" to="." method="_on_pre_reload_timer_timeout"]
