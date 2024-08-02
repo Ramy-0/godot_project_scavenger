@@ -16,6 +16,10 @@ func _ready():
 	graceT.wait_time = grace_delay
 	update_variables()
 
+func _process(delta: float) -> void:
+	$HealthBar.max_value = max_health
+	$HealthBar.value = health
+	$HealthLabel.text = str(health) + '/' + str(max_health)
 
 #AREA SIGNALS
 func _on_chasing_area_body_entered(body):
@@ -68,3 +72,8 @@ func _on_charge_timer_timeout():
 
 func _on_grace_timer_timeout():
 	stateChart.send_event("grace_ended")
+
+
+#HURTBOX SIGNAL
+func _on_enemy_hurt_box_hurtbox_attacked() -> void:
+	$Blood_Particles.emitting = true

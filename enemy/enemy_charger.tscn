@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b63eif741yck3"]
+[gd_scene load_steps=19 format=3 uid="uid://b63eif741yck3"]
 
 [ext_resource type="Script" path="res://enemy/enemy_charger.gd" id="1_mogam"]
 [ext_resource type="Texture2D" uid="uid://dlnj7xbxuivle" path="res://enemy/textures/bug_rino.png" id="2_wfkon"]
@@ -38,7 +38,11 @@ radius = 3000.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_qevcn"]
 radius = 164.0
 
-[node name="Enemy_Charger" type="CharacterBody2D" node_paths=PackedStringArray("hurtBox", "hitBoxStatic", "hitBoxColl", "sprite", "navAgent", "stateChart", "statusHandler")]
+[sub_resource type="Curve" id="Curve_loiyi"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Enemy_Charger" type="CharacterBody2D" node_paths=PackedStringArray("hurtBox", "hitBoxStatic", "hitBoxColl", "sprite", "navAgent", "stateChart", "statusHandler") groups=["Enemy"]]
 collision_layer = 4
 collision_mask = 13
 script = ExtResource("1_mogam")
@@ -162,8 +166,36 @@ offset_bottom = 124.0
 enabled = false
 initial_node_to_watch = NodePath("../StateChart")
 
+[node name="Blood_Particles" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 14
+lifetime = 0.2
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 200.0
+initial_velocity_max = 300.0
+scale_amount_min = 8.0
+scale_amount_max = 16.0
+scale_amount_curve = SubResource("Curve_loiyi")
+color = Color(1.34766e-06, 0.562765, 0.0870061, 1)
+
 [node name="Status_Handler" parent="." instance=ExtResource("11_rtguc")]
 
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -36.0
+offset_top = -90.0
+offset_right = 34.0
+offset_bottom = -63.0
+
+[node name="HealthLabel" type="Label" parent="."]
+offset_left = -20.0
+offset_top = -116.0
+offset_right = 20.0
+offset_bottom = -93.0
+
+[connection signal="hurtbox_attacked" from="Enemy_HurtBox" to="." method="_on_enemy_hurt_box_hurtbox_attacked"]
 [connection signal="state_entered" from="StateChart/Root/Chasing_State" to="." method="_on_chasing_state_state_entered"]
 [connection signal="state_physics_processing" from="StateChart/Root/Chasing_State" to="." method="_on_chasing_state_state_physics_processing"]
 [connection signal="state_entered" from="StateChart/Root/Aiming_State" to="." method="_on_aiming_state_state_entered"]

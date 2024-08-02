@@ -11,7 +11,7 @@ func _ready():
 	atkPostT.wait_time = post_atk_delay
 	update_variables()
 
-func _physics_process(delta):
+func _process(delta: float) -> void:
 	$HealthBar.max_value = max_health
 	$HealthBar.value = health
 	$HealthLabel.text = str(health) + '/' + str(max_health)
