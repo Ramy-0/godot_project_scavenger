@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cnve1w5ya6fm3"]
+[gd_scene load_steps=23 format=3 uid="uid://cnve1w5ya6fm3"]
 
 [ext_resource type="Script" path="res://players/player_modular.gd" id="1_btelm"]
 [ext_resource type="Texture2D" uid="uid://br6f31287ipbe" path="res://players/textures/pph.png" id="2_3qaqh"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dusuc116xtyij" path="res://weapons/weapon_shotgun_swan.tscn" id="5_cpqr7"]
 [ext_resource type="PackedScene" uid="uid://cyhyaaiutgof8" path="res://weapons/weapon_smg_1.tscn" id="5_g824m"]
 [ext_resource type="PackedScene" uid="uid://comin7aidmvu5" path="res://general subnodes/player_hurt_box.tscn" id="5_ghjen"]
+[ext_resource type="PackedScene" uid="uid://d2h623ywv2f1m" path="res://weapons/ult_weapon_chainsaw.tscn" id="7_8q04x"]
 [ext_resource type="PackedScene" uid="uid://cswb18j0upjmv" path="res://players/subnodes/movement_dash.tscn" id="8_eehdb"]
 [ext_resource type="PackedScene" uid="uid://b1pc8awv1oi0u" path="res://general subnodes/item_handler.tscn" id="9_0n4hc"]
 [ext_resource type="PackedScene" uid="uid://dmnvf5247eiu6" path="res://item/item_pizza.tscn" id="10_nif2u"]
@@ -103,15 +104,18 @@ y_sort_enabled = true
 position = Vector2(0, -32)
 sprite_frames = SubResource("SpriteFrames_eggvd")
 
-[node name="WeaponBelt" type="Node2D" parent="." node_paths=PackedStringArray("weapon1", "weapon2")]
+[node name="WeaponBelt" type="Node2D" parent="." node_paths=PackedStringArray("weapon1", "weapon2", "weaponUlt")]
 position = Vector2(0, -32)
 script = ExtResource("3_qi5wp")
 weapon1 = NodePath("Weapon_Shotgun_SawnOff")
 weapon2 = NodePath("Weapon_SMG_1")
+weaponUlt = NodePath("UltWeapon_Chainsaw")
 
 [node name="Weapon_Shotgun_SawnOff" parent="WeaponBelt" instance=ExtResource("5_cpqr7")]
 
 [node name="Weapon_SMG_1" parent="WeaponBelt" instance=ExtResource("5_g824m")]
+
+[node name="UltWeapon_Chainsaw" parent="WeaponBelt" instance=ExtResource("7_8q04x")]
 
 [node name="Player_HurtBox" parent="." instance=ExtResource("5_ghjen")]
 position = Vector2(0, -32)

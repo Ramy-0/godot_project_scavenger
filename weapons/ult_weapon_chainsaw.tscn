@@ -1,0 +1,82 @@
+[gd_scene load_steps=11 format=3 uid="uid://d2h623ywv2f1m"]
+
+[ext_resource type="Script" path="res://weapons/ult_weapon_chainsaw.gd" id="1_h7rlo"]
+[ext_resource type="Texture2D" uid="uid://bb7u6e6yetwvn" path="res://weapons/texture/chaisaw.png" id="2_15jjn"]
+[ext_resource type="PackedScene" uid="uid://4f825cnoa4ee" path="res://general subnodes/player_hit_box_static.tscn" id="3_tpsxk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v2a0h"]
+atlas = ExtResource("2_15jjn")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xfy6b"]
+atlas = ExtResource("2_15jjn")
+region = Rect2(64, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iyn5u"]
+atlas = ExtResource("2_15jjn")
+region = Rect2(128, 0, 64, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m523f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v2a0h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xfy6b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iyn5u")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_71wgb"]
+height = 43.9998
+
+[sub_resource type="Curve" id="Curve_bp2rx"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.557753), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_ivhk7"]
+colors = PackedColorArray(0.868678, 0.421139, 0, 1, 1, 1, 1, 1)
+
+[node name="UltWeapon_Chainsaw" type="Node2D"]
+script = ExtResource("1_h7rlo")
+weapon_name = "Rippa"
+weapon_discription = "a chainsaw"
+
+[node name="Pivot" type="Node2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Pivot"]
+position = Vector2(-64, -4)
+sprite_frames = SubResource("SpriteFrames_m523f")
+frame = 2
+frame_progress = 0.452715
+
+[node name="Player_HitBox_Static" parent="Pivot" node_paths=PackedStringArray("collShape", "parent") instance=ExtResource("3_tpsxk")]
+position = Vector2(-76, 0)
+collShape = NodePath("CollisionShape2D")
+parent = NodePath("../..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/Player_HitBox_Static"]
+rotation = 1.57382
+shape = SubResource("CapsuleShape2D_71wgb")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Pivot"]
+position = Vector2(-62, 0)
+emitting = false
+lifetime = 0.6
+one_shot = true
+randomness = 1.0
+lifetime_randomness = 0.5
+emission_shape = 1
+emission_sphere_radius = 10.0
+gravity = Vector2(-1000, 0)
+initial_velocity_max = 120.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_bp2rx")
+color = Color(0.871793, 0.479358, 0.205982, 1)
+color_ramp = SubResource("Gradient_ivhk7")
