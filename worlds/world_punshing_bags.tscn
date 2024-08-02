@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://ceobktw76pbig"]
+
+[ext_resource type="PackedScene" uid="uid://c51ou63q6e3f6" path="res://maps/map_empty.tscn" id="1_5fqou"]
+[ext_resource type="PackedScene" uid="uid://cnve1w5ya6fm3" path="res://players/player_modular.tscn" id="2_ieq6v"]
+[ext_resource type="PackedScene" uid="uid://bs5na4u887qbi" path="res://enemy/enemy_basic.tscn" id="3_5l016"]
+[ext_resource type="PackedScene" uid="uid://b63eif741yck3" path="res://enemy/enemy_charger.tscn" id="4_orqn7"]
+
+[node name="World_PunshingBags" type="Node2D" groups=["World"]]
+
+[node name="Map_Empty" parent="." instance=ExtResource("1_5fqou")]
+
+[node name="Player_Modular" parent="." instance=ExtResource("2_ieq6v")]
+
+[node name="Enemy_Basic" parent="." instance=ExtResource("3_5l016")]
+position = Vector2(-74, -240)
+base_health = 2000.0
+base_speed = 0.0
+
+[node name="Enemy_Charger" parent="." instance=ExtResource("4_orqn7")]
+position = Vector2(56, -242)
+base_health = 8000.0
+base_speed = 0.0
