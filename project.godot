@@ -42,13 +42,13 @@ folder_colors={
 "res://director/": "red",
 "res://enemy/": "red",
 "res://general subnodes/": "teal",
-"res://item/": "gray",
+"res://item/": "yellow",
 "res://maps/": "green",
 "res://players/": "orange",
-"res://singletons/": "pink",
+"res://singletons/": "teal",
 "res://ui/": "purple",
 "res://weapons/": "yellow",
-"res://worlds/": "blue"
+"res://worlds/": "green"
 }
 
 [global_group]

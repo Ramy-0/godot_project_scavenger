@@ -1,8 +1,15 @@
-[gd_scene load_steps=11 format=3 uid="uid://d2h623ywv2f1m"]
+[gd_scene load_steps=20 format=3 uid="uid://d2h623ywv2f1m"]
 
 [ext_resource type="Script" path="res://weapons/ult_weapon_chainsaw.gd" id="1_h7rlo"]
 [ext_resource type="Texture2D" uid="uid://bb7u6e6yetwvn" path="res://weapons/texture/chaisaw.png" id="2_15jjn"]
 [ext_resource type="PackedScene" uid="uid://4f825cnoa4ee" path="res://general subnodes/player_hit_box_static.tscn" id="3_tpsxk"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="4_n5ygl"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="5_3kh77"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="6_7gnom"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="7_mx4wt"]
+[ext_resource type="Theme" uid="uid://7xs3fw8s4nwj" path="res://ui/themes/main_theme.tres" id="8_hxocp"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/state_is_active_guard.gd" id="8_ulnge"]
+[ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="9_o7l21"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v2a0h"]
 atlas = ExtResource("2_15jjn")
@@ -41,7 +48,15 @@ _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.557753), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_ivhk7"]
-colors = PackedColorArray(0.868678, 0.421139, 0, 1, 1, 1, 1, 1)
+colors = PackedColorArray(0, 0.299281, 0, 1, 1.20327e-06, 0.63948, 0.316997, 1)
+
+[sub_resource type="Resource" id="Resource_qfih7"]
+script = ExtResource("8_ulnge")
+state = NodePath("../IdleAState")
+
+[sub_resource type="Resource" id="Resource_nm38i"]
+script = ExtResource("8_ulnge")
+state = NodePath("../IdleAState")
 
 [node name="UltWeapon_Chainsaw" type="Node2D"]
 script = ExtResource("1_h7rlo")
@@ -51,32 +66,189 @@ weapon_discription = "a chainsaw"
 [node name="Pivot" type="Node2D" parent="."]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Pivot"]
-position = Vector2(-64, -4)
+position = Vector2(-62, 4)
 sprite_frames = SubResource("SpriteFrames_m523f")
-frame = 2
-frame_progress = 0.452715
+offset = Vector2(0, -4.5)
 
 [node name="Player_HitBox_Static" parent="Pivot" node_paths=PackedStringArray("collShape", "parent") instance=ExtResource("3_tpsxk")]
-position = Vector2(-76, 0)
+position = Vector2(-76, -4)
 collShape = NodePath("CollisionShape2D")
 parent = NodePath("../..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/Player_HitBox_Static"]
+position = Vector2(0, 4)
 rotation = 1.57382
 shape = SubResource("CapsuleShape2D_71wgb")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="Pivot"]
 position = Vector2(-62, 0)
 emitting = false
-lifetime = 0.6
+amount = 10
+lifetime = 0.5
 one_shot = true
 randomness = 1.0
 lifetime_randomness = 0.5
 emission_shape = 1
 emission_sphere_radius = 10.0
-gravity = Vector2(-1000, 0)
-initial_velocity_max = 120.0
-scale_amount_max = 4.0
+direction = Vector2(-1, 0)
+gravity = Vector2(0, 0)
+initial_velocity_min = 240.0
+initial_velocity_max = 320.0
+linear_accel_min = -20.0
+linear_accel_max = 20.0
+scale_amount_min = 12.0
+scale_amount_max = 20.0
 scale_amount_curve = SubResource("Curve_bp2rx")
-color = Color(0.871793, 0.479358, 0.205982, 1)
 color_ramp = SubResource("Gradient_ivhk7")
+
+[node name="StateChart" type="Node" parent="."]
+script = ExtResource("4_n5ygl")
+
+[node name="Root" type="Node" parent="StateChart"]
+script = ExtResource("5_3kh77")
+initial_state = NodePath("BackAState")
+
+[node name="BackAState" type="Node" parent="StateChart/Root"]
+script = ExtResource("6_7gnom")
+
+[node name="Back2UseTrans" type="Node" parent="StateChart/Root/BackAState"]
+script = ExtResource("7_mx4wt")
+to = NodePath("../../InUseCState")
+event = &"use"
+
+[node name="InUseCState" type="Node" parent="StateChart/Root"]
+script = ExtResource("5_3kh77")
+initial_state = NodePath("IdleAState")
+
+[node name="IdleAState" type="Node" parent="StateChart/Root/InUseCState"]
+script = ExtResource("6_7gnom")
+
+[node name="Attack1Trans" type="Node" parent="StateChart/Root/InUseCState"]
+script = ExtResource("7_mx4wt")
+to = NodePath("../Attack1CState")
+event = &"mouse_1_pressed"
+guard = SubResource("Resource_qfih7")
+
+[node name="Attack1CState" type="Node" parent="StateChart/Root/InUseCState"]
+script = ExtResource("5_3kh77")
+initial_state = NodePath("RevUp1AState")
+
+[node name="IdleTrans" type="Node" parent="StateChart/Root/InUseCState/Attack1CState"]
+script = ExtResource("7_mx4wt")
+to = NodePath("../../IdleAState")
+event = &"stop"
+
+[node name="RevUp1AState" type="Node" parent="StateChart/Root/InUseCState/Attack1CState"]
+script = ExtResource("6_7gnom")
+
+[node name="MaxRev1Trans" type="Node" parent="StateChart/Root/InUseCState/Attack1CState/RevUp1AState"]
+script = ExtResource("7_mx4wt")
+to = NodePath("../../MaxRev1AState")
+event = &"maxrev1_reached"
+
+[node name="MaxRev1AState" type="Node" parent="StateChart/Root/InUseCState/Attack1CState"]
+script = ExtResource("6_7gnom")
+
+[node name="Attack2Trans" type="Node" parent="StateChart/Root/InUseCState"]
+script = ExtResource("7_mx4wt")
+to = NodePath("../Attack2CState")
+event = &"mouse_2_pressed"
+guard = SubResource("Resource_nm38i")
+
+[node name="Attack2CState" type="Node" parent="StateChart/Root/InUseCState"]
+script = ExtResource("5_3kh77")
+initial_state = NodePath("RevUp2AState")
+
+[node name="IdleTrans" type="Node" parent="StateChart/Root/InUseCState/Attack2CState"]
+script = ExtResource("7_mx4wt")
+to = NodePath("../../IdleAState")
+event = &"stop"
+
+[node name="RevUp2AState" type="Node" parent="StateChart/Root/InUseCState/Attack2CState"]
+script = ExtResource("6_7gnom")
+
+[node name="MaxRev2Trans" type="Node" parent="StateChart/Root/InUseCState/Attack2CState/RevUp2AState"]
+script = ExtResource("7_mx4wt")
+to = NodePath("../../MaxRev2AState")
+event = &"maxrev2_reached"
+
+[node name="MaxRev2AState" type="Node" parent="StateChart/Root/InUseCState/Attack2CState"]
+script = ExtResource("6_7gnom")
+
+[node name="Use2BackTrans" type="Node" parent="StateChart/Root/InUseCState"]
+script = ExtResource("7_mx4wt")
+to = NodePath("../../BackAState")
+event = &"to_back"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+custom_minimum_size = Vector2(16, 0)
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -366.0
+offset_top = -77.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("8_hxocp")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="CanvasLayer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Rippa"
+
+[node name="FuelContainer" type="HBoxContainer" parent="CanvasLayer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/HBoxContainer/VBoxContainer/FuelContainer"]
+layout_mode = 2
+text = "Fuel"
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/HBoxContainer/VBoxContainer/FuelContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+
+[node name="RevContainer" type="HBoxContainer" parent="CanvasLayer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/HBoxContainer/VBoxContainer/RevContainer"]
+layout_mode = 2
+text = "RPS"
+
+[node name="Label2" type="Label" parent="CanvasLayer/HBoxContainer/VBoxContainer/RevContainer"]
+layout_mode = 2
+
+[node name="StateChartDebugger" parent="." instance=ExtResource("9_o7l21")]
+visible = false
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -304.0
+offset_top = -182.0
+offset_right = -106.0
+offset_bottom = 188.0
+grow_horizontal = 1
+grow_vertical = 1
+enabled = false
+initial_node_to_watch = NodePath("../StateChart")
+
+[connection signal="area_entered" from="Pivot/Player_HitBox_Static" to="." method="_on_player_hit_box_static_area_entered"]
+[connection signal="state_entered" from="StateChart/Root/BackAState" to="." method="_on_back_a_state_state_entered"]
+[connection signal="state_processing" from="StateChart/Root/BackAState" to="." method="_on_back_a_state_state_processing"]
+[connection signal="state_entered" from="StateChart/Root/InUseCState" to="." method="_on_in_use_c_state_state_entered"]
+[connection signal="state_processing" from="StateChart/Root/InUseCState" to="." method="_on_in_use_c_state_state_processing"]
+[connection signal="state_entered" from="StateChart/Root/InUseCState/IdleAState" to="." method="_on_idle_a_state_state_entered"]
+[connection signal="state_processing" from="StateChart/Root/InUseCState/IdleAState" to="." method="_on_idle_a_state_state_processing"]
+[connection signal="state_processing" from="StateChart/Root/InUseCState/Attack1CState" to="." method="_on_attack_1c_state_state_processing"]
+[connection signal="state_entered" from="StateChart/Root/InUseCState/Attack1CState/RevUp1AState" to="." method="_on_rev_up_1a_state_state_entered"]
+[connection signal="state_processing" from="StateChart/Root/InUseCState/Attack1CState/RevUp1AState" to="." method="_on_rev_up_1a_state_state_processing"]
+[connection signal="state_entered" from="StateChart/Root/InUseCState/Attack1CState/MaxRev1AState" to="." method="_on_max_rev_1a_state_state_entered"]
+[connection signal="state_exited" from="StateChart/Root/InUseCState/Attack1CState/MaxRev1AState" to="." method="_on_max_rev_1a_state_state_exited"]
+[connection signal="state_processing" from="StateChart/Root/InUseCState/Attack2CState" to="." method="_on_attack_2c_state_state_processing"]
+[connection signal="state_entered" from="StateChart/Root/InUseCState/Attack2CState/RevUp2AState" to="." method="_on_rev_up_2a_state_state_entered"]
+[connection signal="state_processing" from="StateChart/Root/InUseCState/Attack2CState/RevUp2AState" to="." method="_on_rev_up_2a_state_state_processing"]
