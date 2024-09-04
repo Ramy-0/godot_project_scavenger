@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b3m1ryqtyklmq"]
+
+[ext_resource type="Script" path="res://weapons/weapon sub nodes/pusher.gd" id="1_a7dmt"]
+
+[node name="Pusher" type="Node2D"]
+script = ExtResource("1_a7dmt")

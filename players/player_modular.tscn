@@ -128,19 +128,16 @@ shape = SubResource("RectangleShape2D_3d4ei")
 [node name="Item_Handler" parent="." instance=ExtResource("9_0n4hc")]
 
 [node name="Item_Pizza" parent="Item_Handler" instance=ExtResource("10_nif2u")]
-amount = 7
 
 [node name="Item_MamaBear" parent="Item_Handler" instance=ExtResource("11_mu4np")]
 
 [node name="Item_MagGlass" parent="Item_Handler" instance=ExtResource("12_xy58w")]
-amount = 5
 
 [node name="Item_Razor" parent="Item_Handler" instance=ExtResource("13_qryr2")]
 
 [node name="Item_Lighter" parent="Item_Handler" instance=ExtResource("14_yaodo")]
 
 [node name="Item_Brass" parent="Item_Handler" instance=ExtResource("16_avo28")]
-amount = 1
 
 [node name="PreHeal_Timer" type="Timer" parent="."]
 

@@ -79,7 +79,8 @@ func shoot(shell_number, angle_of_spread, push):
 	for i in range(shell_number * pellets_per_shell):
 		var pellet_inst = pellet.instantiate()
 		var pellet_scew = angle_of_spread/2 - i*(angle_of_spread/((shell_number*pellets_per_shell)-1))
-		pellet_inst.init(get_parent().get_parent(), damage, pellet_speed, pellet_lifetime, $Pivot.global_position, 
+		pellet_inst.init(get_parent().get_parent(), damage, pellet_speed * (randf_range(1.1, 0.9)),
+		 pellet_lifetime, $Pivot.global_position, 
 		$Pivot.global_rotation + deg_to_rad(pellet_scew), 
 		push, push_distance)
 		world.add_child(pellet_inst)

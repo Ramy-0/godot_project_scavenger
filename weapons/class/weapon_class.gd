@@ -4,7 +4,7 @@ class_name WeaponClass
 
 @export var active : bool
 @export var weapon_name: String
-@export var weapon_discription : String
+@export_multiline var weapon_discription : String
 
 @export var world: Node2D
 
