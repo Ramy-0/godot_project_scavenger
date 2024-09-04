@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://d2h623ywv2f1m"]
+[gd_scene load_steps=22 format=3 uid="uid://d2h623ywv2f1m"]
 
 [ext_resource type="Script" path="res://weapons/ult_weapon_chainsaw.gd" id="1_h7rlo"]
 [ext_resource type="Texture2D" uid="uid://bb7u6e6yetwvn" path="res://weapons/texture/chaisaw.png" id="2_15jjn"]
@@ -10,6 +10,8 @@
 [ext_resource type="Theme" uid="uid://7xs3fw8s4nwj" path="res://ui/themes/main_theme.tres" id="8_hxocp"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_is_active_guard.gd" id="8_ulnge"]
 [ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="9_o7l21"]
+[ext_resource type="Texture2D" uid="uid://brnk3k3ifoypg" path="res://weapons/texture/fuel gauge_0001.png" id="10_f1y36"]
+[ext_resource type="Texture2D" uid="uid://bh0ik3ylmvwb5" path="res://weapons/texture/fuel gauge_0002.png" id="11_h5d4h"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v2a0h"]
 atlas = ExtResource("2_15jjn")
@@ -221,7 +223,17 @@ layout_mode = 2
 text = "RPS"
 
 [node name="Label2" type="Label" parent="CanvasLayer/HBoxContainer/VBoxContainer/RevContainer"]
+custom_minimum_size = Vector2(48, 0)
 layout_mode = 2
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer/HBoxContainer/VBoxContainer/RevContainer"]
+layout_mode = 2
+value = 100.0
+fill_mode = 4
+radial_initial_angle = 210.0
+radial_fill_degrees = 305.0
+texture_under = ExtResource("10_f1y36")
+texture_progress = ExtResource("11_h5d4h")
 
 [node name="StateChartDebugger" parent="." instance=ExtResource("9_o7l21")]
 visible = false

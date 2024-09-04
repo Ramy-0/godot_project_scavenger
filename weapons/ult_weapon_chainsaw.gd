@@ -52,17 +52,18 @@ func _on_back_a_state_state_entered() -> void:
 	$CanvasLayer.hide()
 
 func _on_back_a_state_state_processing(delta: float) -> void:
-	fuel += delta*4
+	fuel += delta * fuelRecov
 
 func _on_in_use_c_state_state_entered() -> void:
 	show()
 	$CanvasLayer.show()
 	$CanvasLayer/HBoxContainer/VBoxContainer/FuelContainer/ProgressBar.max_value = max_fuel
+	$CanvasLayer/HBoxContainer/VBoxContainer/RevContainer/TextureProgressBar.max_value = maxRev2
 
 func _on_in_use_c_state_state_processing(delta: float) -> void:
 	$CanvasLayer/HBoxContainer/VBoxContainer/FuelContainer/ProgressBar.value = fuel
-	$CanvasLayer/HBoxContainer/VBoxContainer/RevContainer/Label2.text = str(rps)
-	
+	$CanvasLayer/HBoxContainer/VBoxContainer/RevContainer/Label2.text = str(snapped(rps,0.01))
+	$CanvasLayer/HBoxContainer/VBoxContainer/RevContainer/TextureProgressBar.value = rps
 	
 	#Place holder logic
 	#if Input.is_mouse_button_pressed(1): # Left click pressed
@@ -85,11 +86,13 @@ func _on_rev_up_1a_state_state_entered() -> void:
 	stateTimer = 0
 
 func _on_rev_up_1a_state_state_processing(delta: float) -> void:
-	stateTimer += delta
-	if stateTimer > revUpSpeed1:
-		rps += 1
-		stateTimer = 0
+	if stateTimer <= 0:
+		stateTimer = min(1 / rps, 0.5)
 		$Pivot/Player_HitBox_Static.activate_for(0.05)
+	stateTimer -= delta
+	
+	rps += delta / revUpSpeed1
+
 	if rps >= maxRev1:
 		rps = maxRev1
 		stateChart.send_event("maxrev1_reached")
@@ -100,6 +103,7 @@ func _on_max_rev_1a_state_state_entered() -> void:
 
 func _on_max_rev_1a_state_state_exited() -> void:
 	await $Pivot/Player_HitBox_Static.timer.timeout
+	# or await activated == true
 	$Pivot/Player_HitBox_Static.deactivate()
 
 func _on_idle_a_state_state_entered() -> void:
@@ -112,6 +116,7 @@ func _on_idle_a_state_state_processing(delta: float) -> void:
 			rps -= 1
 			stateTimer = 0
 		fuel -= rps*delta*0.4
+	else : rps = 0
 	fuel -= delta
 
 func _on_attack_2c_state_state_processing(delta: float) -> void:
@@ -122,10 +127,13 @@ func _on_rev_up_2a_state_state_entered() -> void:
 	stateTimer = 0
 
 func _on_rev_up_2a_state_state_processing(delta: float) -> void:
-	stateTimer += delta
-	if stateTimer > revUpSpeed2:
-		rps += 1
-		stateTimer = 0
+	if stateTimer <= 0:
+		stateTimer = min(1 / rps, 0.5)
+		$Pivot/Player_HitBox_Static.activate_for(0.05)
+	stateTimer -= delta
+	
+	rps += delta / revUpSpeed2
+	
 	if rps >= maxRev2:
 		rps = maxRev2
 		stateChart.send_event("maxrev2_reached")

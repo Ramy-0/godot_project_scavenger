@@ -35,7 +35,11 @@ func activate_for(delay:float):
 	activated = false
 
 func activate_every(delay:float):
-	timer.wait_time = delay
+	if timer.is_stopped():
+		timer.wait_time = delay
+	else:
+		await timer.timeout
+		timer.wait_time = delay
 	if not activated:
 		activated = true
 		timer.start()
