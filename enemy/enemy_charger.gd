@@ -3,6 +3,7 @@ extends EnemyClass
 @export var pre_charge_delay : float
 @export var charge_delay : float
 @export var grace_delay : float
+@export var charge_speed_multiplier : float
 
 @onready var preChargeT : Timer = $Pre_Charge_Timer
 @onready var chargeT : Timer = $Charge_Timer
@@ -57,7 +58,7 @@ func _on_charging_state_state_entered():
 	set_collision_mask_value(3, 0)
 
 func _on_charging_state_state_physics_processing(delta):
-	navigate_to_location(charge_target_vector, 5.0)
+	navigate_to_location(charge_target_vector, charge_speed_multiplier)
 
 func _on_charging_state_state_exited():
 	hitBoxStatic.deactivate()

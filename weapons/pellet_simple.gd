@@ -72,8 +72,10 @@ func hitbox_hit(hurtbox):
 		#hurtbox.parent.global_position += global_position.direction_to(hurtbox.parent.global_position).normalized()* push_distance
 		#hurtbox.parent.global_position += dir * push_distance
 		var push = get_tree().create_tween()
-		push.tween_property(hurtbox.parent, "position",
-		 hurtbox.parent.position + dir * push_distance, 0.25).set_trans(Tween.TRANS_QUINT)
+		push.tween_property(
+			hurtbox.parent, "position",
+		 	hurtbox.parent.position + dir * push_distance, 0.7
+		 ).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
 
 func _on_body_entered(body: Node) -> void:
 	if not dontdeljustyet:

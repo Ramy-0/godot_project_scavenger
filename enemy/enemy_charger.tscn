@@ -49,6 +49,7 @@ script = ExtResource("1_mogam")
 pre_charge_delay = 0.25
 charge_delay = 0.5
 grace_delay = 0.02
+charge_speed_multiplier = 3.0
 base_health = 800.0
 base_speed = 250.0
 damage = 80.0
