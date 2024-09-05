@@ -44,6 +44,7 @@ func set_as_inactive():
 func turn_hitbox_on(dmg):
 	$Pivot/Player_HitBox_Static.activate_for(0.1)
 
+
 #HITBOX SIGNALS
 func _on_player_hit_box_static_area_entered(area: Area2D) -> void:
 	$Pivot/CPUParticles2D.emitting = true
@@ -51,7 +52,7 @@ func _on_player_hit_box_static_area_entered(area: Area2D) -> void:
 		var push = get_tree().create_tween()
 		push.tween_property(
 			area.parent, "position",
-			area.parent.position + get_global_mouse_position() * 0.5, 
+			area.parent.position + get_global_mouse_position() * 0.3, 
 			0.7
 		 ).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
 
