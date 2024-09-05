@@ -8,7 +8,7 @@
 [node name="Weapon_SMG_1" type="Node2D"]
 script = ExtResource("1_qh4y7")
 damage = 15
-bullet_speed = 1200.0
+bullet_speed = 1800.0
 bullet_lifetime = 1.0
 mag_size = 30
 fire_delay = 0.1
@@ -17,7 +17,6 @@ pre_releod_delay = 0.8
 inaccuracy = 10.0
 instability = 1.0
 instability_delay = 0.5
-debug_gui = true
 bullet = ExtResource("2_3fsur")
 weapon_name = "SMG"
 weapon_discription = "mo ammo, mo firerate and no controlability"
@@ -70,7 +69,14 @@ custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
 text = "PH"
 
-[node name="Mag_Label" type="Label" parent="CanvasLayer/HBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Name_Label" type="Label" parent="CanvasLayer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "THE SMG"
+
+[node name="Mag_Label" type="Label" parent="CanvasLayer/HBoxContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 text = "PH"

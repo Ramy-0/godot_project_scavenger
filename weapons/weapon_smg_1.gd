@@ -58,7 +58,7 @@ func _process(delta):
 			
 			shoot()
 	
-	$CanvasLayer/HBoxContainer/Mag_Label.text = str(mag) + '/' + str(mag_size)
+	$CanvasLayer/HBoxContainer/VBoxContainer2/Mag_Label.text = str(mag) + '/' + str(mag_size)
 	$CanvasLayer/HBoxContainer/VBoxContainer/Fire_Delay_Label.text = str(snapped(fire_timer.time_left,0.1))
 	$CanvasLayer/HBoxContainer/VBoxContainer/Reload_Delay_Label.text = str(snapped(reload_timer.time_left,0.1))
 	$CanvasLayer/HBoxContainer/VBoxContainer/PreReload_Delay_Label.text = str(snapped(prereload_timer.time_left,0.1))

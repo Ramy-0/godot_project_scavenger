@@ -43,7 +43,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_71wgb"]
-height = 43.9998
+radius = 20.012
+height = 72.0118
 
 [sub_resource type="Curve" id="Curve_bp2rx"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.557753), 0.0, 0.0, 0, 0]
@@ -200,9 +201,9 @@ theme = ExtResource("8_hxocp")
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/HBoxContainer"]
 layout_mode = 2
 
-[node name="NameLabel" type="Label" parent="CanvasLayer/HBoxContainer/VBoxContainer"]
+[node name="Name_Label" type="Label" parent="CanvasLayer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
-text = "Rippa"
+text = "THE RIPPA"
 
 [node name="FuelContainer" type="HBoxContainer" parent="CanvasLayer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -261,6 +262,9 @@ initial_node_to_watch = NodePath("../StateChart")
 [connection signal="state_processing" from="StateChart/Root/InUseCState/Attack1CState/RevUp1AState" to="." method="_on_rev_up_1a_state_state_processing"]
 [connection signal="state_entered" from="StateChart/Root/InUseCState/Attack1CState/MaxRev1AState" to="." method="_on_max_rev_1a_state_state_entered"]
 [connection signal="state_exited" from="StateChart/Root/InUseCState/Attack1CState/MaxRev1AState" to="." method="_on_max_rev_1a_state_state_exited"]
+[connection signal="state_exited" from="StateChart/Root/InUseCState/Attack2CState" to="." method="_on_attack_2c_state_state_exited"]
 [connection signal="state_processing" from="StateChart/Root/InUseCState/Attack2CState" to="." method="_on_attack_2c_state_state_processing"]
 [connection signal="state_entered" from="StateChart/Root/InUseCState/Attack2CState/RevUp2AState" to="." method="_on_rev_up_2a_state_state_entered"]
+[connection signal="state_exited" from="StateChart/Root/InUseCState/Attack2CState/RevUp2AState" to="." method="_on_rev_up_2a_state_state_exited"]
 [connection signal="state_processing" from="StateChart/Root/InUseCState/Attack2CState/RevUp2AState" to="." method="_on_rev_up_2a_state_state_processing"]
+[connection signal="state_physics_processing" from="StateChart/Root/InUseCState/Attack2CState/MaxRev2AState" to="." method="_on_max_rev_2a_state_state_physics_processing"]

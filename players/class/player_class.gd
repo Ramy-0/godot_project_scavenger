@@ -12,6 +12,7 @@ var health_mult:float = 1.0
 var health:float
 var max_health:float
 var movement_direction : Vector2
+var can_move : bool = true
 
 @export var collisionBox : CollisionShape2D
 @export var sprite : AnimatedSprite2D
@@ -41,7 +42,7 @@ func _ready():
 func _physics_process(delta):
 	#movement:
 	movement_direction = Input.get_vector("kb_left", "kb_right", "kb_up", "kb_down")
-	velocity = movement_direction * base_speed * speed_mult
+	velocity = movement_direction * base_speed * speed_mult * int(can_move)
 	
 	move_and_slide()
 	
