@@ -12,6 +12,7 @@ func _ready():
 func _physics_process(delta):
 	if target != null and updateTimer.is_stopped():
 		updateTimer.start()
+	#print(target)
 	
 	if get_parent().target != null and target == null:
 		target = get_parent().target

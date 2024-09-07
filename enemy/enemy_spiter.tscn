@@ -1,0 +1,187 @@
+[gd_scene load_steps=17 format=3 uid="uid://baxl0g3u3u4me"]
+
+[ext_resource type="Script" path="res://enemy/enemy_spiter.gd" id="1_6yxy4"]
+[ext_resource type="Texture2D" uid="uid://dk34ikb0y4k0y" path="res://enemy/textures/bug_spider.png" id="2_ahplp"]
+[ext_resource type="PackedScene" uid="uid://ebim0oxihl5g" path="res://enemy/enemy sub nodes/spider_cobweb_attack.tscn" id="2_jmxo3"]
+[ext_resource type="PackedScene" uid="uid://bqmis8y7veli7" path="res://general subnodes/enemy_hurt_box.tscn" id="3_ebeqx"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/state_chart.gd" id="4_ascet"]
+[ext_resource type="PackedScene" uid="uid://c6q27w5eiroxn" path="res://enemy/enemy sub nodes/enemy_nav_agent.tscn" id="4_wbbxo"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="5_b0qou"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="6_kqcqn"]
+[ext_resource type="PackedScene" uid="uid://cla420syni86y" path="res://general subnodes/status_handler.tscn" id="8_ivkjc"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="8_xkxtb"]
+[ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="10_boucs"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_47odl"]
+radius = 10.198
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ds723"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ahplp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6rw6q"]
+radius = 28.0713
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oypdp"]
+radius = 394.081
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hdrpd"]
+radius = 228.0
+
+[node name="Enemy_Spiter" type="CharacterBody2D" node_paths=PackedStringArray("hurtBox", "sprite", "navAgent", "stateChart", "statusHandler")]
+script = ExtResource("1_6yxy4")
+aiming_delay = 0.4
+aiming_distance = 200.0
+proj_delay = 0.5
+proj_lifespam = 1.0
+slowing_mult = 0.4
+player_can_move = true
+projectile = ExtResource("2_jmxo3")
+base_health = 150.0
+base_speed = 350.0
+spawn_price = 10
+spawn_weight = 40.0
+hurtBox = NodePath("Enemy_HurtBox")
+sprite = NodePath("AnimatedSprite2D")
+navAgent = NodePath("Enemy_Nav_Agent")
+stateChart = NodePath("StateChart")
+statusHandler = NodePath("Status_Handler")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_47odl")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ds723")
+
+[node name="Enemy_HurtBox" parent="." instance=ExtResource("3_ebeqx")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy_HurtBox"]
+shape = SubResource("CircleShape2D_6rw6q")
+debug_color = Color(0.91539, 8.20148e-05, 0.712952, 0.42)
+
+[node name="Enemy_Nav_Agent" parent="." instance=ExtResource("4_wbbxo")]
+
+[node name="StateChart" type="Node" parent="."]
+script = ExtResource("4_ascet")
+
+[node name="Root" type="Node" parent="StateChart"]
+script = ExtResource("5_b0qou")
+initial_state = NodePath("IdleAState")
+
+[node name="IdleAState" type="Node" parent="StateChart/Root"]
+script = ExtResource("6_kqcqn")
+
+[node name="Idle2ChaseTrans" type="Node" parent="StateChart/Root/IdleAState"]
+script = ExtResource("8_xkxtb")
+to = NodePath("../../ChasingCState")
+event = &"player_spotted"
+
+[node name="ChasingCState" type="Node" parent="StateChart/Root"]
+script = ExtResource("5_b0qou")
+initial_state = NodePath("StraightAState")
+
+[node name="StraightAState" type="Node" parent="StateChart/Root/ChasingCState"]
+script = ExtResource("6_kqcqn")
+
+[node name="ZigzagTrans" type="Node" parent="StateChart/Root/ChasingCState/StraightAState"]
+script = ExtResource("8_xkxtb")
+to = NodePath("../../ZigzagAState")
+event = &"zigzag"
+
+[node name="ZigzagAState" type="Node" parent="StateChart/Root/ChasingCState"]
+script = ExtResource("6_kqcqn")
+
+[node name="StraightTrans" type="Node" parent="StateChart/Root/ChasingCState/ZigzagAState"]
+script = ExtResource("8_xkxtb")
+to = NodePath("../../StraightAState")
+event = &"straight"
+
+[node name="Chase2AttackTrans" type="Node" parent="StateChart/Root/ChasingCState"]
+script = ExtResource("8_xkxtb")
+to = NodePath("../../AttackingCState")
+event = &"player_near"
+
+[node name="AttackingCState" type="Node" parent="StateChart/Root"]
+script = ExtResource("5_b0qou")
+initial_state = NodePath("AimingAState")
+
+[node name="AimingAState" type="Node" parent="StateChart/Root/AttackingCState"]
+script = ExtResource("6_kqcqn")
+
+[node name="Aim2ShootTrans" type="Node" parent="StateChart/Root/AttackingCState/AimingAState"]
+script = ExtResource("8_xkxtb")
+to = NodePath("../../ShootingAState")
+event = &"shoot"
+
+[node name="ShootingAState" type="Node" parent="StateChart/Root/AttackingCState"]
+script = ExtResource("6_kqcqn")
+
+[node name="Attack2ChaseTrans" type="Node" parent="StateChart/Root/AttackingCState"]
+script = ExtResource("8_xkxtb")
+to = NodePath("../../ChasingCState")
+event = &"attack_finished"
+
+[node name="Status_Handler" parent="." instance=ExtResource("8_ivkjc")]
+
+[node name="ChaseArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ChaseArea"]
+shape = SubResource("CircleShape2D_oypdp")
+debug_color = Color(0, 0.623529, 0.521569, 0)
+
+[node name="AttackArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+shape = SubResource("CircleShape2D_hdrpd")
+debug_color = Color(0.933333, 0, 0, 0)
+
+[node name="StateChartDebugger" parent="." instance=ExtResource("10_boucs")]
+offset_left = -206.0
+offset_top = -150.0
+offset_right = -34.0
+offset_bottom = 50.0
+initial_node_to_watch = NodePath("../StateChart")
+
+[node name="ZigzagPos" type="Node2D" parent="."]
+visible = false
+position = Vector2(72, -136)
+
+[node name="ColorRect" type="ColorRect" parent="ZigzagPos"]
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+
+[node name="ProjPos" type="Node2D" parent="."]
+visible = false
+position = Vector2(308, -136)
+
+[node name="ColorRect" type="ColorRect" parent="ProjPos"]
+offset_left = -18.0
+offset_top = -20.0
+offset_right = 22.0
+offset_bottom = 20.0
+color = Color(1, 0, 0, 1)
+
+[connection signal="area_entered" from="Enemy_HurtBox" to="." method="_on_enemy_hurt_box_area_entered"]
+[connection signal="state_physics_processing" from="StateChart/Root/ChasingCState/StraightAState" to="." method="_on_straight_a_state_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/Root/ChasingCState/ZigzagAState" to="." method="_on_zigzag_a_state_state_entered"]
+[connection signal="state_physics_processing" from="StateChart/Root/ChasingCState/ZigzagAState" to="." method="_on_zigzag_a_state_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/Root/AttackingCState/AimingAState" to="." method="_on_aiming_a_state_state_entered"]
+[connection signal="state_processing" from="StateChart/Root/AttackingCState/AimingAState" to="." method="_on_aiming_a_state_state_processing"]
+[connection signal="state_entered" from="StateChart/Root/AttackingCState/ShootingAState" to="." method="_on_shooting_a_state_state_entered"]
+[connection signal="body_entered" from="ChaseArea" to="." method="_on_chase_area_body_entered"]
+[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]

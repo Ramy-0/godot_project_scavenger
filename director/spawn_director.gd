@@ -15,7 +15,9 @@ extends Node2D
 @export_group("Enemy Pool")
 @export var enemy_pool : Array = [
 	[preload("res://enemy/enemy_basic.tscn"), 5, 100],
+	[preload("res://enemy/enemy_spiter.tscn"), 10, 50],
 	[preload("res://enemy/enemy_charger.tscn"), 15, 25]
+	
 ]
 
 @onready var stateChart = $StateChart

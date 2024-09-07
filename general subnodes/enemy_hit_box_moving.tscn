@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c2xnrxouptnia"]
+
+[ext_resource type="Script" path="res://general subnodes/enemy_hit_box_moving.gd" id="1_4lh7l"]
+
+[node name="Enemy_HitBox_Moving" type="Area2D"]
+collision_layer = 512
+collision_mask = 256
+script = ExtResource("1_4lh7l")

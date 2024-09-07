@@ -53,12 +53,20 @@ func navigate_to_location(pos : Vector2, speed_mult : float):
 func look_at_path():
 	sprite.look_at(navAgent.get_next_path_position())
 	sprite.rotate(deg_to_rad(90))
-	hitBoxStatic.rotation = sprite.rotation
+	if hitBoxStatic != null:
+		hitBoxStatic.rotation = sprite.rotation
 
 func look_at_target(_target):
 	sprite.look_at(_target.position)
 	sprite.rotate(deg_to_rad(90))
-	hitBoxStatic.rotation = sprite.rotation
+	if hitBoxStatic != null:
+		hitBoxStatic.rotation = sprite.rotation
+
+func look_at_point(point:Vector2):
+	sprite.look_at(point)
+	sprite.rotate(deg_to_rad(90))
+	if hitBoxStatic != null:
+		hitBoxStatic.rotation = sprite.rotation
 
 func attacked(_damage):
 	health = health - _damage
