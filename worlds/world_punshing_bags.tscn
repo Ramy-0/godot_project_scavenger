@@ -25,3 +25,4 @@ base_speed = 0.0
 [node name="Enemy_Spiter" parent="." instance=ExtResource("5_7wljx")]
 position = Vector2(212, -248)
 base_health = 1500.0
+base_speed = 0.0

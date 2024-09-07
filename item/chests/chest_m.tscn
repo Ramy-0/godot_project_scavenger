@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://dadxonapyvg48"]
+
+[ext_resource type="Texture2D" uid="uid://bwhe4ex8c5np6" path="res://item/chests/chest.png" id="1_1mxw6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ymp55"]
+size = Vector2(44, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ejnc4"]
+atlas = ExtResource("1_1mxw6")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xv1wm"]
+atlas = ExtResource("1_1mxw6")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o4foq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ejnc4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xv1wm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qckdn"]
+radius = 64.0
+
+[node name="ChestM" type="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, -9)
+shape = SubResource("RectangleShape2D_ymp55")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(2, -32)
+sprite_frames = SubResource("SpriteFrames_o4foq")
+
+[node name="InteractArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea"]
+shape = SubResource("CircleShape2D_qckdn")
+debug_color = Color(0, 0.6, 0.701961, 0)

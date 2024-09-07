@@ -1,33 +1,45 @@
-[gd_scene load_steps=2 format=3 uid="uid://ba38bg6b8r6f3"]
+[gd_scene load_steps=4 format=3 uid="uid://ba38bg6b8r6f3"]
 
 [ext_resource type="Script" path="res://players/subnodes/health_gui.gd" id="1_ueb78"]
+[ext_resource type="Texture2D" uid="uid://cn1rm0bfubaiw" path="res://players/textures/healthbar_0001.png" id="2_nmbr6"]
+[ext_resource type="Texture2D" uid="uid://c6rw64gvfklkp" path="res://players/textures/healthbar_0002.png" id="3_gcua1"]
 
-[node name="Health_GUI" type="AspectRatioContainer"]
+[node name="Health_GUI" type="Control"]
 custom_minimum_size = Vector2(64, 0)
+layout_mode = 3
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_top = -102.0
-offset_right = 312.0
+offset_right = 384.0
 grow_vertical = 0
 script = ExtResource("1_ueb78")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-custom_minimum_size = Vector2(128, 64)
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+custom_minimum_size = Vector2(4.845, 0)
 layout_mode = 2
+offset_left = 24.0
+offset_right = 216.0
+offset_bottom = 102.0
+scale = Vector2(2, 2)
+max_value = 1.0
+step = 0.01
+value = 1.0
+texture_under = ExtResource("2_nmbr6")
+texture_progress = ExtResource("3_gcua1")
+tint_progress = Color(0, 1, 0, 1)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
+offset_left = 28.0
+offset_top = 36.0
+offset_right = 412.0
+offset_bottom = 59.0
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="HBoxContainer"]
 layout_mode = 2
 text = "Health :    "
 
-[node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer"]
+[node name="Label2" type="Label" parent="HBoxContainer"]
 layout_mode = 2
 text = "000"
-
-[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer"]
-layout_mode = 2
-max_value = 1.0
-value = 1.0

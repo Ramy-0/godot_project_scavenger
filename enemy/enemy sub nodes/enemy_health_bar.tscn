@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://cntyjjq1yr7ei"]
+
+[ext_resource type="Theme" uid="uid://7xs3fw8s4nwj" path="res://ui/themes/main_theme.tres" id="1_6kuee"]
+[ext_resource type="Script" path="res://enemy/enemy sub nodes/enemy_health_bar.gd" id="1_oteto"]
+[ext_resource type="Texture2D" uid="uid://puqrdj3cinmx" path="res://enemy/textures/healthbar mini_0001.png" id="1_pr50l"]
+[ext_resource type="Texture2D" uid="uid://digc7v3arfq23" path="res://enemy/textures/healthbar mini_0002.png" id="2_vxrly"]
+
+[node name="Enemy_HealthBar" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_6kuee")
+script = ExtResource("1_oteto")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_left = -32.0
+offset_top = -70.0
+offset_right = 32.0
+offset_bottom = -30.0
+max_value = 1.0
+step = 2.0
+texture_under = ExtResource("1_pr50l")
+texture_progress = ExtResource("2_vxrly")
+tint_progress = Color(0, 1, 1, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = -32.0
+offset_top = -94.0
+offset_right = 32.0
+offset_bottom = -71.0
+horizontal_alignment = 1
+vertical_alignment = 1

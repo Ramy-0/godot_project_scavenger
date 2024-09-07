@@ -12,9 +12,10 @@ func _ready():
 	update_variables()
 
 func _process(delta: float) -> void:
-	$HealthBar.max_value = max_health
-	$HealthBar.value = health
-	$HealthLabel.text = str(health) + '/' + str(max_health)
+	#$HealthBar.max_value = max_health
+	#$HealthBar.value = health
+	#$HealthLabel.text = str(health) + '/' + str(max_health)
+	pass
 
 
 #CLASS FUNCTIONS

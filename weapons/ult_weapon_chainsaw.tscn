@@ -203,7 +203,7 @@ layout_mode = 2
 
 [node name="Name_Label" type="Label" parent="CanvasLayer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
-text = "THE RIPPA"
+text = "THE RIPPA CHAINSAW"
 
 [node name="FuelContainer" type="HBoxContainer" parent="CanvasLayer/HBoxContainer/VBoxContainer"]
 layout_mode = 2

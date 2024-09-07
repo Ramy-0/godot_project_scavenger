@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://baxl0g3u3u4me"]
+[gd_scene load_steps=18 format=3 uid="uid://baxl0g3u3u4me"]
 
 [ext_resource type="Script" path="res://enemy/enemy_spiter.gd" id="1_6yxy4"]
 [ext_resource type="Texture2D" uid="uid://dk34ikb0y4k0y" path="res://enemy/textures/bug_spider.png" id="2_ahplp"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cla420syni86y" path="res://general subnodes/status_handler.tscn" id="8_ivkjc"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="8_xkxtb"]
 [ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="10_boucs"]
+[ext_resource type="PackedScene" uid="uid://cntyjjq1yr7ei" path="res://enemy/enemy sub nodes/enemy_health_bar.tscn" id="12_wqins"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_47odl"]
 radius = 10.198
@@ -30,12 +31,14 @@ animations = [{
 radius = 28.0713
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oypdp"]
-radius = 394.081
+radius = 3000.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hdrpd"]
 radius = 228.0
 
-[node name="Enemy_Spiter" type="CharacterBody2D" node_paths=PackedStringArray("hurtBox", "sprite", "navAgent", "stateChart", "statusHandler")]
+[node name="Enemy_Spiter" type="CharacterBody2D" node_paths=PackedStringArray("hurtBox", "sprite", "navAgent", "stateChart", "statusHandler") groups=["Enemy"]]
+collision_layer = 4
+collision_mask = 13
 script = ExtResource("1_6yxy4")
 aiming_delay = 0.4
 aiming_distance = 200.0
@@ -131,6 +134,7 @@ event = &"attack_finished"
 [node name="Status_Handler" parent="." instance=ExtResource("8_ivkjc")]
 
 [node name="ChaseArea" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 2
 monitorable = false
@@ -140,6 +144,7 @@ shape = SubResource("CircleShape2D_oypdp")
 debug_color = Color(0, 0.623529, 0.521569, 0)
 
 [node name="AttackArea" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 2
 monitorable = false
@@ -149,10 +154,12 @@ shape = SubResource("CircleShape2D_hdrpd")
 debug_color = Color(0.933333, 0, 0, 0)
 
 [node name="StateChartDebugger" parent="." instance=ExtResource("10_boucs")]
+visible = false
 offset_left = -206.0
 offset_top = -150.0
 offset_right = -34.0
 offset_bottom = 50.0
+enabled = false
 initial_node_to_watch = NodePath("../StateChart")
 
 [node name="ZigzagPos" type="Node2D" parent="."]
@@ -175,6 +182,9 @@ offset_top = -20.0
 offset_right = 22.0
 offset_bottom = 20.0
 color = Color(1, 0, 0, 1)
+
+[node name="Enemy_HealthBar" parent="." node_paths=PackedStringArray("parent") instance=ExtResource("12_wqins")]
+parent = NodePath("..")
 
 [connection signal="area_entered" from="Enemy_HurtBox" to="." method="_on_enemy_hurt_box_area_entered"]
 [connection signal="state_physics_processing" from="StateChart/Root/ChasingCState/StraightAState" to="." method="_on_straight_a_state_state_physics_processing"]
