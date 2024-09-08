@@ -1,10 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dmjl87curjys"]
+[gd_scene load_steps=2 format=3 uid="uid://dmjl87curjys"]
 
-[ext_resource type="PackedScene" uid="uid://b2xuq6itk1epc" path="res://maps/map_vast.tscn" id="1_dinml"]
 [ext_resource type="PackedScene" uid="uid://cnve1w5ya6fm3" path="res://players/player_modular.tscn" id="2_3pf7c"]
 
 [node name="World_MT" type="Node2D" groups=["World"]]
-
-[node name="Map_Vast" parent="." instance=ExtResource("1_dinml")]
 
 [node name="Player_Modular" parent="." instance=ExtResource("2_3pf7c")]

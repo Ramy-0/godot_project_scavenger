@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://n0bbug1uhwwt"]
+[gd_scene load_steps=5 format=3 uid="uid://n0bbug1uhwwt"]
 
 [ext_resource type="PackedScene" uid="uid://byuwcyulfgnnw" path="res://ui/game_debug_general.tscn" id="1_hd04k"]
 [ext_resource type="PackedScene" uid="uid://c51ou63q6e3f6" path="res://maps/map_empty.tscn" id="1_mkh21"]
 [ext_resource type="PackedScene" uid="uid://cnve1w5ya6fm3" path="res://players/player_modular.tscn" id="2_os7xp"]
 [ext_resource type="PackedScene" uid="uid://vtnrrx3vxpg7" path="res://director/spawn_director.tscn" id="3_w1mgj"]
-[ext_resource type="PackedScene" uid="uid://b1c3yb00w2tve" path="res://director/coin_director.tscn" id="5_q2ndj"]
 
 [node name="World_Director_Test" type="Node2D" groups=["World"]]
 
@@ -15,5 +14,3 @@
 [node name="Player_Modular" parent="." instance=ExtResource("2_os7xp")]
 
 [node name="Spawn_Director" parent="." instance=ExtResource("3_w1mgj")]
-
-[node name="Coin_Director" parent="." instance=ExtResource("5_q2ndj")]
