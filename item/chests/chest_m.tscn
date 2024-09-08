@@ -1,6 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dadxonapyvg48"]
+[gd_scene load_steps=10 format=3 uid="uid://dadxonapyvg48"]
 
 [ext_resource type="Texture2D" uid="uid://bwhe4ex8c5np6" path="res://item/chests/chest.png" id="1_1mxw6"]
+[ext_resource type="Script" path="res://item/chests/chest_m.gd" id="1_buy3k"]
+[ext_resource type="Theme" uid="uid://7xs3fw8s4nwj" path="res://ui/themes/main_theme.tres" id="3_m481r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ymp55"]
 size = Vector2(44, 18)
@@ -30,7 +32,14 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_qckdn"]
 radius = 64.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_fmuuk"]
+radius = 128.0
+
 [node name="ChestM" type="StaticBody2D"]
+collision_layer = 16
+collision_mask = 15
+script = ExtResource("1_buy3k")
+timeToOpen = 10.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2, -9)
@@ -41,7 +50,42 @@ position = Vector2(2, -32)
 sprite_frames = SubResource("SpriteFrames_o4foq")
 
 [node name="InteractArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea"]
 shape = SubResource("CircleShape2D_qckdn")
 debug_color = Color(0, 0.6, 0.701961, 0)
+
+[node name="OpeningArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OpeningArea"]
+shape = SubResource("CircleShape2D_fmuuk")
+debug_color = Color(0, 0.6, 0.701961, 0)
+
+[node name="HintLabel" type="Label" parent="."]
+visible = false
+offset_left = -134.0
+offset_top = -98.0
+offset_right = 132.0
+offset_bottom = -75.0
+theme = ExtResource("3_m481r")
+text = "press 'E' to open"
+horizontal_alignment = 1
+
+[node name="OpeningTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = -20.0
+offset_top = 16.0
+offset_right = 20.0
+offset_bottom = 39.0
+
+[connection signal="body_entered" from="InteractArea" to="." method="_on_interact_area_body_entered"]
+[connection signal="body_exited" from="InteractArea" to="." method="_on_interact_area_body_exited"]
+[connection signal="body_entered" from="OpeningArea" to="." method="_on_opening_area_body_entered"]
+[connection signal="body_exited" from="OpeningArea" to="." method="_on_opening_area_body_exited"]
+[connection signal="timeout" from="OpeningTimer" to="." method="_on_opening_timer_timeout"]

@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://ceobktw76pbig"]
+[gd_scene load_steps=9 format=3 uid="uid://ceobktw76pbig"]
 
 [ext_resource type="PackedScene" uid="uid://c51ou63q6e3f6" path="res://maps/map_empty.tscn" id="1_5fqou"]
 [ext_resource type="PackedScene" uid="uid://cnve1w5ya6fm3" path="res://players/player_modular.tscn" id="2_ieq6v"]
 [ext_resource type="PackedScene" uid="uid://bs5na4u887qbi" path="res://enemy/enemy_basic.tscn" id="3_5l016"]
 [ext_resource type="PackedScene" uid="uid://b63eif741yck3" path="res://enemy/enemy_charger.tscn" id="4_orqn7"]
 [ext_resource type="PackedScene" uid="uid://baxl0g3u3u4me" path="res://enemy/enemy_spiter.tscn" id="5_7wljx"]
+[ext_resource type="PackedScene" uid="uid://dadxonapyvg48" path="res://item/chests/chest_m.tscn" id="6_quapk"]
+[ext_resource type="PackedScene" uid="uid://bqffitmaeidph" path="res://item/item_mama_bear.tscn" id="7_hf37t"]
+[ext_resource type="PackedScene" uid="uid://bwn1dfl3pvhn4" path="res://item/coin.tscn" id="8_d23uq"]
 
 [node name="World_PunshingBags" type="Node2D" groups=["World"]]
 
@@ -26,3 +29,17 @@ base_speed = 0.0
 position = Vector2(212, -248)
 base_health = 1500.0
 base_speed = 0.0
+
+[node name="ChestM" parent="." instance=ExtResource("6_quapk")]
+position = Vector2(-394, 34)
+timeToOpen = 1.0
+item = ExtResource("7_hf37t")
+
+[node name="Coin" parent="." instance=ExtResource("8_d23uq")]
+position = Vector2(384, 4)
+
+[node name="Coin2" parent="." instance=ExtResource("8_d23uq")]
+position = Vector2(400, 40)
+
+[node name="Coin3" parent="." instance=ExtResource("8_d23uq")]
+position = Vector2(420, 102)

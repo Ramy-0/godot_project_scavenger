@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cnve1w5ya6fm3"]
+[gd_scene load_steps=24 format=3 uid="uid://cnve1w5ya6fm3"]
 
 [ext_resource type="Script" path="res://players/player_modular.gd" id="1_btelm"]
 [ext_resource type="Texture2D" uid="uid://br6f31287ipbe" path="res://players/textures/pph.png" id="2_3qaqh"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://chssuia1vgi4s" path="res://item/item_brass.tscn" id="16_avo28"]
 [ext_resource type="Script" path="res://addons/ProCam2D/scripts/ProCam2D.gd" id="17_7rari"]
 [ext_resource type="Script" path="res://addons/ProCam2D/scripts/PCTrackPoint.gd" id="18_4lpxi"]
+[ext_resource type="Theme" uid="uid://7xs3fw8s4nwj" path="res://ui/themes/main_theme.tres" id="19_78wud"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cna0v"]
 radius = 16.0
@@ -149,6 +150,18 @@ position = Vector2(0, -32)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Health_GUI" parent="CanvasLayer" instance=ExtResource("5_6lu8k")]
+
+[node name="CoinsLabel" type="Label" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -176.0
+offset_top = 24.0
+offset_right = -2.0
+offset_bottom = 47.0
+grow_horizontal = 0
+theme = ExtResource("19_78wud")
+text = "Coins"
 
 [node name="PCTrackPoint" type="Node2D" parent="."]
 position = Vector2(0, -32)

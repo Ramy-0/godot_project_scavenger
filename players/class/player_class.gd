@@ -6,6 +6,7 @@ class_name PlayerClass
 @export var base_speed:float
 @export var preHealingDelay:float = 2
 @export var healingDelay:float = 0.5
+@export var coins:int = 0
 
 var speed_mult:float = 1.0
 var health_mult:float = 1.0

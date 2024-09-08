@@ -19,8 +19,8 @@ func _process(delta: float) -> void:
 
 
 #CLASS FUNCTIONS
-func die():
-	queue_free()
+#func die():
+	#queue_free()
 
 #AREA SIGNALS
 func _on_chasing_area_body_entered(body):

@@ -8,6 +8,7 @@ class_name EnemyClass
 @export var damage : float
 @export var spawn_price : int
 @export var spawn_weight : float
+@export var coin_reward : int
 
 @export_group("Sub Nodes")
 @export var hurtBox : EnemyHurtbox
@@ -28,6 +29,8 @@ var speed : float
 var nav_speed : float
 
 var moving : bool = true
+
+var coin = preload("res://item/coin.tscn")
 
 func update_variables():
 	max_health = base_health
@@ -75,6 +78,10 @@ func attacked(_damage):
 		die()
 
 func die():
+	var c = coin.instantiate()
+	c.amount = coin_reward
+	get_parent().add_child(c)
+	c.global_position = global_position
 	queue_free()
 
 func hurt_mark():
