@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://cla420syni86y" path="res://general subnodes/status_handler.tscn" id="13_r8ss5"]
 [ext_resource type="Script" path="res://addons/ProCam2D/scripts/ProCam2D.gd" id="17_7rari"]
 [ext_resource type="Script" path="res://addons/ProCam2D/scripts/PCTrackPoint.gd" id="18_4lpxi"]
-[ext_resource type="Theme" uid="uid://7xs3fw8s4nwj" path="res://ui/themes/main_theme.tres" id="19_78wud"]
+[ext_resource type="Theme" uid="uid://boj0r13dv7qt3" path="res://ui/themes/main_theme.tres" id="19_78wud"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cna0v"]
 radius = 16.0

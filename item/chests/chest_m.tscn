@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bwhe4ex8c5np6" path="res://item/chests/chest.png" id="1_1mxw6"]
 [ext_resource type="Script" path="res://item/chests/chest_m.gd" id="1_buy3k"]
-[ext_resource type="Theme" uid="uid://7xs3fw8s4nwj" path="res://ui/themes/main_theme.tres" id="3_m481r"]
+[ext_resource type="Theme" uid="uid://boj0r13dv7qt3" path="res://ui/themes/main_theme.tres" id="3_m481r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ymp55"]
 size = Vector2(44, 18)

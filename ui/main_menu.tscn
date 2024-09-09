@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://mqm85yoxkpxv" path="res://ui/themes/title_theme.tres" id="1_ibb2n"]
 [ext_resource type="Script" path="res://ui/main_menu.gd" id="1_k6jew"]
-[ext_resource type="Theme" uid="uid://7xs3fw8s4nwj" path="res://ui/themes/main_theme.tres" id="2_b3png"]
+[ext_resource type="Theme" uid="uid://boj0r13dv7qt3" path="res://ui/themes/main_theme.tres" id="3_47sy4"]
 
 [node name="Main_Menu" type="Control"]
 layout_mode = 3
@@ -11,6 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("3_47sy4")
 script = ExtResource("1_k6jew")
 
 [node name="Label" type="Label" parent="."]
@@ -38,20 +39,18 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("3_47sy4")
 
 [node name="Start_Button" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("2_b3png")
 text = "Start"
 
 [node name="Option_Button" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("2_b3png")
 text = "Option"
 
 [node name="Quit_Button" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("2_b3png")
 text = "Quit"
 
 [connection signal="pressed" from="VBoxContainer/Start_Button" to="." method="_on_start_button_pressed"]

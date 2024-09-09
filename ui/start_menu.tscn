@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cqqh0ffy4p0r0"]
 
-[ext_resource type="Theme" uid="uid://7xs3fw8s4nwj" path="res://ui/themes/main_theme.tres" id="1_xg826"]
+[ext_resource type="Theme" uid="uid://boj0r13dv7qt3" path="res://ui/themes/main_theme.tres" id="1_cnpor"]
 [ext_resource type="Script" path="res://ui/start_menu.gd" id="2_7dsnj"]
 
 [node name="Start_Menu" type="Control"]
@@ -10,7 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_xg826")
+theme = ExtResource("1_cnpor")
 script = ExtResource("2_7dsnj")
 
 [node name="Label" type="Label" parent="."]

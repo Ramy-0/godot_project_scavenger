@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dd6ns4sxoxlbr"]
 
 [ext_resource type="Script" path="res://item/item_holder.gd" id="1_b4f5p"]
-[ext_resource type="Theme" uid="uid://7xs3fw8s4nwj" path="res://ui/themes/main_theme.tres" id="2_sdnnd"]
+[ext_resource type="Theme" uid="uid://boj0r13dv7qt3" path="res://ui/themes/main_theme.tres" id="2_sdnnd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_anhns"]
 radius = 128.0
