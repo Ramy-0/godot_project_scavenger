@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://ba38bg6b8r6f3"]
+[gd_scene load_steps=5 format=3 uid="uid://ba38bg6b8r6f3"]
 
+[ext_resource type="Theme" uid="uid://7xs3fw8s4nwj" path="res://ui/themes/main_theme.tres" id="1_cprrt"]
 [ext_resource type="Script" path="res://players/subnodes/health_gui.gd" id="1_ueb78"]
 [ext_resource type="Texture2D" uid="uid://cn1rm0bfubaiw" path="res://players/textures/healthbar_0001.png" id="2_nmbr6"]
 [ext_resource type="Texture2D" uid="uid://c6rw64gvfklkp" path="res://players/textures/healthbar_0002.png" id="3_gcua1"]
@@ -13,6 +14,7 @@ anchor_bottom = 1.0
 offset_top = -102.0
 offset_right = 384.0
 grow_vertical = 0
+theme = ExtResource("1_cprrt")
 script = ExtResource("1_ueb78")
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="."]
@@ -35,11 +37,12 @@ offset_left = 28.0
 offset_top = 36.0
 offset_right = 412.0
 offset_bottom = 59.0
+theme = ExtResource("1_cprrt")
 
 [node name="Label" type="Label" parent="HBoxContainer"]
 layout_mode = 2
-text = "Health :    "
+text = "Health : "
 
 [node name="Label2" type="Label" parent="HBoxContainer"]
 layout_mode = 2
-text = "000"
+text = "0000000"

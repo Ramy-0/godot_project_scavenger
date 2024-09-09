@@ -37,7 +37,7 @@ radius = 128.0
 
 [node name="ChestM" type="StaticBody2D"]
 collision_layer = 16
-collision_mask = 15
+collision_mask = 0
 script = ExtResource("1_buy3k")
 timeToOpen = 10.0
 

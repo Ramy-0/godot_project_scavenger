@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=3 uid="uid://pbrd4rcnoeyx"]
+
+[ext_resource type="Script" path="res://worlds/world_chest_director_test.gd" id="1_cex5l"]
+[ext_resource type="PackedScene" uid="uid://c51ou63q6e3f6" path="res://maps/map_empty.tscn" id="1_qmlxk"]
+[ext_resource type="PackedScene" uid="uid://d2xtd6i4hdngj" path="res://director/chest_director.tscn" id="2_d1mvn"]
+[ext_resource type="PackedScene" uid="uid://cnve1w5ya6fm3" path="res://players/player_modular.tscn" id="3_18e0m"]
+
+[node name="World_ChestDirector_Test" type="Node2D" groups=["World"]]
+script = ExtResource("1_cex5l")
+
+[node name="Map_Empty" parent="." instance=ExtResource("1_qmlxk")]
+
+[node name="Chest_Director" parent="." instance=ExtResource("2_d1mvn")]
+
+[node name="Player_Modular" parent="." instance=ExtResource("3_18e0m")]
+position = Vector2(310, -54)

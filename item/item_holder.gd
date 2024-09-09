@@ -1,6 +1,7 @@
 extends Node2D
 
 @export var item_scene : PackedScene = preload("res://item/item_pizza.tscn")
+@export var can_be_picked:bool = true
 
 var item : ItemClass
 var item_name : String
@@ -18,7 +19,10 @@ func _ready():
 	$Name_Label.hide()
 	$Description_Label.text = item.flavor_text
 	$Description_Label.hide()
-
+	can_be_picked = false
+	await get_tree().create_timer(0.3).timeout
+	can_be_picked = true
+	$Iteract_Area.monitorable = true
 
 
 func _on_name_area_mouse_entered():

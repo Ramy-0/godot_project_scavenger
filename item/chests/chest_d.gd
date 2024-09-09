@@ -1,53 +1,43 @@
 extends StaticBody2D
 
-@export var timeToOpen : float
-@export var item : PackedScene
+@export var coinsToOpen: int
+@export var item:PackedScene
 
 var state: int = 0
-var player_near : bool = false
+var player_near: bool = false
+var player_has_coins: bool = false
 var itemHolder: PackedScene = preload("res://item/item_holder.tscn")
 
 func _ready() -> void:
-	$OpeningTimer.wait_time = timeToOpen
+	pass
 
-func init(_time: float, _item: PackedScene):
-	if _time == null:
-		_time = 0.5
-	timeToOpen = _time
+func init(_price: int, _item: PackedScene):
+	if _price == null:
+		_price = 0
+	coinsToOpen = _price
 	if _item != null:
 		item = _item
 
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("kb_e") and player_near and state == 0:
-			$OpeningTimer.start()
-			#print("opening")
-			state = 1
-	if state == 1:
-		$Label.text = str($OpeningTimer.time_left)
+	if Input.is_action_just_pressed("kb_e") and player_near and player_has_coins and state == 0:
+		state = 1
+		open()
+	#if state == 1:
+		#$Label.text = str($OpeningTimer.time_left)
+
 
 func _on_interact_area_body_entered(body: Node2D) -> void:
-	if state == 0:
+	if body.is_in_group("Player") and state == 0:
 		$HintLabel.show()
 		player_near = true
+		if body.coins >= coinsToOpen:
+			player_has_coins = true
 
 func _on_interact_area_body_exited(body: Node2D) -> void:
-	if state == 0:
+	if body.is_in_group("Player") and state == 0:
 		$HintLabel.hide()
 		player_near = false
-
-func _on_opening_area_body_entered(body: Node2D) -> void:
-	if state == 1:
-		player_near = true
-		$OpeningTimer.paused = false
-
-func _on_opening_area_body_exited(body: Node2D) -> void:
-	if state == 1:
-		player_near = false
-		$OpeningTimer.paused = true
-
-
-func _on_opening_timer_timeout() -> void:
-	open()
+		player_has_coins = false
 
 func open():
 	var drop_pos = global_position+Vector2.ONE.rotated(randf_range(0, 2*PI))*250
