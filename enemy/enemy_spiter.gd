@@ -7,6 +7,7 @@ extends EnemyClass
 @export var slowing_mult: float
 @export var player_can_move: bool
 @export var projectile: PackedScene
+@export var attack_delay: float
 
 var base_num_zigzags : int = 4
 var num_zigzags : int
@@ -16,13 +17,14 @@ var aiming_pos : Vector2
 func _ready() -> void:
 	$AttackArea/CollisionShape2D.shape.radius = aiming_distance
 	update_variables()
+	$DelayTimer.wait_time = attack_delay
 
 
 #STATES SIGNALS
-func _on_chase_area_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Player"):
-		target = body
-		stateChart.send_event("player_spotted")
+func _on_chasing_c_state_state_entered() -> void:
+	if $AttackArea.overlaps_body(target):
+		await $DelayTimer.timeout
+		stateChart.send_event("player_near")
 
 func _on_straight_a_state_state_physics_processing(delta: float) -> void:
 	navigate_to(target)
@@ -68,12 +70,21 @@ func _on_shooting_a_state_state_entered() -> void:
 	proj.init(global_position, aiming_pos, proj_delay, proj_lifespam, 0, slowing_mult, player_can_move)
 	MyFuncs.get_fst_parent_in(self, "World").add_child(proj)
 	stateChart.send_event("attack_finished")
+	$DelayTimer.start()
 
 
 #AREA SIGNALS
-func _on_attack_area_body_entered(body: Node2D) -> void:
-	stateChart.send_event("player_near")
+func _on_chase_area_body_entered(body: Node2D) -> void:
+	if body.is_in_group("Player"):
+		target = body
+		stateChart.send_event("player_spotted")
 
+func _on_attack_area_body_entered(body: Node2D) -> void:
+	if $DelayTimer.time_left > 0:
+		await $DelayTimer.timeout
+		stateChart.send_event("player_near")
+	else:
+		stateChart.send_event("player_near")
 
 func _on_enemy_hurt_box_area_entered(area: Area2D) -> void:
 	if randi_range(0,10) == 9:

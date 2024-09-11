@@ -47,6 +47,7 @@ proj_lifespam = 1.0
 slowing_mult = 0.4
 player_can_move = true
 projectile = ExtResource("2_jmxo3")
+attack_delay = 0.5
 base_health = 100.0
 base_speed = 350.0
 spawn_price = 10
@@ -132,6 +133,9 @@ script = ExtResource("8_xkxtb")
 to = NodePath("../../ChasingCState")
 event = &"attack_finished"
 
+[node name="DelayTimer" type="Timer" parent="."]
+one_shot = true
+
 [node name="Status_Handler" parent="." instance=ExtResource("8_ivkjc")]
 
 [node name="ChaseArea" type="Area2D" parent="."]
@@ -188,6 +192,7 @@ color = Color(1, 0, 0, 1)
 parent = NodePath("..")
 
 [connection signal="area_entered" from="Enemy_HurtBox" to="." method="_on_enemy_hurt_box_area_entered"]
+[connection signal="state_entered" from="StateChart/Root/ChasingCState" to="." method="_on_chasing_c_state_state_entered"]
 [connection signal="state_physics_processing" from="StateChart/Root/ChasingCState/StraightAState" to="." method="_on_straight_a_state_state_physics_processing"]
 [connection signal="state_entered" from="StateChart/Root/ChasingCState/ZigzagAState" to="." method="_on_zigzag_a_state_state_entered"]
 [connection signal="state_physics_processing" from="StateChart/Root/ChasingCState/ZigzagAState" to="." method="_on_zigzag_a_state_state_physics_processing"]
