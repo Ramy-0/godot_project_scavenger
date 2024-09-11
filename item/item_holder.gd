@@ -22,7 +22,7 @@ func _ready():
 	can_be_picked = false
 	await get_tree().create_timer(0.3).timeout
 	can_be_picked = true
-	$Iteract_Area.monitorable = true
+	$Interact_Area.monitorable = true
 
 
 func _on_name_area_mouse_entered():

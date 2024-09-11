@@ -47,15 +47,15 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Name_Area"]
 shape = SubResource("CircleShape2D_anhns")
 
-[node name="Iteract_Area" type="Area2D" parent="."]
+[node name="Interact_Area" type="Area2D" parent="."]
 collision_layer = 16
 collision_mask = 0
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Iteract_Area"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interact_Area"]
 shape = SubResource("CircleShape2D_nmb84")
 
 [connection signal="mouse_entered" from="Name_Area" to="." method="_on_name_area_mouse_entered"]
 [connection signal="mouse_exited" from="Name_Area" to="." method="_on_name_area_mouse_exited"]
-[connection signal="mouse_entered" from="Iteract_Area" to="." method="_on_iteract_area_mouse_entered"]
-[connection signal="mouse_exited" from="Iteract_Area" to="." method="_on_iteract_area_mouse_exited"]
+[connection signal="mouse_entered" from="Interact_Area" to="." method="_on_iteract_area_mouse_entered"]
+[connection signal="mouse_exited" from="Interact_Area" to="." method="_on_iteract_area_mouse_exited"]
