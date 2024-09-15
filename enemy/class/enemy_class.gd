@@ -46,9 +46,9 @@ func navigate_to(_target):
 		velocity = dir * nav_speed
 		move_and_slide()
 
-func navigate_to_location(pos : Vector2, speed_mult : float):
+func navigate_to_location(pos : Vector2):
 	var dir = to_local(pos).normalized()
-	velocity = dir * nav_speed * speed_mult
+	velocity = dir * nav_speed
 	#print(global_position.distance_to(pos))
 	if global_position.distance_to(pos) > 10.0:
 		move_and_slide()

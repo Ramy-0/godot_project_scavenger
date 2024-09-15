@@ -41,7 +41,7 @@ func _on_zigzag_a_state_state_entered() -> void:
 func _on_zigzag_a_state_state_physics_processing(delta: float) -> void:
 	#print(position)
 	$ZigzagPos.global_position = zigzag_pos
-	navigate_to_location($ZigzagPos.global_position,1)
+	navigate_to_location($ZigzagPos.global_position)
 	look_at_point(zigzag_pos)
 	#print(global_position.distance_to($ZigzagPos.global_position) )
 	if global_position.distance_to($ZigzagPos.global_position) <= 10.0:

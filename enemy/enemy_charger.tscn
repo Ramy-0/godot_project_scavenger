@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://b63eif741yck3"]
+[gd_scene load_steps=21 format=3 uid="uid://b63eif741yck3"]
 
 [ext_resource type="Script" path="res://enemy/enemy_charger.gd" id="1_mogam"]
 [ext_resource type="Texture2D" uid="uid://dlnj7xbxuivle" path="res://enemy/textures/bug_rino.png" id="2_wfkon"]
@@ -33,6 +33,9 @@ radius = 30.2655
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_26sly"]
 radius = 8.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_kfg2c"]
+radius = 22.0907
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_26o4j"]
 radius = 3000.0
 
@@ -48,9 +51,9 @@ collision_layer = 4
 collision_mask = 13
 script = ExtResource("1_mogam")
 pre_charge_delay = 0.25
-charge_delay = 0.5
+charge_delay = 2.0
 grace_delay = 0.02
-charge_speed_multiplier = 3.0
+charge_speed_multiplier = 6.0
 base_health = 300.0
 base_speed = 220.0
 damage = 80.0
@@ -87,6 +90,15 @@ shape = SubResource("CapsuleShape2D_26sly")
 debug_color = Color(0.962559, 7.70092e-07, 0.503876, 0.42)
 
 [node name="Enemy_Nav_Agent" parent="." instance=ExtResource("5_6v1ec")]
+
+[node name="Pushing_Area" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 6
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pushing_Area"]
+shape = SubResource("CircleShape2D_kfg2c")
 
 [node name="StateChart" type="Node" parent="."]
 script = ExtResource("6_ysxav")
@@ -189,6 +201,7 @@ color = Color(1.34766e-06, 0.562765, 0.0870061, 1)
 [node name="Enemy_HealthBar" parent="." instance=ExtResource("12_p25d4")]
 
 [connection signal="hurtbox_attacked" from="Enemy_HurtBox" to="." method="_on_enemy_hurt_box_hurtbox_attacked"]
+[connection signal="body_entered" from="Pushing_Area" to="." method="_on_pushing_area_body_entered"]
 [connection signal="state_entered" from="StateChart/Root/Chasing_State" to="." method="_on_chasing_state_state_entered"]
 [connection signal="state_physics_processing" from="StateChart/Root/Chasing_State" to="." method="_on_chasing_state_state_physics_processing"]
 [connection signal="state_entered" from="StateChart/Root/Aiming_State" to="." method="_on_aiming_state_state_entered"]

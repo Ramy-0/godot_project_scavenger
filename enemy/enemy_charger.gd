@@ -51,20 +51,27 @@ func _on_aiming_state_state_physics_processing(delta):
 	look_at_target(target)
 
 func _on_grace_state_state_entered():
-	charge_target_vector = target.global_position
+	charge_target_vector = target.global_position + (
+		target.global_position-self.global_position).normalized()*250
+	#draw_circle(charge_target_vector, 20, Color.ORANGE, false)
 	graceT.start()
 
 func _on_charging_state_state_entered():
 	chargeT.start()
 	hitBoxStatic.activate(1.0)
 	set_collision_mask_value(3, 0)
+	$Pushing_Area.monitoring = true
+	nav_speed = speed * charge_speed_multiplier
+	var speed_tween = create_tween()
+	speed_tween.tween_property(self, "nav_speed", speed, charge_delay).set_trans(Tween.TRANS_SINE)
 
 func _on_charging_state_state_physics_processing(delta):
-	navigate_to_location(charge_target_vector, charge_speed_multiplier)
+	navigate_to_location(charge_target_vector)
 
 func _on_charging_state_state_exited():
 	hitBoxStatic.deactivate()
 	set_collision_mask_value(3, 1)
+	$Pushing_Area.monitoring = false
 
 #TIMER SIGNAL
 func _on_pre_charge_timer_timeout():
@@ -80,3 +87,15 @@ func _on_grace_timer_timeout():
 #HURTBOX SIGNAL
 func _on_enemy_hurt_box_hurtbox_attacked() -> void:
 	$Blood_Particles.emitting = true
+
+
+func _on_pushing_area_body_entered(body: Node2D) -> void:
+	if body != self:
+		print("pushing ", body)
+		var push_pos = (body.global_position - global_position).normalized() * 200
+		var push = create_tween()
+		push.tween_property(
+			body, "global_position",
+			body.global_position + push_pos, 
+			0.2
+		 ).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
