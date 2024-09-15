@@ -2,6 +2,8 @@ extends Node2D
 
 @export var itemList: Array[PackedScene]
 @export var chestsNum: int
+@export var base_price: int
+@export var base_time: float
 
 @onready var MChest = preload("res://item/chests/chest_m.tscn")
 @onready var DChest = preload("res://item/chests/chest_d.tscn")
@@ -24,9 +26,9 @@ func spawn_init_chests():
 func _spawn_chest_r():
 	#print(randi_range(0,2))
 	if randi_range(0,1) == 1:
-		_spawn_chest_d(0)
+		_spawn_chest_d(base_price)
 	else :
-		_spawn_chest_m(0.5)
+		_spawn_chest_m(base_time)
 
 func _spawn_chest_d(_price: int,):
 	var chest = DChest.instantiate()

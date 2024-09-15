@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="5_3kh77"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="6_7gnom"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="7_mx4wt"]
-[ext_resource type="Theme" uid="uid://7xs3fw8s4nwj" path="res://ui/themes/main_theme.tres" id="8_hxocp"]
+[ext_resource type="Theme" uid="uid://boj0r13dv7qt3" path="res://ui/themes/main_theme.tres" id="8_hxocp"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/state_is_active_guard.gd" id="8_ulnge"]
 [ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="9_o7l21"]
 [ext_resource type="Texture2D" uid="uid://brnk3k3ifoypg" path="res://weapons/texture/fuel gauge_0001.png" id="10_f1y36"]
