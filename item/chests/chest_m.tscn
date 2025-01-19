@@ -45,7 +45,9 @@ timeToOpen = 10.0
 position = Vector2(2, -9)
 shape = SubResource("RectangleShape2D_ymp55")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimSpriteAnchor" type="Node2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="AnimSpriteAnchor"]
 position = Vector2(2, -32)
 sprite_frames = SubResource("SpriteFrames_o4foq")
 

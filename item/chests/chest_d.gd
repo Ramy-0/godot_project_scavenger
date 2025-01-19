@@ -21,7 +21,15 @@ func init(_price: int, _item: PackedScene):
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("kb_e") and player_near and player_has_coins and state == 0:
 		state = 1
+		var animTweenX = create_tween()
+		animTweenX.tween_property($AnimSpriteAnchor, "scale:x", 1.5, 0.9)
+		animTweenX.tween_property($AnimSpriteAnchor, "scale:x", 1, 1.5)
+		var animTweenY = create_tween()
+		animTweenY.tween_property($AnimSpriteAnchor, "scale:y", 0.5, 1.3)
+		animTweenY.tween_property($AnimSpriteAnchor, "scale:y", 1, 0.5)
+		await animTweenY.finished
 		open()
+		
 	#if state == 1:
 		#$Label.text = str($OpeningTimer.time_left)
 
@@ -41,7 +49,7 @@ func _on_interact_area_body_exited(body: Node2D) -> void:
 
 func open():
 	var drop_pos = global_position+Vector2.ONE.rotated(randf_range(0, 2*PI))*250
-	$AnimatedSprite2D.frame = 1
+	$AnimSpriteAnchor/AnimatedSprite2D.frame = 1
 	var itemH = itemHolder.instantiate()
 	itemH.item_scene = item
 	itemH.global_position = global_position

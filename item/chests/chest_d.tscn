@@ -4,6 +4,9 @@
 [ext_resource type="Script" path="res://item/chests/chest_d.gd" id="1_nhwcw"]
 [ext_resource type="Theme" uid="uid://boj0r13dv7qt3" path="res://ui/themes/main_theme.tres" id="3_qua7k"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_320rh"]
+size = Vector2(36, 30)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_vkqtt"]
 atlas = ExtResource("1_mrboo")
 region = Rect2(0, 0, 64, 64)
@@ -26,9 +29,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_320rh"]
-size = Vector2(36, 30)
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_2cs1o"]
 radius = 64.0
 
@@ -37,13 +37,15 @@ collision_layer = 16
 collision_mask = 0
 script = ExtResource("1_nhwcw")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -32)
-sprite_frames = SubResource("SpriteFrames_nc12s")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -15)
 shape = SubResource("RectangleShape2D_320rh")
+
+[node name="AnimSpriteAnchor" type="Node2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="AnimSpriteAnchor"]
+position = Vector2(0, -32)
+sprite_frames = SubResource("SpriteFrames_nc12s")
 
 [node name="InteractArea" type="Area2D" parent="."]
 collision_layer = 0
@@ -51,6 +53,7 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractArea"]
 shape = SubResource("CircleShape2D_2cs1o")
+debug_color = Color(0, 0.6, 0.701961, 0)
 
 [node name="HintLabel" type="Label" parent="."]
 visible = false

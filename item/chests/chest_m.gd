@@ -7,8 +7,19 @@ var state: int = 0
 var player_near : bool = false
 var itemHolder: PackedScene = preload("res://item/item_holder.tscn")
 
+var animTweenX : Tween
+var animTweenY : Tween
+
 func _ready() -> void:
 	$OpeningTimer.wait_time = timeToOpen
+	animTweenX = create_tween().set_loops()
+	animTweenX.tween_property($AnimSpriteAnchor, "scale:x",0.8, 1.2)
+	animTweenX.tween_property($AnimSpriteAnchor, "scale:x",1.2, 0.8)
+	animTweenX.pause()
+	animTweenY = create_tween().set_loops()
+	animTweenY.tween_property($AnimSpriteAnchor, "scale:y",1.2, 0.8)
+	animTweenY.tween_property($AnimSpriteAnchor, "scale:y",0.8, 1.2)
+	animTweenY.pause()
 
 func init(_time: float, _item: PackedScene):
 	if _time == null:
@@ -22,6 +33,9 @@ func _process(delta: float) -> void:
 			$OpeningTimer.start()
 			#print("opening")
 			state = 1
+			animTweenX.play()
+			animTweenY.play()
+			
 	if state == 1:
 		$Label.text = str($OpeningTimer.time_left)
 
@@ -39,19 +53,26 @@ func _on_opening_area_body_entered(body: Node2D) -> void:
 	if state == 1:
 		player_near = true
 		$OpeningTimer.paused = false
+		animTweenX.play()
+		animTweenY.play()
 
 func _on_opening_area_body_exited(body: Node2D) -> void:
 	if state == 1:
 		player_near = false
 		$OpeningTimer.paused = true
+		animTweenX.pause()
+		animTweenY.pause()
 
 
 func _on_opening_timer_timeout() -> void:
 	open()
+	animTweenX.kill()
+	animTweenY.kill()
+	$AnimSpriteAnchor.scale = Vector2(1,1)
 
 func open():
 	var drop_pos = global_position+Vector2.ONE.rotated(randf_range(0, 2*PI))*250
-	$AnimatedSprite2D.frame = 1
+	$AnimSpriteAnchor/AnimatedSprite2D.frame = 1
 	var itemH = itemHolder.instantiate()
 	itemH.item_scene = item
 	itemH.global_position = global_position
