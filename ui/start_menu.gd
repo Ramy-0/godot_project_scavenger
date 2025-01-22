@@ -20,3 +20,6 @@ func _on_button_5_pressed() -> void:
 
 func _on_button_6_pressed() -> void:
 	get_tree().change_scene_to_packed(preload("res://worlds/world_chest_director_test.tscn"))
+
+func _on_button_7_pressed() -> void:
+	get_tree().change_scene_to_packed(preload("res://worlds/world_tile_test.tscn"))

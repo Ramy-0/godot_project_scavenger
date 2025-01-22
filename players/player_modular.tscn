@@ -1,8 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://cnve1w5ya6fm3"]
+[gd_scene load_steps=21 format=3 uid="uid://cnve1w5ya6fm3"]
 
 [ext_resource type="Script" path="res://players/player_modular.gd" id="1_btelm"]
 [ext_resource type="Texture2D" uid="uid://br6f31287ipbe" path="res://players/textures/pph.png" id="2_3qaqh"]
-[ext_resource type="Texture2D" uid="uid://b8bgn6t5caudo" path="res://players/textures/player 5.png" id="3_d68of"]
+[ext_resource type="Texture2D" uid="uid://1hnjvh6cxoiq" path="res://players/textures/player 5-new.png" id="3_4wtmp"]
 [ext_resource type="Script" path="res://players/subnodes/weapon_belt.gd" id="3_qi5wp"]
 [ext_resource type="PackedScene" uid="uid://ba38bg6b8r6f3" path="res://players/subnodes/health_gui.tscn" id="5_6lu8k"]
 [ext_resource type="PackedScene" uid="uid://dusuc116xtyij" path="res://weapons/weapon_shotgun_swan.tscn" id="5_cpqr7"]
@@ -20,11 +20,22 @@
 radius = 16.0
 height = 32.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_h44wp"]
+atlas = ExtResource("3_4wtmp")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jg3s3"]
+atlas = ExtResource("3_4wtmp")
+region = Rect2(64, 64, 64, 64)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_eggvd"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_d68of")
+"texture": SubResource("AtlasTexture_h44wp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jg3s3")
 }],
 "loop": true,
 "name": &"Idle",
@@ -109,6 +120,7 @@ position = Vector2(0, -32)
 sprite_frames = SubResource("SpriteFrames_eggvd")
 animation = &"Idle"
 autoplay = "Idle"
+frame_progress = 0.0456519
 
 [node name="WeaponBelt" type="Node2D" parent="." node_paths=PackedStringArray("weapon1", "weapon2", "weaponUlt")]
 position = Vector2(0, -32)

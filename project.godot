@@ -16,7 +16,7 @@ config/version="pre alpha"
 config/tags=PackedStringArray("2d", "git_repo", "plugins", "v4.3")
 run/main_scene="res://ui/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://item/texture/ItemPizza.png"
 
 [autoload]
 
