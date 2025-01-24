@@ -21,6 +21,7 @@ config/icon="res://item/texture/ItemPizza.png"
 [autoload]
 
 MyFuncs="*res://singletons/my_funcs.gd"
+ConfigFileHandler="*res://singletons/configFile_handler.gd"
 ProCam="*res://addons/ProCam2D/scripts/ProCam.gd"
 
 [display]
@@ -45,6 +46,7 @@ folder_colors={
 "res://item/": "yellow",
 "res://maps/": "green",
 "res://players/": "orange",
+"res://saves/": "teal",
 "res://singletons/": "teal",
 "res://ui/": "purple",
 "res://weapons/": "yellow",

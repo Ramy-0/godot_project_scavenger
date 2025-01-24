@@ -35,9 +35,9 @@ radius = 64.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_fmuuk"]
 radius = 128.0
 
-[node name="ChestM" type="StaticBody2D"]
+[node name="ChestM" type="StaticBody2D" groups=["Item"]]
 collision_layer = 16
-collision_mask = 0
+collision_mask = 16
 script = ExtResource("1_buy3k")
 timeToOpen = 10.0
 

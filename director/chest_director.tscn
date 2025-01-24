@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://d2xtd6i4hdngj"]
+[gd_scene load_steps=10 format=3 uid="uid://d2xtd6i4hdngj"]
 
 [ext_resource type="Script" path="res://director/chest_director.gd" id="1_qw8uq"]
 [ext_resource type="PackedScene" uid="uid://chssuia1vgi4s" path="res://item/item_brass.tscn" id="2_h8uv2"]
@@ -9,7 +9,18 @@
 [ext_resource type="PackedScene" uid="uid://dmnvf5247eiu6" path="res://item/item_pizza.tscn" id="7_c6kx5"]
 [ext_resource type="PackedScene" uid="uid://cm75esir2vyg7" path="res://item/item_razor.tscn" id="8_2p6m0"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_usiv8"]
+radius = 800.0
+
 [node name="Chest_Director" type="Node2D"]
 script = ExtResource("1_qw8uq")
 itemList = Array[PackedScene]([ExtResource("2_h8uv2"), ExtResource("3_e0n2u"), ExtResource("4_k60wt"), ExtResource("5_21uyn"), ExtResource("6_4fs0d"), ExtResource("7_c6kx5"), ExtResource("8_2p6m0")])
 chestsNum = 5
+
+[node name="CheckArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 17
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckArea"]
+shape = SubResource("CircleShape2D_usiv8")
+debug_color = Color(0.531535, 0.570598, 1.92523e-07, 0.42)
