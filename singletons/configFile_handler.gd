@@ -7,7 +7,11 @@ const SETTINGS_FILE_PATH = "user://settings.ini"
 func _ready() -> void:
 	if !FileAccess.file_exists(SETTINGS_FILE_PATH):
 		config.set_value("audio", "volume", 1.0)
+		config.set_value("audio", "music", 1.0)
+		config.set_value("audio", "sfx", 1.0)
+		
 		config.set_value("video", "fullscreen", true)
+		config.set_value("video", "maximize", true)
 		
 		config.save(SETTINGS_FILE_PATH)
 		

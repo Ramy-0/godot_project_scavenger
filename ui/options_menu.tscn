@@ -29,30 +29,71 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_gff6m")
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="OptionsLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "Options"
+text = "Options
 
-[node name="VideoContainer" type="HBoxContainer" parent="VBoxContainer"]
+"
+horizontal_alignment = 1
+
+[node name="VideoFullContainer" type="HBoxContainer" parent="VBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/VideoContainer"]
+[node name="VideoFullLabel" type="Label" parent="VBoxContainer/VideoFullContainer"]
+custom_minimum_size = Vector2(130, 0)
 layout_mode = 2
 text = "FullScreen : "
 
-[node name="CheckButton" type="CheckButton" parent="VBoxContainer/VideoContainer"]
+[node name="VideoFullButton" type="CheckButton" parent="VBoxContainer/VideoFullContainer"]
 layout_mode = 2
 
-[node name="AudioContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="VideoMaxContainer" type="HBoxContainer" parent="VBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/AudioContainer"]
+[node name="VideoMaxLabel" type="Label" parent="VBoxContainer/VideoMaxContainer"]
+custom_minimum_size = Vector2(130, 0)
+layout_mode = 2
+text = "Maximised : "
+
+[node name="VideoMaxButton" type="CheckButton" parent="VBoxContainer/VideoMaxContainer"]
+layout_mode = 2
+
+[node name="AudioMasterContainer" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="AudioMasterLabel" type="Label" parent="VBoxContainer/AudioMasterContainer"]
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "Volume : "
 
-[node name="HSlider" type="HSlider" parent="VBoxContainer/AudioContainer"]
+[node name="AudioMasterSlider" type="HSlider" parent="VBoxContainer/AudioMasterContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="AudioMusicContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="AudioMusicLabel" type="Label" parent="VBoxContainer/AudioMusicContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Music"
+
+[node name="AudioMusicSlider" type="HSlider" parent="VBoxContainer/AudioMusicContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="AudioSFXContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="AudioSFXLabel" type="Label" parent="VBoxContainer/AudioSFXContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "SFX"
+
+[node name="AudioSFXSlider" type="HSlider" parent="VBoxContainer/AudioSFXContainer"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 
@@ -63,9 +104,15 @@ text = "Back"
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_bp48c")
 autoplay = true
+bus = &"Music"
 parameters/looping = false
 
-[connection signal="toggled" from="VBoxContainer/VideoContainer/CheckButton" to="." method="_on_check_button_toggled"]
-[connection signal="drag_ended" from="VBoxContainer/AudioContainer/HSlider" to="." method="_on_h_slider_drag_ended"]
-[connection signal="value_changed" from="VBoxContainer/AudioContainer/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="toggled" from="VBoxContainer/VideoFullContainer/VideoFullButton" to="." method="_on_video_full_button_toggled"]
+[connection signal="toggled" from="VBoxContainer/VideoMaxContainer/VideoMaxButton" to="." method="_on_video_max_button_toggled"]
+[connection signal="drag_ended" from="VBoxContainer/AudioMasterContainer/AudioMasterSlider" to="." method="_on_audio_master_slider_drag_ended"]
+[connection signal="value_changed" from="VBoxContainer/AudioMasterContainer/AudioMasterSlider" to="." method="_on_audio_master_slider_value_changed"]
+[connection signal="drag_ended" from="VBoxContainer/AudioMusicContainer/AudioMusicSlider" to="." method="_on_audio_music_slider_drag_ended"]
+[connection signal="value_changed" from="VBoxContainer/AudioMusicContainer/AudioMusicSlider" to="." method="_on_audio_music_slider_value_changed"]
+[connection signal="drag_ended" from="VBoxContainer/AudioSFXContainer/AudioSFXSlider" to="." method="_on_audio_sfx_slider_drag_ended"]
+[connection signal="value_changed" from="VBoxContainer/AudioSFXContainer/AudioSFXSlider" to="." method="_on_audio_sfx_slider_value_changed"]
 [connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

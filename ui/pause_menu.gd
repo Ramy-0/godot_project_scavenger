@@ -4,7 +4,7 @@ var paused : bool = false
 @export var world : Node2D
 
 func _ready():
-	#world = MyFuncs.get_fst_parent_in(self, "World")
+	world = MyFuncs.get_fst_parent_in(self, "World")
 	hide()
 
 func _unhandled_input(event):

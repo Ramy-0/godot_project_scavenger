@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ceobktw76pbig"]
+[gd_scene load_steps=11 format=3 uid="uid://ceobktw76pbig"]
 
 [ext_resource type="PackedScene" uid="uid://c51ou63q6e3f6" path="res://maps/map_empty.tscn" id="1_5fqou"]
 [ext_resource type="PackedScene" uid="uid://cnve1w5ya6fm3" path="res://players/player_modular.tscn" id="2_ieq6v"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bqffitmaeidph" path="res://item/item_mama_bear.tscn" id="7_hf37t"]
 [ext_resource type="PackedScene" uid="uid://qm4y5jae3ag" path="res://item/chests/chest_d.tscn" id="8_515ut"]
 [ext_resource type="PackedScene" uid="uid://dmnvf5247eiu6" path="res://item/item_pizza.tscn" id="9_pv8lk"]
+[ext_resource type="PackedScene" uid="uid://dfmypkrqrhqfv" path="res://ui/pause_menu.tscn" id="10_uojr3"]
 
 [node name="World_PunshingBags" type="Node2D" groups=["World"]]
 
@@ -39,3 +40,7 @@ item = ExtResource("7_hf37t")
 [node name="Chest_D" parent="." instance=ExtResource("8_515ut")]
 position = Vector2(-398, 238)
 item = ExtResource("9_pv8lk")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Pause_Menu" parent="UI" instance=ExtResource("10_uojr3")]

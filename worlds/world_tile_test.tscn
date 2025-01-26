@@ -11,6 +11,7 @@
 [node name="Map_Green" parent="." instance=ExtResource("1_2cngh")]
 
 [node name="Spawn_Director" parent="." instance=ExtResource("2_n1lrb")]
+visible = false
 
 [node name="Chest_Director" parent="." instance=ExtResource("3_ofmud")]
 chestsNum = 10

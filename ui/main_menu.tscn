@@ -14,7 +14,7 @@ grow_vertical = 2
 theme = ExtResource("3_47sy4")
 script = ExtResource("1_k6jew")
 
-[node name="Label" type="Label" parent="."]
+[node name="MainLabel" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -24,7 +24,8 @@ offset_right = 20.0
 offset_bottom = 23.0
 grow_horizontal = 2
 theme = ExtResource("1_ibb2n")
-text = "Scavenger"
+text = "
+Scavenger"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
