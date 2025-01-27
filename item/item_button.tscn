@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://81c8c6reecvw"]
+
+[ext_resource type="Script" path="res://item/item_button.gd" id="1_v50xk"]
+[ext_resource type="Theme" uid="uid://boj0r13dv7qt3" path="res://ui/themes/main_theme.tres" id="2_sautd"]
+
+[node name="Item_Button" type="Control"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_v50xk")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+color = Color(0, 0.505882, 0.517647, 0.392157)
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+
+[node name="AmountLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 20.0
+offset_right = 54.0
+offset_bottom = 43.0
+theme = ExtResource("2_sautd")
+text = "x_"
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dj264imthsa27"]
+
+[ext_resource type="AudioStream" uid="uid://d243vv4hu1lhh" path="res://audio/music/kim-lightyear-angel-eyes-chiptune-edit-110226.mp3" id="1_73q71"]
+
+[node name="MainMenuAudio" type="AudioStreamPlayer"]
+process_mode = 3
+stream = ExtResource("1_73q71")
+autoplay = true
+bus = &"Music"
+parameters/looping = false

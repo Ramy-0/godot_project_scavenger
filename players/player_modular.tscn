@@ -55,7 +55,7 @@ size = Vector2(32, 64)
 
 [node name="Player_Modular" type="CharacterBody2D" node_paths=PackedStringArray("collisionBox", "sprite", "camera", "camera_pro", "weaponBelt", "hurtBox", "healthgui", "movementAbility", "healTimer", "preHealTimer", "itemHandler", "statusHandler") groups=["Player"]]
 collision_layer = 2
-collision_mask = 21
+collision_mask = 2069
 script = ExtResource("1_btelm")
 base_health = 200.0
 base_speed = 300.0

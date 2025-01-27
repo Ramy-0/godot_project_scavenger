@@ -23,6 +23,7 @@ config/icon="res://item/texture/ItemPizza.png"
 MyFuncs="*res://singletons/my_funcs.gd"
 ConfigFileHandler="*res://singletons/configFile_handler.gd"
 ProCam="*res://addons/ProCam2D/scripts/ProCam.gd"
+MainMenuAudio="*res://audio/main_menu_audio.tscn"
 
 [display]
 
@@ -130,6 +131,7 @@ kb_e={
 2d_physics/layer_9="PlayerHurtBox"
 2d_physics/layer_10="EnemyHitBox"
 2d_physics/layer_11="EnemyHurtBox"
+2d_physics/layer_12="Objective"
 
 [rendering]
 

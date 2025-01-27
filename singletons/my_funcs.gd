@@ -2,8 +2,9 @@ extends Node
 
 #gets a list of all the children of a parent in a given group
 func get_children_in_group(Parent, GroupName):
-	var all = Parent.get_children()
 	var wanted = []
+	
+	var all = Parent.get_children()
 	for i in all:
 		if i.is_in_group(GroupName):
 			wanted.append(i)

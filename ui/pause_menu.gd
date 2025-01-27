@@ -10,14 +10,19 @@ func _ready():
 func _unhandled_input(event):
 	if event is InputEventKey:
 		if event.pressed and event.keycode == KEY_ESCAPE and not paused:
-			show()
-			paused = true
-			world.get_tree().paused = true
+			pause_game()
 		elif event.pressed and event.keycode == KEY_ESCAPE and paused:
-			hide()
-			paused = false
-			world.get_tree().paused = false
+			unpause_game()
 
+func pause_game():
+	show()
+	paused = true
+	world.get_tree().paused = true
+
+func unpause_game():
+	hide()
+	paused = false
+	world.get_tree().paused = false
 
 func _on_button_pressed() -> void:
 	hide()

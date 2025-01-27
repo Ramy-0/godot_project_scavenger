@@ -1,20 +1,25 @@
-[gd_scene load_steps=6 format=3 uid="uid://cy6tsqskqipaa"]
+[gd_scene load_steps=7 format=3 uid="uid://cy6tsqskqipaa"]
 
 [ext_resource type="PackedScene" uid="uid://b4irxx7ex1pbp" path="res://maps/map_green.tscn" id="1_2cngh"]
 [ext_resource type="PackedScene" uid="uid://dfmypkrqrhqfv" path="res://ui/pause_menu.tscn" id="1_iknhh"]
 [ext_resource type="PackedScene" uid="uid://vtnrrx3vxpg7" path="res://director/spawn_director.tscn" id="2_n1lrb"]
 [ext_resource type="PackedScene" uid="uid://cnve1w5ya6fm3" path="res://players/player_modular.tscn" id="2_pjyyg"]
 [ext_resource type="PackedScene" uid="uid://d2xtd6i4hdngj" path="res://director/chest_director.tscn" id="3_ofmud"]
+[ext_resource type="PackedScene" uid="uid://bmie5ux5jjmyu" path="res://director/objective_director.tscn" id="4_qafaa"]
 
 [node name="World_TileTest" type="Node2D" groups=["World"]]
 
 [node name="Map_Green" parent="." instance=ExtResource("1_2cngh")]
 
 [node name="Spawn_Director" parent="." instance=ExtResource("2_n1lrb")]
+process_mode = 4
 visible = false
 
 [node name="Chest_Director" parent="." instance=ExtResource("3_ofmud")]
 chestsNum = 10
+
+[node name="Objective_Director" parent="." instance=ExtResource("4_qafaa")]
+position = Vector2(-100, -608)
 
 [node name="Player_Modular" parent="." instance=ExtResource("2_pjyyg")]
 
