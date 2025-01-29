@@ -63,6 +63,7 @@ CollisionBox=""
 HitBox=""
 HurtBox=""
 Item="for items"
+Objective="for the objective directors and its dependacies"
 
 [input]
 

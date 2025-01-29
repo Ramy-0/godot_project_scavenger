@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://bmie5ux5jjmyu"]
+[gd_scene load_steps=9 format=3 uid="uid://bmie5ux5jjmyu"]
 
 [ext_resource type="Script" path="res://director/objective_director.gd" id="1_18rtg"]
 [ext_resource type="Theme" uid="uid://boj0r13dv7qt3" path="res://ui/themes/main_theme.tres" id="1_lf5ro"]
 [ext_resource type="PackedScene" uid="uid://81c8c6reecvw" path="res://item/item_button.tscn" id="3_o1vxs"]
 [ext_resource type="Texture2D" uid="uid://dfgnlhagp5hmu" path="res://item/texture/ItemPizza.png" id="3_wspo7"]
+[ext_resource type="PackedScene" uid="uid://bb7cah3gudp5d" path="res://item/item_quota.tscn" id="4_gp7sm"]
+[ext_resource type="PackedScene" uid="uid://dv4dh7od01f2j" path="res://ui/quota_obj_menu.tscn" id="6_i62wa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s47tx"]
 size = Vector2(208, 52)
@@ -12,7 +14,7 @@ size = Vector2(208, 52)
 radius = 62.0
 height = 284.0
 
-[node name="Objective_Director" type="Node2D"]
+[node name="Objective_Director" type="Node2D" groups=["Objective"]]
 process_mode = 3
 script = ExtResource("1_18rtg")
 
@@ -93,30 +95,37 @@ grow_vertical = 2
 theme = ExtResource("1_lf5ro")
 
 [node name="ColorRect" type="ColorRect" parent="UI/ItemMenu"]
-layout_mode = 0
-offset_left = -196.0
-offset_top = -16.0
-offset_right = 236.0
-offset_bottom = 278.0
-color = Color(1, 1, 1, 0.372549)
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/ItemMenu"]
-custom_minimum_size = Vector2(400, 0)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -200.0
-offset_top = -20.0
-offset_right = 200.0
-offset_bottom = 20.0
+offset_left = -412.0
+offset_top = -222.0
+offset_right = 412.0
+offset_bottom = 222.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.372549)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/ItemMenu"]
+custom_minimum_size = Vector2(370, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -372.0
+offset_top = -212.0
+offset_right = 372.0
+offset_bottom = 230.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="InventoryContainer" type="VBoxContainer" parent="UI/ItemMenu/HBoxContainer"]
-custom_minimum_size = Vector2(200, 0)
+custom_minimum_size = Vector2(370, 0)
 layout_mode = 2
 
 [node name="Label" type="Label" parent="UI/ItemMenu/HBoxContainer/InventoryContainer"]
@@ -126,7 +135,7 @@ horizontal_alignment = 1
 
 [node name="GridContainer" type="GridContainer" parent="UI/ItemMenu/HBoxContainer/InventoryContainer"]
 layout_mode = 2
-columns = 6
+columns = 8
 
 [node name="Item_Button" parent="UI/ItemMenu/HBoxContainer/InventoryContainer/GridContainer" instance=ExtResource("3_o1vxs")]
 layout_mode = 2
@@ -134,14 +143,50 @@ layout_mode = 2
 [node name="Item_Button2" parent="UI/ItemMenu/HBoxContainer/InventoryContainer/GridContainer" instance=ExtResource("3_o1vxs")]
 layout_mode = 2
 
+[node name="Item_Button3" parent="UI/ItemMenu/HBoxContainer/InventoryContainer/GridContainer" instance=ExtResource("3_o1vxs")]
+layout_mode = 2
+
+[node name="Item_Button4" parent="UI/ItemMenu/HBoxContainer/InventoryContainer/GridContainer" instance=ExtResource("3_o1vxs")]
+layout_mode = 2
+
+[node name="Item_Button5" parent="UI/ItemMenu/HBoxContainer/InventoryContainer/GridContainer" instance=ExtResource("3_o1vxs")]
+layout_mode = 2
+
+[node name="Item_Button6" parent="UI/ItemMenu/HBoxContainer/InventoryContainer/GridContainer" instance=ExtResource("3_o1vxs")]
+layout_mode = 2
+
+[node name="Item_Button7" parent="UI/ItemMenu/HBoxContainer/InventoryContainer/GridContainer" instance=ExtResource("3_o1vxs")]
+layout_mode = 2
+
+[node name="Item_Button8" parent="UI/ItemMenu/HBoxContainer/InventoryContainer/GridContainer" instance=ExtResource("3_o1vxs")]
+layout_mode = 2
+
+[node name="Item_Button9" parent="UI/ItemMenu/HBoxContainer/InventoryContainer/GridContainer" instance=ExtResource("3_o1vxs")]
+layout_mode = 2
+
 [node name="QuotaContainer" type="VBoxContainer" parent="UI/ItemMenu/HBoxContainer"]
-custom_minimum_size = Vector2(200, 0)
+custom_minimum_size = Vector2(370, 0)
 layout_mode = 2
 
 [node name="Label" type="Label" parent="UI/ItemMenu/HBoxContainer/QuotaContainer"]
 layout_mode = 2
 text = "Quota"
 horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/ItemMenu/HBoxContainer/QuotaContainer"]
+layout_mode = 2
+
+[node name="Item_Quota" parent="UI/ItemMenu/HBoxContainer/QuotaContainer/VBoxContainer" instance=ExtResource("4_gp7sm")]
+layout_mode = 2
+
+[node name="Item_Quota2" parent="UI/ItemMenu/HBoxContainer/QuotaContainer/VBoxContainer" instance=ExtResource("4_gp7sm")]
+layout_mode = 2
+
+[node name="Item_Quota3" parent="UI/ItemMenu/HBoxContainer/QuotaContainer/VBoxContainer" instance=ExtResource("4_gp7sm")]
+layout_mode = 2
+
+[node name="Item_Quota4" parent="UI/ItemMenu/HBoxContainer/QuotaContainer/VBoxContainer" instance=ExtResource("4_gp7sm")]
+layout_mode = 2
 
 [node name="ItemList" type="ItemList" parent="UI/ItemMenu"]
 visible = false
@@ -165,6 +210,8 @@ item_0/text = "Pizza"
 item_0/icon = ExtResource("3_wspo7")
 item_1/text = "pizza"
 item_1/icon = ExtResource("3_wspo7")
+
+[node name="QuotaObj_Menu" parent="UI" instance=ExtResource("6_i62wa")]
 
 [connection signal="body_entered" from="Van/InteractionArea" to="." method="_on_interaction_area_body_entered"]
 [connection signal="body_exited" from="Van/InteractionArea" to="." method="_on_interaction_area_body_exited"]

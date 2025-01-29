@@ -12,7 +12,7 @@ func _process(delta):
 	if get_local_mouse_position().x > 0:
 		$AnimatedSprite2D.flip_h = false
 	else:
-		$AnimatedSprite2D.flip_h = true
+		$AnimatedSprite2D.flip_h = true 
 
 func _on_player_hurt_box_hurtbox_attacked() -> void:
 	pass
