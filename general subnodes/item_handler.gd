@@ -29,9 +29,12 @@ func _update_items_icons():
 	items = MyFuncs.get_children_in_group(self, "Item")
 	#var icons = $CanvasLayer/VBoxContainer/HBoxContainer.get_children()
 	for i in items:
-		var ic = icon_sc.instantiate()
-		ic.init(i)
-		$CanvasLayer/VBoxContainer/HBoxContainer.add_child(ic)
+		if i.amount > 0:
+			var ic = icon_sc.instantiate()
+			ic.init(i)
+			$CanvasLayer/VBoxContainer/HBoxContainer.add_child(ic)
+		else:
+			i.queue_free()
 
 func on_critical(hitbox, hurtbox):
 	hitbox.damage *= 2

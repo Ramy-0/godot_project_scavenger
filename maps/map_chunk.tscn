@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dsp2ahnobghx4"]
+
+[ext_resource type="Script" path="res://maps/map_chunk.gd" id="1_h4y82"]
+
+[node name="MapChunk" type="Node2D"]
+script = ExtResource("1_h4y82")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]

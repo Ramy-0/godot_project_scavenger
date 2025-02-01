@@ -64,6 +64,16 @@ func _calulate():
 		$HBoxContainer2/SendButton.disabled = true
 		
 
+func send():
+	if priceT >= quota:
+		for i in range(quoItems.item_count):
+			var qitem = quoItems.get_item_text(0)
+			for vitem in items:
+				if qitem == vitem.item_name:
+					vitem.amount -= 1
+					break
+			quoItems.remove_item(0)
+
 func _on_inventory_list_item_clicked(index: int, at_position: Vector2, mouse_button_index: int) -> void:
 	#print(invItems.get_item_text(index) + "had been clicked by")
 	#print("mouse ", mouse_button_index)
@@ -96,4 +106,10 @@ func _on_quota_list_item_selected(index: int) -> void:
 
 
 func _on_back_button_pressed() -> void:
+	close()
+
+func _on_send_button_pressed() -> void:
+	send()
+	player.itemHandler._update_items_icons()
+	objectiveDir.quotaMet = true
 	close()

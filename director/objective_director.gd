@@ -11,6 +11,7 @@ extends Node2D
 
 var playerNear : bool = false
 var uiOpen : bool = false
+var quotaMet : bool = false
 var world : Node2D
 var player : PlayerClass
 

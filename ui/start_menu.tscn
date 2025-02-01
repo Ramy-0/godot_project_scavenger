@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cqqh0ffy4p0r0"]
+[gd_scene load_steps=4 format=3 uid="uid://cqqh0ffy4p0r0"]
 
 [ext_resource type="Theme" uid="uid://boj0r13dv7qt3" path="res://ui/themes/main_theme.tres" id="1_cnpor"]
 [ext_resource type="Script" path="res://ui/start_menu.gd" id="2_7dsnj"]
+[ext_resource type="Theme" uid="uid://mqm85yoxkpxv" path="res://ui/themes/title_theme.tres" id="3_vycw0"]
 
 [node name="Start_Menu" type="Control"]
 layout_mode = 3
@@ -22,7 +23,8 @@ offset_left = -24.5
 offset_right = 24.5
 offset_bottom = 23.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 24
+theme = ExtResource("3_vycw0")
+theme_override_font_sizes/font_size = 75
 text = "
 Select a Level"
 
